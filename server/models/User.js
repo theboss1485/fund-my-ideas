@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const userSchema = new mongoose.Schema(
 
     {
@@ -11,7 +12,8 @@ const userSchema = new mongoose.Schema(
             maxlength: 100
         },
 
-        validate: {
+        email: {
+            type: String,
             required: true,
             validator: (value) => {
 
@@ -33,19 +35,30 @@ const userSchema = new mongoose.Schema(
             default: Date.now,
         },
 
-        fundingGoal: {
+        timePeriod: {
 
             type: Number,
             required: true
         },
 
-        timePeriod: {
-
-            type: Number,
-            required: true
-        }
+        projects: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ]
+    },
+    {
+        toJSON: {
+            virtuals: true
+        },
+        id: false
     }
 )
+
+userSchema.virtual('projectCount').get(function() {
+    return this.projects.length;
+})
 
 const User = mongoose.model("User", userSchema);
 
