@@ -9,8 +9,8 @@ const typeDefs = `
 
   type Project {
     _id: ID
-    name: String
-    description: String
+    projectText: String
+    projectAuthor: String
     createdAt: String
     comments: [Comment]!
   }
@@ -28,20 +28,20 @@ const typeDefs = `
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
     me: User
+    user(username: String!): User
+    comments(username: String): [Comment]
+    comment(thoughtId: ID!): Comment
+    
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject(projectText: String!): Project
-    addComment(projectId: ID!, commentText: String!): Project
+    addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): Project
+    addComment(projectId: ID!, commentText: String!): Comment
     removeProject(projectId: ID!): Project
-    removeComment(projectId: ID!, commentId: ID!): Project
+    removeComment(projectId: ID!, commentId: ID!): Comment
   }
 `;
 
