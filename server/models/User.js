@@ -35,12 +35,6 @@ const userSchema = new mongoose.Schema(
             default: Date.now,
         },
 
-        timePeriod: {
-
-            type: Number,
-            required: true
-        },
-
         projects: [
             {
                 type: Schema.Types.ObjectId,
