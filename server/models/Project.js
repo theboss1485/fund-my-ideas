@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const commentSchema = require('./Comment')
 
 const projectSchema = new mongoose.Schema(
 
@@ -10,6 +11,9 @@ const projectSchema = new mongoose.Schema(
             minlength: 1,
             maxlength: 100
         },
+
+        // might be subjected to change later
+        username: String,
 
         description: {
 
@@ -35,9 +39,26 @@ const projectSchema = new mongoose.Schema(
 
             type: Number,
             required: true
-        }
+        },
+
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Comment'
+            }
+        ]
+    },
+    {
+        toJSON: {
+            virtuals: true
+        },
+        id: false
     }
 )
+
+projectSchema.virtual('commentCount').get(function() {
+    return this.comments.length;
+})
 
 const Project = mongoose.model("Project", projectSchema);
 
