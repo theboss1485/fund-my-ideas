@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 const formatDate = require('../utils/format-date.js')
+
 const commentSchema = new mongoose.Schema(
     
     {
@@ -16,15 +18,10 @@ const commentSchema = new mongoose.Schema(
         username: {type: String,
                    required: true
                 },
-
-        createdAt: {type: Date,
-
-            default: Date.now,
-        }
-
     }, 
     {
         toJSON: {
+
             getters: true
         },
         id: false,
