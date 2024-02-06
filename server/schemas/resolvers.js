@@ -3,17 +3,16 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find().populate('projects');
-    },
-    user: async (parent, { username }) => {
+    getUser: async (parent, { username }) => {
       return User.findOne({ username }).populate('projects');
     },
-    projects: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Project.find(params).sort({ createdAt: -1 });
+    getProjects: async (parent, { username }) => {
+      if(context.user) {
+        const params = username ? { username } : {};
+        return Project.find(username).sort({ createdAt: -1 });
+      }
     },
-    project: async (parent, { thoughtId }) => {
+    getProject: async (parent, { thoughtId }) => {
       return Project.findOne({ _id: thoughtId });
     },
     me: async (parent, args, context) => {
@@ -61,7 +60,7 @@ const resolvers = {
 
         return project;
       }
-      throw AuthenticationError;
+      throw AuthenticationError();
       ('You need to be logged in!');
     },
     addComment: async (parent, { projectId, commentText }, context) => {

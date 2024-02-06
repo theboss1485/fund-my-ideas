@@ -16,3 +16,37 @@ export const GET_ME = gql`
         }
     }
 `;
+
+export const GET_USER = gql`
+    query getUser {
+        getUser {
+            _id
+            email
+            username
+            Projects {
+                name
+                description
+                fundingGoal
+                timePeriod
+            }
+        }
+    }
+`;
+
+export const GET_COMMENT = gql`
+    query getComment {
+        getComment {
+            _id
+            commentText
+        }
+    }
+`
+
+export const GET_COMMENTS = gql`
+    query getComments {
+        getComments {
+            _id
+            commentText
+        }
+    }
+`
