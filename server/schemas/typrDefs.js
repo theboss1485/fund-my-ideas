@@ -9,8 +9,8 @@ const typeDefs = `
 
   type Project {
     _id: ID
-    projectText: String
-    projectAuthor: String
+    name: String
+    description: String
     createdAt: String
     comments: [Comment]!
   }
