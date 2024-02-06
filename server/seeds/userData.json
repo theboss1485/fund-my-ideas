@@ -1,0 +1,52 @@
+[
+    {
+        "username": "Mickey Mouse",
+        "email": "mickeymouse@gmail.com",
+        "password": "mickeymouse"
+    },
+    {
+        "username": "Winnie The Pooh",
+        "email": "winnie123@gmail.com",
+        "password": "winniethepooh"
+    },
+    {
+        "username": "Villy",
+        "email": "villy@gmail.com",
+        "password": "villy1234"
+    },
+    {
+        "username": "Chia",
+        "email": "chia@gmail.com",
+        "password": "chia1234"
+    },
+    {
+        "username": "Gabriel",
+        "email": "gabriel@gmail.com",
+        "password": "gabriel1234"
+    },
+    {
+        "username": "Steve",
+        "email": "steve@gmail.com",
+        "password": "steve1234"
+    },
+    {
+        "username": "Matt",
+        "email": "matt@gmail.com",
+        "password": "matt1234"
+    },
+    {
+        "username": "Cake",
+        "email": "cake@gmail.com",
+        "password": "cake1234"
+    },
+    {
+        "username": "God",
+        "email": "IAmGod@gmail.com",
+        "password": "iamgod1234"
+    },
+    {
+        "username": "Water",
+        "email": "water@gmail.com",
+        "password": "water1234"
+    }
+]
