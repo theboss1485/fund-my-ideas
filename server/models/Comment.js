@@ -21,7 +21,6 @@ const commentSchema = new mongoose.Schema(
 
             default: Date.now,
         }
-
     }, 
     {
         toJSON: {
