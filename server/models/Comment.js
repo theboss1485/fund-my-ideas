@@ -3,7 +3,7 @@ const formatDate = require('../utils/format-date.js')
 const commentSchema = new mongoose.Schema(
     
     {
-        thoughtText: {type: String, 
+        commentText: {type: String, 
                       required: true,
                       minlength: 1,
                       maxLength: 280},
@@ -24,6 +24,9 @@ const commentSchema = new mongoose.Schema(
 
     }, 
     {
+        toJSON: {
+            getters: true
+        },
         id: false,
     }
 );
