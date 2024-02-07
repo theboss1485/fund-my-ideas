@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 
 const projectSchema = new mongoose.Schema(
@@ -10,12 +11,6 @@ const projectSchema = new mongoose.Schema(
             required: true,
             minlength: 1,
             maxlength: 100
-        },
-
-        // fixed the previous one that I messed up
-        username: {
-            type: String,
-            required: true
         },
 
         description: {
@@ -53,6 +48,7 @@ const projectSchema = new mongoose.Schema(
     },
     {
         toJSON: {
+
             virtuals: true
         },
         id: false

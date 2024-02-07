@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 
 const userSchema = new mongoose.Schema(
@@ -38,7 +39,7 @@ const userSchema = new mongoose.Schema(
         projects: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'User'
+                ref: 'Project'
             }
         ]
     },
