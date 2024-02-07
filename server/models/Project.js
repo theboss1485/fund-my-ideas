@@ -13,12 +13,6 @@ const projectSchema = new mongoose.Schema(
             maxlength: 100
         },
 
-        // fixed the previous one that I messed up
-        // username: {
-        //     type: String,
-        //     required: true
-        // },
-
         description: {
 
             type: String,

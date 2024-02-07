@@ -9,8 +9,10 @@ const typeDefs = `
 
   type Project {
     _id: ID
-    projectText: String
-    projectAuthor: String
+    name: String!
+    description: String!
+    fundingGoal: Int!
+    timePeriod: Int!
     createdAt: String
     comments: [Comment]!
   }
@@ -18,7 +20,7 @@ const typeDefs = `
   type Comment {
     _id: ID
     commentText: String
-    commentAuthor: String
+    username: String
     createdAt: String
   }
 
@@ -30,9 +32,10 @@ const typeDefs = `
   type Query {
     me: User
     user(username: String!): User
-    comments(username: String): [Comment]
-    comment(thoughtId: ID!): Comment
-    
+    projects(username: String!): [Project]
+    project(projectId: String!): Project
+    comments(projectId: String!): [Comment]
+    comment(commentId: ID!): Comment
   }
 
   type Mutation {

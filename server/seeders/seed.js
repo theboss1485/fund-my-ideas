@@ -1,4 +1,5 @@
 const db = require('../config/connection');
+const { ObjectId } = require('mongodb');
 const { Project, User, Comment } = require('../models');
 const cleanDB = require('./cleanDB');
 
@@ -16,6 +17,8 @@ db.once('open', async() => {
     let users = [];
 
     try{
+
+        console.log("object Id", new ObjectId());
 
         let comments = await Comment.insertMany(commentData);
 
@@ -41,7 +44,7 @@ db.once('open', async() => {
         for (const user of userData){
 
             let randomProjectIndex = Math.floor(Math.random() * projects.length);
-            let userProjectId = projects[randomProjectIndex].id;
+            let userProjectId = projects[randomProjectIndex]._id;
             projects.splice(randomProjectIndex, 1);
 
             let seededUser = await User.create({
@@ -61,8 +64,6 @@ db.once('open', async() => {
         console.log(error)
     }
 
-    
-    
     // Villy: Can delete "username" in both projectData and commentData to allow for randomization
     
     process.exit(0);
