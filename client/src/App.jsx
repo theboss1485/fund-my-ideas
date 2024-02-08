@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import Nav from './components/NavTabs';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Button from 'react-bootstrap/Button';
+
 
 function App() {
     return (

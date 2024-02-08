@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-TOP: 2%;
+    background-color: rgb(236, 236, 236);
 }
 
 .custom-login-button {
@@ -24,3 +24,12 @@
     margin-top: 1%;
     margin-bottom: 1%;
 }
+
+.custom-slider-pictures {
+    max-height: 400px;
+    position: relative;
+}
+
+/* .custom-slider-pictures img {
+
+} */
