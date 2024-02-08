@@ -71,16 +71,38 @@ const resolvers = {
 
     Mutation: {
 
-        addUser: async (parent, { username, email, password }) => {
+        
+        addUser: async (parent, {username, email, password}) => {
 
-            const user = await User.create({ username, email, password });
-            // const token = signToken(user);
-            return { user };
+            try{
+
+                console.log("params", args);
+
+                const user = await User.create({username, email, password});
+    
+                console.log("user", user);
+    
+                const token = signToken(user);
+    
+                return { token, user };
+            }
+
+            catch(error) {
+
+                
+            } 
+
+
         },
 
-        login: async (parent, { email, password }) => {
+        login: async (parent, args) => {
 
-            const user = await User.findOne({ email });
+            console.log("test!!!")
+
+            const user = await User.findOne({
+
+                email: args.email
+            });
 
             if (!user) {
 
@@ -100,7 +122,8 @@ const resolvers = {
         },
 
         addProject: async (parent, params , context) => {
-            //if (context.user) {
+
+            if (context.user) {
 
                 const newProject = await Project.create({
 
@@ -121,10 +144,12 @@ const resolvers = {
                     newProject: newProject,
                     updatedUser: updatedUser
                 };
-            //}
-            // throw AuthenticationError();
-            // ('You need to be logged in!');
+            } else {
+
+                throw AuthenticationError;
+            }
         },
+        
         addComment: async (parent, params, context) => {
         
             if (context.user) {
@@ -174,7 +199,7 @@ const resolvers = {
                 const updatedUser = await User.findOneAndUpdate(
 
                     { _id: context.user._id },
-                    { $pull: { projects: project._id } }
+                    { $pull: { projects: removedProject._id } }
                 );
 
                 return {
@@ -229,8 +254,8 @@ const resolvers = {
                 throw AuthenticationError;
             }
             
-        },
-    },
+        }
+    }
 };
 
 module.exports = resolvers;

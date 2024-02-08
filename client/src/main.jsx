@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App.jsx';
 import Home from './pages/Home';
-// import Signup from './pages/Signup';
+import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import SingleProject from './pages/SingleProject';
 // import Profile from './pages/Profile';
@@ -23,22 +23,24 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       }, 
-      // {
-      //   path: '/login',
-      //   element: <Login />
-      // }, {
-      //   path: '/signup',
-      //   element: <Signup />
-      // }, {
-      //   path: '/profiles/:username',
-      //   element: <Profile />
-      // }, {
-      //   path: '/me',
-      //   element: <MyProfile />
-      // }, {
-      //   path: '/projects/:projectId',
-      //   element: <SingleProject />
-      // }
+      {
+        path: '/login',
+        element: <Login />
+      }, 
+      {
+        path: '/signup',
+        element: <Signup />
+      }
+    //   {
+    //     path: '/profiles/:username',
+    //     element: <Profile />
+    //   }, {
+    //     path: '/me',
+    //     element: <MyProfile />
+    //   }, {
+    //     path: '/projects/:projectId',
+    //     element: <SingleProject />
+      //}
     ]
   },
 ]);
