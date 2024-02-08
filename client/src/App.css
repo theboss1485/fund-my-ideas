@@ -1,0 +1,26 @@
+
+/* 
+.custom-homepage-header {
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: cursive;
+    color: rgb(188, 116, 255);
+} */
+
+.custom-nav-tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-TOP: 2%;
+}
+
+.custom-login-button {
+    color: rgb(72, 184, 109);
+}
+
+.custom-projects-slider {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
