@@ -35,6 +35,19 @@ export default function Home() {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
+
+            {/* List of projects from newest to old? */}
+            <section className="custom-projects-tab">
+                <div>
+                    <h1>Project Name</h1>
+                    <ul>
+                        <li>project description</li>
+                        <li>project funding amount/goal</li>
+                        <li>project time period</li>
+                        <li>etc.</li>
+                    </ul>
+                </div>
+            </section>
         </>
     )
 }

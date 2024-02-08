@@ -30,6 +30,34 @@
     position: relative;
 }
 
+.custom-footer {
+    margin-top: 4%;
+    margin-right: 4%;
+    margin-left: 4%;
+    border-top: 1px solid grey;
+    padding: 8%;
+}
+
+.custom-footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.custom-footer-content a {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.custom-projects-tab {
+    margin: 5%;
+    box-shadow: 5px 5px 10px grey inset;
+    border-radius: 10px;
+    padding: 5%;
+    
+}
+
 /* .custom-slider-pictures img {
 
 } */
