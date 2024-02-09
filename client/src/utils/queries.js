@@ -46,8 +46,8 @@ export const GET_ALL_PROJECTS = gql`
 `;
 
 export const GET_PROJECTS_BY_USERNAME = gql`
-    query getProjectsByUsername {
-        projectsByUsername {
+    query getProjectsByUsername($username: String!){
+        projectsByUsername(username: $username) {
             _id
             name
             description
@@ -57,13 +57,18 @@ export const GET_PROJECTS_BY_USERNAME = gql`
     }
 `;
 
-export const GET_PROJECT = gql`
-    query getProject {
-        getProject {
+export const GET_PROJECT_BY_ID = gql`
+    query getProjectById($projectId: String!) {
+        projectById(projectId: $projectId){
             name
             description
             fundingGoal
             timePeriod
+            comments {
+                commentText
+                username
+                createdAt
+            }
         }
     }
 `;
@@ -71,17 +76,6 @@ export const GET_PROJECT = gql`
 export const GET_COMMENT = gql`
     query getComment {
         getComment {
-            _id
-            commentText
-        }
-    }
-`
-
-
-
-export const GET_COMMENTS = gql`
-    query getComments {
-        getComments {
             _id
             commentText
         }

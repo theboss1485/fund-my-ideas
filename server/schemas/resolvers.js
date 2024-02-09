@@ -2,6 +2,8 @@ const { User, Comment, Project } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { ObjectId } = require('mongodb');
 
+const formatDate = require('../utils/format-date');
+
 const resolvers = {
     
     Query: {
@@ -31,11 +33,17 @@ const resolvers = {
             });;
         },
 
-        projects: async (parent, { username }) => {
+        allProjects: async () => {
+
+            let projects = await Project.find().sort({ fundingGoal: -1 })
+            return projects
+        },
+
+        projectsByUsername: async (parent, { username }) => {
 
             const params = username ? { username } : {};
 
-            let user = await User.findOne(params).populate('projects').populate({
+            let user = await User.findOne({username: params.username}).populate('projects').populate({
 
                 path: 'projects',
                 populate: 'comments'
@@ -47,26 +55,29 @@ const resolvers = {
             
         },
 
-        project: async (parent, { _id }) => {
+        projectById: async (parent, { projectId }) => {
 
-            //_id = new ObjectId(_id);
-            console.log("projectId", _id);
+            const params = projectId ? { projectId } : {};
 
-            const params = _id ? { _id } : {};
+            let project = await Project.findOne({_id: params.projectId}).populate('comments');
+           
+            const populatedProject = project.toObject();
+            populatedProject.comments.forEach((comment) => {
+                comment.createdAt = formatDate(comment.createdAt);
+            });
 
-            let project = await Project.findOne(params).populate('comments');
-            console.log("project", project);
-            return project;
+            return populatedProject;
+
         },
         
-        comments: async (parent, { _id }) => {
+        // comments: async (parent, { _id }) => {
 
-            const params = _id ? { _id } : {};
+        //     const params = _id ? { _id } : {};
 
-            let projectInQuestion = await Project.findOne(params).populate('comments');
+        //     let projectInQuestion = await Project.findOne(params).populate('comments');
 
-            return projectInQuestion.comments
-        }
+        //     return projectInQuestion.comments
+        // }
     },
 
     Mutation: {

@@ -1,4 +1,4 @@
-import installScript from '../../javascript/install'
+import installScript from '../javascript/install'
 const InstallButton = () => {
 
     const [deferredPrompt, setDeferredPrompt] = useState(null);

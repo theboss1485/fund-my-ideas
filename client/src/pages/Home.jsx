@@ -6,6 +6,8 @@ import Project from '../components/Project'
 import { Link } from "react-router-dom";
 
 export default function Home() {
+
+    const {data, loading, error} = useQuery(GET_ALL_PROJECTS);
     // Homepage
     return (
         <>
