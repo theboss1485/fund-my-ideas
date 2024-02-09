@@ -33,9 +33,22 @@ export const GET_USER = gql`
     }
 `;
 
-export const GET_PROJECTS = gql`
-    query getProjects {
-        projects {
+export const GET_ALL_PROJECTS = gql`
+    query getAllProjects {
+        allProjects {
+            _id
+            name
+            description
+            fundingGoal
+            timePeriod
+        }
+    }
+`;
+
+export const GET_PROJECTS_BY_USERNAME = gql`
+    query getProjectsByUsername {
+        projectsByUsername {
+            _id
             name
             description
             fundingGoal

@@ -8,7 +8,7 @@ import App from './App.jsx';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import SingleProject from './pages/SingleProject';
+import SingleProject from './pages/SingleProjectWithComments';
 import Profile from './pages/Profile';
 import MyProfile from './pages/MyProfile';
 import ErrorPage from './pages/ErrorPage';

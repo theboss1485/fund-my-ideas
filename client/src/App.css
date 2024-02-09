@@ -56,12 +56,29 @@
     margin-right: 3%;
 }
 
-.custom-projects-tab {
+.custom-tab {
     margin: 5%;
     box-shadow: 5px 5px 10px grey inset;
     border-radius: 10px;
     padding: 5%;
+}
+
+.project {
+
     background-color: rgb(234, 245, 255);
+}
+
+.comment {
+
+    background-color: rgb(11, 224, 178);
+}
+
+
+
+.home-projects:hover {
+
+    background-color: rgb(109, 173, 251);
+    cursor:pointer
 }
 
 .custom-my-profile-main {

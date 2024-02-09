@@ -1,5 +1,9 @@
 
 import Carousel from 'react-bootstrap/Carousel';
+import { GET_ALL_PROJECTS } from '../utils/queries';
+import { useQuery } from '@apollo/client';
+import Project from '../components/Project'
+import { Link } from "react-router-dom";
 
 export default function Home() {
     // Homepage
@@ -37,17 +41,17 @@ export default function Home() {
             </Carousel>
 
             {/* List of projects from newest to old? */}
-            <section className="custom-projects-tab">
-                <div>
-                    <h1>Project Name</h1>
-                    <ul>
-                        <li>project description</li>
-                        <li>project funding amount/goal</li>
-                        <li>project time period</li>
-                        <li>etc.</li>
-                    </ul>
-                </div>
-            </section>
+            {loading ? (
+                <p>Loading...</p>
+            ) : error ? (
+                <p>Error: {error.message}</p>
+            ) : (
+                data.allProjects.map((item, index) => (
+                    <Link to={`/projects/${item._id}`} state={{projectData: item}}>
+                        <Project key={index} {...item} className="home-project"/>
+                    </Link>
+                ))  
+            )}
         </>
     )
 }
