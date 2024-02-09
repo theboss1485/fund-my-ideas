@@ -1,3 +1,7 @@
+import { ADD_PROJECT } from '../utils/mutations';
+
+
+
 export default function MyProfile() {
     return (
         // if logged in function here to redirect you to login?
