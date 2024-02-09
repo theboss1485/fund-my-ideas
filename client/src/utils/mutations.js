@@ -20,13 +20,14 @@ export const ADD_USER = gql`
             user {
                 _id
                 username
+                email
             }
         }
     }
 `
 
 export const ADD_PROJECT = gql`
-    mutation addProject($name: String!, $description: String!, $fundingGoal: Int! timePeriod: Int){
+    mutation addProject($name: String!, $description: String!, $fundingGoal: Int! $timePeriod: Int){
         addProject(username: $username, email: $email, password: $password){
             _id
             name
