@@ -74,9 +74,8 @@ const resolvers = {
         
         addUser: async (parent, {username, email, password}) => {
 
+            console.log("Inside!!");
             try{
-
-                console.log("params", args);
 
                 const user = await User.create({username, email, password});
     

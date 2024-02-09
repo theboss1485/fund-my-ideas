@@ -4,7 +4,7 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    projects: [Project]!
+    projects: [Project]
   }
 
   type Project {
