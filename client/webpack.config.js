@@ -72,30 +72,30 @@ module.exports = () => {
                     test: /\.(png|svg|jpg|jpeg|gif)$/i,
                     type: 'asset/resource',
                 },
-                // {
-                //     test: /\.m?js$/,
-                //     exclude: /(node_modules|bower_components)/,
-                //     use: {
+                {
+                    test: /\.m?js$/,
+                    exclude: /(node_modules|bower_components)/,
+                    use: {
 
-                //         loader: 'babel-loader',
-                //         options: {
+                        loader: 'babel-loader',
+                        options: {
 
-                //             presets: ['@babel/preset-env'],
-                //         },
-                //     },
-                // },
-                // {
-                //     test: /\.jsx?$/, // Match .js and .jsx files
-                //     exclude: /node_modules/,
-                //     use: {
+                            presets: ['@babel/preset-env'],
+                        },
+                    },
+                },
+                {
+                    test: /\.jsx?$/, // Match .js and .jsx files
+                    exclude: /node_modules/,
+                    use: {
 
-                //         loader: 'babel-loader', // Use Babel to transpile JSX code
-                //         options: {
+                        loader: 'babel-loader', // Use Babel to transpile JSX code
+                        options: {
                             
-                //             presets: ['@babel/preset-react'], // Use the React preset
-                //         },
-                //     },
-                // },
+                            presets: ['@babel/preset-react'], // Use the React preset
+                        },
+                    },
+                },
                 {
                     test: /\.(jsx|js)$/,
                     include: path.resolve(__dirname, 'src'),
