@@ -64,6 +64,21 @@
     background-color: rgb(234, 245, 255);
 }
 
+.custom-my-profile-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
+}
+
+.custom-start-project-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* .custom-slider-pictures img {
 
 } */
