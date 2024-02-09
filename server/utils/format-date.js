@@ -1,5 +1,7 @@
 function formatDate(date){
 
+    console.log("date formate");
+
     let options = {
 
         year: 'numeric',

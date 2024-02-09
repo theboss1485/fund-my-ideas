@@ -1,5 +1,15 @@
 export default function Project (props) {
 
+    let projectData = [];
+
+    if(props.projectData){
+
+        projectData.push(props.projectData.name)
+        projectData.push(props.projectData.name)
+        projectData.push(props.projectData.name)
+        projectData.push(props.projectData.name)
+    }
+
     return (
         <section className="custom-tab project">
             <div>
