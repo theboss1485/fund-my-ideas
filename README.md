@@ -4,4 +4,4 @@ This repository contains the third group project for the OSU Flex Web Developmen
 
 ## source
 
-Carousel codes: https://react-bootstrap.netlify.app/docs/components/carousel/
+Carousel source codes: https://react-bootstrap.netlify.app/docs/components/carousel/

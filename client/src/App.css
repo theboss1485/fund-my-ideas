@@ -9,6 +9,12 @@
     color: rgb(188, 116, 255);
 } */
 
+.custom-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .custom-nav-tabs {
     display: flex;
     flex-direction: row;
@@ -31,7 +37,7 @@
 }
 
 .custom-footer {
-    margin-top: 4%;
+    margin-top: auto;
     margin-right: 4%;
     margin-left: 4%;
     border-top: 1px solid grey;
