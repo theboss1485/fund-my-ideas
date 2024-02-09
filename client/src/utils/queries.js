@@ -33,6 +33,28 @@ export const GET_USER = gql`
     }
 `;
 
+export const GET_PROJECTS = gql`
+    query getProjects {
+        projects {
+            name
+            description
+            fundingGoal
+            timePeriod
+        }
+    }
+`;
+
+export const GET_PROJECT = gql`
+    query getProject {
+        getProject {
+            name
+            description
+            fundingGoal
+            timePeriod
+        }
+    }
+`;
+
 export const GET_COMMENT = gql`
     query getComment {
         getComment {
@@ -41,6 +63,8 @@ export const GET_COMMENT = gql`
         }
     }
 `
+
+
 
 export const GET_COMMENTS = gql`
     query getComments {
