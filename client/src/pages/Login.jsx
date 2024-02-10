@@ -2,10 +2,15 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+//import { useSelector, useDispatch } from 'react-redux';
+
+import { logInUser } from '../../store/slices/userSlice';
 
 import Auth from '../utils/auth';
 
 const Login = (props) => {
+
+    //const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -36,6 +41,13 @@ const Login = (props) => {
             });
 
             Auth.login(data.login.token);
+            // dispatch(logInUser(
+
+            //     {
+            //         username: data.user.username
+            //     }
+            // ))
+
 
         } catch (e) {
 
