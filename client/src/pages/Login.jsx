@@ -39,7 +39,7 @@ const Login = (props) => {
 
         } catch (e) {
 
-            console.error(e);
+            console.log(JSON.stringify("error", error));
         }
 
         // clear form values

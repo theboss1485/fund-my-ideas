@@ -29,6 +29,11 @@ const typeDefs = `
     user: User
   }
 
+  type CommentWithProject {
+    comment: Comment!
+    project: Project!
+  }
+
   type Query {
     me: User
     user(username: String!): User
@@ -43,9 +48,9 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): Project
-    addComment(projectId: ID!, commentText: String!): Comment
+    addComment(projectId: String!, commentText: String!): CommentWithProject
     removeProject(projectId: ID!): Project
-    removeComment(projectId: ID!, commentId: ID!): Comment
+    removeComment(projectId: String!, commentId: String!): CommentWithProject
   }
 `;
 

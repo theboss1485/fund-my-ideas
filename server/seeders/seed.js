@@ -7,6 +7,10 @@ const userData = require('./userData.json');
 const projectData = require('./projectData.json');
 const commentData = require('./commentData.json');
 
+const bcrypt = require('bcrypt');
+
+
+
 db.once('open', async() => {
     await cleanDB('User', 'users');
     await cleanDB('Project', 'projects');
@@ -46,6 +50,10 @@ db.once('open', async() => {
             let randomProjectIndex = Math.floor(Math.random() * projects.length);
             let userProjectId = projects[randomProjectIndex]._id;
             projects.splice(randomProjectIndex, 1);
+
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(user.password, salt);
+            user.password = hashedPassword
 
             let seededUser = await User.create({
 

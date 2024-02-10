@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const LOGIN_USER = gql`
-    mutation login($username: String!, $password: String!){
-        login(username: $username, password: $password) {
+    mutation login($email: String!, $password: String!){
+        login(email: $email, password: $password) {
             token
             user {
                 _id
@@ -39,10 +39,23 @@ export const ADD_PROJECT = gql`
 `
 
 export const ADD_COMMENT = gql`
-    mutation addComment($projectId: String!, $commentText: String){
+    mutation addComment($projectId: String!, $commentText: String!){
         addComment(projectId: $projectId, commentText: $commentText){
-            _id
-            commentText
+            comment {
+                _id
+                commentText
+            }
+            project {
+                _id
+                name,
+                description
+                fundingGoal
+                timePeriod
+                comments {
+                    _id
+                    commentText
+                }
+            }
         }
     }
 `
@@ -58,10 +71,23 @@ export const REMOVE_PROJECT = gql`
     }
 `
 export const REMOVE_COMMENT = gql`
-    mutation removeComment($commentId: String!){
-        removeComment(commentId: $commentId){
-            _id
-            commentText
+    mutation removeComment($projectId: String!, $commentId: String!){
+        removeComment(projectId: $projectId, commentId: $commentId){
+            comment {
+                _id
+                commentText
+            }
+            project {
+                _id
+                name,
+                description
+                fundingGoal
+                timePeriod
+                comments {
+                    _id
+                    commentText
+                }
+            }
         }
     }
 `

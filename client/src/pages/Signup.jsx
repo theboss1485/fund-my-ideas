@@ -2,20 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useMutation, gql } from '@apollo/client';
-//import { ADD_USER } from '../utils/mutations';
-
-const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!){
-        addUser(username: $username, email: $email, password: $password){
-            token
-            user {
-                _id
-                username
-                email
-            }
-        }
-    }
-`
+import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 

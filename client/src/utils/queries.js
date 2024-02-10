@@ -65,6 +65,7 @@ export const GET_PROJECT_BY_ID = gql`
             fundingGoal
             timePeriod
             comments {
+                _id
                 commentText
                 username
                 createdAt
