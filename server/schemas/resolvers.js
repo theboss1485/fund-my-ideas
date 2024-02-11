@@ -1,6 +1,7 @@
 const { User, Comment, Project } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { signToken, AuthenticationError, getProfile } = require('../utils/auth');
 const { ObjectId } = require('mongodb');
+const bcrypt = require('bcrypt');
 
 const formatDate = require('../utils/format-date');
 
@@ -69,24 +70,68 @@ const resolvers = {
             return populatedProject;
 
         },
-        
-        // comments: async (parent, { _id }) => {
+    
+        // addComment: async (_, {projectId, commentText}) => {
 
-        //     const params = _id ? { _id } : {};
+        //     let newComment = await Comment.create({commentText});
 
-        //     let projectInQuestion = await Project.findOne(params).populate('comments');
+        //     let updatedProject = Project.findByIdAndUpdate(projectId,
 
-        //     return projectInQuestion.comments
+        //         { $push: { comments: { _id: newComment._id } } },
+        //         { new: true },
+                
+        //         (err, updatedProject) => {
+                
+        //             if (err) {
+                        
+        //                 console.log(err);
+                    
+        //             } else {
+                        
+        //                 return updatedProject
+        //             }
+        //         }
+        //     )
+
+        //     return {comment: newComment, project: updatedProject}
+        // },
+
+        // deleteComment: async (parent, {projectId, commentId}) => {
+
+        //     let deletedComment = Project.findOneAndDelete({_id: commentId});
+
+        //    let updatedProject = Project.findByIdAndUpdate(projectId,
+
+        //         { $pull: { comments: { _id: commentId } } },
+        //         { new: true },
+                
+        //         (err, updatedProject) => {
+                
+        //             if (err) {
+                        
+        //                 console.log(err);
+                    
+        //             } else {
+                        
+        //                 return updatedProject
+        //             }
+        //         }
+        //     )
+
+        //     return {deletedComment, updatedProject}
         // }
     },
 
     Mutation: {
 
-        
         addUser: async (parent, {username, email, password}) => {
 
             console.log("Inside!!");
             try{
+
+                const salt = await bcrypt.genSalt(10);
+                const hashedPassword = await bcrypt.hash(password, salt);
+                password = hashedPassword
 
                 const user = await User.create({username, email, password});
     
@@ -99,20 +144,17 @@ const resolvers = {
 
             catch(error) {
 
-                
+                console.log("error", error)
             } 
 
 
         },
 
-        login: async (parent, args) => {
+        login: async (parent, {email, password}) => {
 
             console.log("test!!!")
 
-            const user = await User.findOne({
-
-                email: args.email
-            });
+            const user = await User.findOne({email: email});
 
             if (!user) {
 
@@ -154,47 +196,44 @@ const resolvers = {
                     newProject: newProject,
                     updatedUser: updatedUser
                 };
+
             } else {
 
                 throw AuthenticationError;
             }
         },
         
-        addComment: async (parent, params, context) => {
-        
+        addComment: async (parent, {projectId, commentText}, context) => {
+    
             if (context.user) {
 
-                let newComment = Comment.create({
+                let newComment = await Comment.create({
 
-                    commentText: params.commentText,
+                    commentText: commentText,
                     username: context.user.username
                 })
 
-                let updatedProject =  Project.findOneAndUpdate(
+                
 
-                    { _id: params.projectId },
-                    {
-                        $addToSet: {
+                let updatedProject = await Project.findByIdAndUpdate(projectId,
 
-                            comments: { commentText, username: context.user.username },
-                        },
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
-                );
+                    { $push: { comments: newComment._id } },
+                    { new: true },
+                    
+                )
+
+                await updatedProject.save()
 
                 return {
 
-                    newComment: newComment,
-                    updatedProject: updatedProject
+                    comment: newComment,
+                    project: updatedProject
                 }
 
             } else {
 
                 throw AuthenticationError;
-            }
+            } 
         },
 
         removeProject: async (parent, params, context) => {
@@ -226,37 +265,40 @@ const resolvers = {
             
         },
 
-        removeComment: async (parent, params, context) => {
+        removeComment: async (parent, {projectId, commentId}, context) => {
+
+            console.log("test");
 
             if (context.user) {
 
-                const removedComment = await Comment.findOneAndDelete(
+                let removedComment = await Comment.findOneAndDelete(
 
                     {
-                        _id: params.commentId
+                        _id: commentId
                     }
                 )
 
-                const updatedProject = await Project.findOneAndUpdate(
+                console.log("removed comment", removedComment)
 
-                    { _id: params.projectId },
-                    {
-                        $pull: {
-                            
-                            comments: {
-                                
-                                _id: params.commentId,
-                                commentAuthor: context.user.username,
-                            },
-                        },
-                    },
+                console.log("removed comment id", removedComment._id)
+
+                let updatedProject = await Project.findByIdAndUpdate(projectId,
+
+                    { $pull: { comments: removedComment._id } },
                     { new: true }
+                    
                 );
+
+                
+
+                console.log("updated project", updatedProject)
+
+                await updatedProject.save()
 
                 return {
 
-                    removedComment: removedComment,
-                    updatedProject: updatedProject
+                    comment: removedComment,
+                    project: updatedProject
                 }
 
             } else {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema(
 
@@ -50,6 +50,11 @@ const userSchema = new mongoose.Schema(
         id: false
     }
 )
+
+userSchema.methods.isCorrectPassword = async function (password) {
+
+    return bcrypt.compare(password, this.password);
+};
 
 userSchema.virtual('projectCount').get(function() {
     return this.projects.length;

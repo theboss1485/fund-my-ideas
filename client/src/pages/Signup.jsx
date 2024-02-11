@@ -1,25 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useMutation, gql } from '@apollo/client';
-//import { ADD_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 
-const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!){
-        addUser(username: $username, email: $email, password: $password){
-            token
-            user {
-                _id
-                username
-                email
-            }
-        }
-    }
-`
+//import { useSelector, useDispatch } from 'react-redux';
 
 import Auth from '../utils/auth';
 
 const Signup = () => {
+
+    //const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
 
@@ -62,8 +53,12 @@ const Signup = () => {
                 const { token, user } = data.addUser;
             
                 Auth.login(token);
+                // dispatch(logInUser(
 
-                setUser(user);
+                //     {
+                //         username: data.user.username
+                //     }
+                // ))
 
             } else {
 
