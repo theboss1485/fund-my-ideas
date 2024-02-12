@@ -82,3 +82,12 @@ export const GET_COMMENT = gql`
         }
     }
 `
+
+export const QUERY_CHECKOUT = gql`
+    query getCheckout($project: ProjectToBeContributedTo!, $paymentAmount: Float!) {
+        checkout(project: $project, paymentAmount: $paymentAmount) {
+            session
+            url
+        }
+    }
+`;

@@ -33,6 +33,12 @@ const projectSchema = new mongoose.Schema(
             required: true
         },
 
+        currentFundingAmount: {
+
+            type: Number,
+            required: true
+        },
+
         timePeriod: {
 
             type: Number,

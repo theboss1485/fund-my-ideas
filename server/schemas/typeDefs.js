@@ -12,6 +12,7 @@ const typeDefs = `
     name: String!
     description: String!
     fundingGoal: Int!
+    currentFundingAmount: Float!
     timePeriod: Int!
     createdAt: String
     comments: [Comment]!
@@ -24,6 +25,11 @@ const typeDefs = `
     createdAt: String
   }
 
+  type Checkout {
+    session: ID!
+    url: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -34,6 +40,20 @@ const typeDefs = `
     project: Project!
   }
 
+  type UserWithProject {
+    user: User!
+    project: Project!
+  }
+
+  input ProjectToBeContributedTo {
+
+    id: String!
+    name: String!
+    description: String!
+    fundingGoal: Int!
+    timePeriod: Int!
+  }
+
   type Query {
     me: User
     user(username: String!): User
@@ -42,6 +62,7 @@ const typeDefs = `
     projectById(projectId: String!): Project
     comments(projectId: String!): [Comment]
     comment(commentId: ID!): Comment
+    checkout(project: ProjectToBeContributedTo!, paymentAmount: Float! ): Checkout
   }
 
   type Mutation {
@@ -49,7 +70,8 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): Project
     addComment(projectId: String!, commentText: String!): CommentWithProject
-    removeProject(projectId: ID!): Project
+    updateProjectFunds(projectId: String!, fundChangeAmount: Float!): Project
+    removeProject(projectId: String!): UserWithProject
     removeComment(projectId: String!, commentId: String!): CommentWithProject
   }
 `;

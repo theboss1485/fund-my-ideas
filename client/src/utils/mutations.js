@@ -59,14 +59,39 @@ export const ADD_COMMENT = gql`
         }
     }
 `
-export const REMOVE_PROJECT = gql`
-    mutation removeProject($projectId: String!){
-        removeProject(projectId: $projectId){
+
+export const UPDATE_PROJECT_FUNDS = gql`
+    mutation updateProjectFunds($projectId: String!, $fundChangeAmount: Float!){
+        updateProjectFunds(projectId: $projectId, fundChangeAmount: $fundChangeAmount){
             _id
             name
             description
             fundingGoal
+            currentFundingAmount
             timePeriod
+            comments {
+                _id
+                commentText
+            }
+        }
+    }
+`   
+
+export const REMOVE_PROJECT = gql`
+    mutation removeProject($projectId: String!){
+        removeProject(projectId: $projectId){
+            project{
+                _id
+                name
+                description
+                fundingGoal
+                timePeriod
+            }
+            user {
+                _id
+                username
+                email
+            }
         }
     }
 `
@@ -79,7 +104,7 @@ export const REMOVE_COMMENT = gql`
             }
             project {
                 _id
-                name,
+                name
                 description
                 fundingGoal
                 timePeriod

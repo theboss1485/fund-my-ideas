@@ -3,60 +3,70 @@
         "name": "BloomHaven",
         "description": "Brand New Virtual Board Game that let the users experience the fantasy world with the new 3d technology.",
         "fundingGoal": 15000,
+        "currentFundingAmount": 0,
         "timePeriod": 90
     },
     {
         "name": "Murder of the Mouse",
         "description": "A horror thriller boardgame that features a big mouse killer and 4 survivors that will need to work together in order to survive.",
         "fundingGoal": 7500,
+        "currentFundingAmount": 0,
         "timePeriod": 75
     },
     {
         "name": "Hair Cutter",
         "description": "It cuts hair",
         "fundingGoal": 20000,
+        "currentFundingAmount": 0,
         "timePeriod": 10
     },
     {
         "name": "Hat Helicopter",
         "description": "An innovative hat that will lift the user off the ground. Discretion is advised. No refund.",
         "fundingGoal": 5000,
+        "currentFundingAmount": 0,
         "timePeriod": 120
     },
     {
         "name": "Leg Booster",
         "description": "Let you fly in the air for a short period of time. Can also fly across water surfaces.",
         "fundingGoal": 6000,
+        "currentFundingAmount": 0,
         "timePeriod": 100
     },
     {
         "name": "Thrilling Retractor",
         "description": "Knife that will retract 50% of the time.",
         "fundingGoal": 3500,
+        "currentFundingAmount": 0,
         "timePeriod": 30
     },
     {
         "name": "AI virtual character of Matthew McConaughey",
         "description": "A virtual Matthew McConaughey that will play whatever role you wish him to be.",
         "fundingGoal": 50000,
+        "currentFundingAmount": 0,
         "timePeriod": 365
     },
     {
         "name": "The House on the Pleasant Hill",
         "description": "A boardgame that will pit you against your fellow teammates, for one of them is working against the team!",
         "fundingGoal": 8000,
+        "currentFundingAmount": 0,
         "timePeriod": 300
     },
     {
         "name": "Power Hive",
         "description": "Stay connected on-the-go with the Power Hive, a compact and powerful portable charger that can charge multiple devices simultaneously.",
         "fundingGoal": 120000,
+        "currentFundingAmount": 0,
         "timePeriod": 90
     },
     {
         "name": "Pocket Chef",
         "description": "Unlock your culinary creativity with PocketChef, a smart cooking assistant that provides recipes, personalized meal plans, and real-time cooking tips.",
         "fundingGoal": 250000,
+        "currentFundingAmount": 0,
         "timePeriod": 80
     }
 ]
