@@ -43,7 +43,6 @@ function App() {
 
         <ApolloProvider client={client}>
             <div className="custom-main">
-                {/* <Nav/> */}
                 <Nav/>
                 <main className="">
                     <Outlet/>

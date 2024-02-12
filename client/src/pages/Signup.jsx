@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
-//import { useSelector, useDispatch } from 'react-redux';
-
 import Auth from '../utils/auth';
 
 const Signup = () => {

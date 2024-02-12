@@ -1,42 +1,74 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_PROJECT } from '../utils/mutations';
-import { GET_PROJECTS, GET_ME } from '../../utils/queries';
+import React, { useState} from 'react';
 
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 
-const ProjectForm = () => {
+const ProjectForm = (props) => {
+
+    const [formState, setFormState] = useState({
+        name: '',
+        description: '',
+        funding: 0,
+        time: 0
+    });
     // const [name, setProjectName] = useState('');
     // const [characterCount, setCharacterCount] = useState(0);
     const [description, setDescription] = useState('');
 
     // const [fundingGoal, setFundingGoal] = useState('0');
 
-    const [addProject, { error }] = useMutation
-        (ADD_PROJECT, {
-            refetchQueries: [
-                GET_PROJECTS,
-                'getProjects',
-                GET_ME,
-                'me'
-            ]
-        });
+    const [addProject, { error }] = useMutation(ADD_PROJECT);
+
+
+        // (ADD_PROJECT, {
+        //     refetchQueries: [
+        //         GET_PROJECTS,
+        //         'getProjects',
+        //         GET_ME,
+        //         'me'
+        //     ]
+        // });
+
+        const handleChange = (event) => {
+
+            const { name, value } = event.target;
+    
+            setFormState({
+    
+                ...formState,
+                [name]: value,
+            });
+        }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        try {
-            const { data } = await addProject({
-                variables: {
-                    description,
-                    fundingGoal,
-                    timePeriod
-                },
-            });
+        
 
-            setFormData('');
+        try {
+
+            if((formState.name !== '') && (formState.description !== '') && (formState.funding !== 0) && (formState.time !== 0)){
+                
+                const { data } = await addProject({
+                    
+                    variables: {
+                        name:
+                        description,
+                        fundingGoal,
+                        timePeriod
+                    },
+                });
+
+                if(data){
+
+                    props.onProjectCreation()
+                }
+
+                setFormData('');
+            }
 
         } catch (err) {
             console.error(err);
@@ -55,6 +87,9 @@ const ProjectForm = () => {
                         onSubmit={handleFormSubmit}
                     >
                         <div className="col-12 col-lg-9">
+                            <label for="project-name">Project Name:</label>
+                            <input type="text" id="project-name" name="name" required />
+                            <label for="project-description">Project Description:</label>
                             <textarea
                                 name="description"
                                 placeholder="project concept"
@@ -63,11 +98,15 @@ const ProjectForm = () => {
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                                 onChange={handleChange}
                             ></textarea>
+                            <label for="funding-goal">Funding Goal:</label>
+                            <input type="number" id="funding-goal" name="funding" required/>
+                            <label for="time-period">Time Period (in days):</label>
+                            <input type="number" id="time-period" name="time" required/>
                         </div>
 
                         <div className="col-12 col-lg-3">
-                            <button className="btn btn-primary btn-block py-3" type="submit">
-                                Add <Project></Project>
+                            <button onClick={handleFormSubmit}className="btn btn-primary btn-block py-3" type="submit">
+                                Add this project
                             </button>
                         </div>
                         {error && (

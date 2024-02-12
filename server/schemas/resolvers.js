@@ -2,6 +2,8 @@ const { User, Comment, Project } = require('../models');
 const { signToken, AuthenticationError, getProfile } = require('../utils/auth');
 const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const mongoose = require('mongoose');
 
 const formatDate = require('../utils/format-date');
 
@@ -71,55 +73,68 @@ const resolvers = {
 
         },
     
-        // addComment: async (_, {projectId, commentText}) => {
+        checkout: async (parent, {project, paymentAmount}, context) => {
 
-        //     let newComment = await Comment.create({commentText});
+            console.log("stripe test");
 
-        //     let updatedProject = Project.findByIdAndUpdate(projectId,
+            const url = new URL(context.headers.referer).origin;
 
-        //         { $push: { comments: { _id: newComment._id } } },
-        //         { new: true },
+            console.log("url", url)
+
+            const line_items = [];
+
+            console.log("id", project.id);
+            console.log("name", project.name);
+            console.log("description", project.description);
+
+                const backableProject = await stripe.products.create({
+
+                    name: project.name,
+                    description: project.description,
+                });
+            
+
+            console.log("backable project");
+
+            if(stripe.products.list()){
+
                 
-        //         (err, updatedProject) => {
-                
-        //             if (err) {
-                        
-        //                 console.log(err);
-                    
-        //             } else {
-                        
-        //                 return updatedProject
-        //             }
-        //         }
-        //     )
+            }
 
-        //     return {comment: newComment, project: updatedProject}
-        // },
+            const price = await stripe.prices.create({
 
-        // deleteComment: async (parent, {projectId, commentId}) => {
+                product: backableProject.id,
+                unit_amount: paymentAmount * 100,
+                currency: 'usd'
+            })
 
-        //     let deletedComment = Project.findOneAndDelete({_id: commentId});
+            console.log("price", price)
 
-        //    let updatedProject = Project.findByIdAndUpdate(projectId,
+            line_items.push({
 
-        //         { $pull: { comments: { _id: commentId } } },
-        //         { new: true },
-                
-        //         (err, updatedProject) => {
-                
-        //             if (err) {
-                        
-        //                 console.log(err);
-                    
-        //             } else {
-                        
-        //                 return updatedProject
-        //             }
-        //         }
-        //     )
+                price: price.id,
+                quantity: 1
+            })
 
-        //     return {deletedComment, updatedProject}
-        // }
+            const session = await stripe.checkout.sessions.create({
+
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'payment',
+                success_url: `${url}/paymentSuccess?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/paymentFailure`
+            });
+
+            console.log("session", session)
+
+            console.log("url", session.url)
+            console.log("type", typeof session.url)
+
+            return  {
+                        session: session.id,
+                        url: session.url
+                    };
+        }
     },
 
     Mutation: {
@@ -236,33 +251,50 @@ const resolvers = {
             } 
         },
 
-        removeProject: async (parent, params, context) => {
+        removeProject: async (parent, {projectId}, context) => {
 
-            if (context.user) {
+            try{
 
-                const removedProject = await Project.findOneAndDelete({
+                console.log("user context", context.user);
+                console.log("projectId", projectId)
 
-                    _id: params.projectId,
-                });
+                console.log("test")
 
-                const updatedUser = await User.findOneAndUpdate(
+                if (context.user) {
 
-                    { _id: context.user._id },
-                    { $pull: { projects: removedProject._id } }
-                );
+                    
 
-                return {
+                    const removedProject = await Project.findOneAndDelete({
+    
+                        _id: projectId,
+                    });
 
-                    removedProject: removedProject,
-                    updatedUser: updatedUser
-                };
+                    console.log("removed project", removedProject)
+    
+                    const updatedUser = await User.findOneAndUpdate(
+    
+                        { _id: context.user._id },
+                        { $pull: { projects: removedProject._id } },
+                        { new: true }
+                    );
+
+                    console.log("updated user", updatedUser)
+    
+                    return {
+    
+                        user: updatedUser,
+                        project: removedProject,
+                    };
+                
+                } else {
+    
+                    throw AuthenticationError();
+                }
             
-            } else {
+            } catch (error){
 
-                throw AuthenticationError();
+                console.log(JSON.stringify(error));
             }
-
-            
         },
 
         removeComment: async (parent, {projectId, commentId}, context) => {
@@ -305,6 +337,37 @@ const resolvers = {
 
                 throw AuthenticationError;
             }
+            
+        },
+
+        updateProjectFunds: async (parent, {projectId, fundChangeAmount}, context) => {
+
+            console.log("test");
+            console.log("fund change amount", fundChangeAmount)
+
+            console.log("projectId", projectId);
+
+            try{
+
+                // if(context.user){
+
+                    let projectInQuestion = await Project.findOne(
+                        {
+                            _id: projectId
+                        }
+                    )
+                    console.log("projectInQuestion", projectInQuestion)
+                    projectInQuestion.currentFundingAmount += fundChangeAmount;
+                    await projectInQuestion.save();
+                    console.log("projectInQuestion2", projectInQuestion)
+                    return projectInQuestion;
+                //}
+            
+            } catch (error){
+
+                console.log("error", error);
+            }
+
             
         }
     }
