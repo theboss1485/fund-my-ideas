@@ -7,6 +7,13 @@ import React, { useState} from 'react';
 import Auth from '../utils/auth';
 
 const ProjectForm = (props) => {
+
+    const [formState, setFormState] = useState({
+        name: '',
+        description: '',
+        funding: 0,
+        time: 0
+    });
     // const [name, setProjectName] = useState('');
     // const [characterCount, setCharacterCount] = useState(0);
     const [description, setDescription] = useState('');
@@ -25,24 +32,43 @@ const ProjectForm = (props) => {
         //     ]
         // });
 
+        const handleChange = (event) => {
+
+            const { name, value } = event.target;
+    
+            setFormState({
+    
+                ...formState,
+                [name]: value,
+            });
+        }
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        
+
         try {
-            const { data } = await addProject({
-                variables: {
-                    description,
-                    fundingGoal,
-                    timePeriod
-                },
-            });
 
-            if(data){
+            if((formState.name !== '') && (formState.description !== '') && (formState.funding !== 0) && (formState.time !== 0)){
+                
+                const { data } = await addProject({
+                    
+                    variables: {
+                        name:
+                        description,
+                        fundingGoal,
+                        timePeriod
+                    },
+                });
 
-                props.onProjectCreation()
+                if(data){
+
+                    props.onProjectCreation()
+                }
+
+                setFormData('');
             }
-
-            setFormData('');
 
         } catch (err) {
             console.error(err);
@@ -62,7 +88,7 @@ const ProjectForm = (props) => {
                     >
                         <div className="col-12 col-lg-9">
                             <label for="project-name">Project Name:</label>
-                            <input type="text" id="project-name" name="project-name" required />
+                            <input type="text" id="project-name" name="name" required />
                             <label for="project-description">Project Description:</label>
                             <textarea
                                 name="description"
@@ -73,9 +99,9 @@ const ProjectForm = (props) => {
                                 onChange={handleChange}
                             ></textarea>
                             <label for="funding-goal">Funding Goal:</label>
-                            <input type="number" id="funding-goal" name="funding-goal" required/>
+                            <input type="number" id="funding-goal" name="funding" required/>
                             <label for="time-period">Time Period (in days):</label>
-                            <input type="number" id="time-period" name="time-period" required/>
+                            <input type="number" id="time-period" name="time" required/>
                         </div>
 
                         <div className="col-12 col-lg-3">
