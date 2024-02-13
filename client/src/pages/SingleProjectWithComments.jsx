@@ -180,8 +180,6 @@ export default function SingleProjectWithComments(props) {
 
         setPaymentAmount(parseFloat(event.target.value))
     }
-
-    localStorage.setItem('previousUrl', location.pathname);
     
     return (
 
