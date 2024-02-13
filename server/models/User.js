@@ -10,12 +10,14 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             minlength: 1,
-            maxlength: 100
+            maxlength: 100,
+            unique: true
         },
 
         email: {
             type: String,
             required: true,
+            unique: true,
             validator: (value) => {
 
                 return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(value);
