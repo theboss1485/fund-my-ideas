@@ -12,7 +12,16 @@ function NavTabs() {
 
     return (
         // testing codes, subjecting to change
-      <ul className="nav nav-tabs custom-nav-tabs">
+      <ul className="nav nav-tabs custom-nav-tabs bg-info text-white">
+        <div className="container flex-row justify-space-between-lg p-3">
+        <div>
+          <Link className="text-light" to="/">
+            <h1 className="m-0">Fund My Idea$</h1>
+          </Link>
+          <p className="m-0">A Placed With Endless Possibilities!.</p>
+        </div>
+      
+      </div>
         <li className="nav-item">
           <Link
             to="/"
@@ -22,7 +31,7 @@ function NavTabs() {
           >
             Home
           </Link>
-        </li>
+        </li >
         {Auth.loggedIn() ? (
             <>
                 <li className="nav-item">
@@ -46,7 +55,7 @@ function NavTabs() {
             </>
         ) : (
             <>
-                <li className="nav-item">
+                <li className=" nav-item">
                 <Link
                     to="/login"
                     // Check to see if the currentPage is `About`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
