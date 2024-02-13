@@ -18,7 +18,7 @@ export default function Project (props) {
     }
 
     return (
-        <section className="custom-tab project">
+        <section className="custom-tab project col-11">
             <div className="custom-project-boxes">
                 <h1>
                     {funded ? (

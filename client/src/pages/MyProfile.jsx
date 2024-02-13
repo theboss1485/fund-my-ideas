@@ -85,7 +85,7 @@ export default function MyProfile() {
 
 
     return (
-        <section className="custom-my-profile-main">
+        <section className="custom-my-profile-main col-12">
             <div className="custom-start-project-section">
                 {/* Add content for the start project section here */}
             </div>
@@ -106,13 +106,13 @@ export default function MyProfile() {
             ) : projectError ? (
                 <p>Error: {JSON.stringify(projectError)}</p>
             ) : (
-                <div className="custom-delete-this-project-container">
+                <div className="custom-delete-this-project-container col-12">
                     {data && data.projectsByUsername.map((item, index) => (
                         <>
                             <Project key={uuidv4()} {...item} />
                             {Auth.loggedIn() && (
 
-                                <button className="custom-delete-this-project" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete This Project</button>
+                                <button className="custom-delete-this-project mt-6" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete The Above Project</button>
                             )}
                         </>
                     ))}

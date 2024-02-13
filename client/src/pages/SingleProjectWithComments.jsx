@@ -224,19 +224,17 @@ export default function SingleProjectWithComments(props) {
                     {data.projectById.comments.map((item, index) => (
                         <Comment key={uuidv4()} {...item} onCommentRemoval={handleCommentRemoved}/>
                     ))}
-    
+
+                    {!displayCommentForm && Auth.loggedIn() && (
                         <div className="custom-buttons-container custom-margin-bottom-3">
-
-                            {!displayCommentForm && Auth.loggedIn() && (
-                                <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
-                            )}
-
+                            <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
                         </div>
+                    )}
 
                         {displayCommentForm && Auth.loggedIn() && (
                             <div className="custom-buttons-container-for-add-a-comment">
                                 <label htmlFor="comment-form" className='text-white'>Add a Comment</label>
-                                <textarea id="comment-form" type="text" onChange={handleCommentChange}></textarea>
+                                <textarea id="comment-form" type="text" onChange={handleCommentChange} className='custom-text-area'></textarea>
                                 <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={submitComment}>Submit</button>
                             </div>
                             

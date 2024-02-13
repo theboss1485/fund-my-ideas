@@ -108,6 +108,11 @@
     cursor:pointer
 }
 
+.border-none {
+
+    border: none;
+}
+
 .custom-my-profile-main {
     display: flex;
     flex-direction: column;
@@ -296,6 +301,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.custom-text-area {
+
+    background-color: #12356e;
+    border: none;
 }
 
 .custom-proceed-to-checkout-button-container label {
