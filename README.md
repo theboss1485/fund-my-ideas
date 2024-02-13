@@ -1,6 +1,11 @@
 # fund-my-ideas
-This repository contains the third group project for the OSU Flex Web Development Bootcamp
 
+## About
+This repository contains the third group project for the OSU Flex Web Development Bootcamp. 
+
+## Description
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
+It
 
 ## source
 

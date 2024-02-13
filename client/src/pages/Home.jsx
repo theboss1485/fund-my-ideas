@@ -49,10 +49,10 @@ export default function Home() {
                 <p>Error: {error.message}</p>
             ) : (
                 data.allProjects.map((item, index) => (
-                    <Link to={`/projects/${item._id}`} state={{projectData: item}}>
+                    <Link to={`/projects/${item._id}`} state={{projectData: item}} style={{textDecoration: 'none'}}>
                         <Project key={index} {...item} className="home-project"/>
                     </Link>
-                ))  
+                ))
             )}
         </>
     )
