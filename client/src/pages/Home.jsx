@@ -12,8 +12,6 @@ export default function Home() {
 
     let keys = undefined;
 
-
-
     if(data){
 
         keys = data.allProjects.map(() => uuidv4())
@@ -29,8 +27,8 @@ export default function Home() {
                         <img className="d-block w-100" src="/test1.jpg" alt="First slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3>{data.allProjects[0].name}</h3>
-                    <p>{data.allProjects[0].description}</p>
+                    <h3 className="custom-carousel-title">{data.allProjects[0].name}</h3>
+                    <p className="custom-carousel-description">{data.allProjects[0].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className="">
@@ -38,8 +36,8 @@ export default function Home() {
                         <img className="d-block w-100" src="/test2.jpg" alt="Second slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3>{data.allProjects[1].name}</h3>
-                    <p>{data.allProjects[1].description}</p>
+                    <h3 className="custom-carousel-title">{data.allProjects[1].name}</h3>
+                    <p className="custom-carousel-description">{data.allProjects[1].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className="">
@@ -47,8 +45,8 @@ export default function Home() {
                         <img className="d-block w-100" src="/test3.jpg" alt="Third slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3>{data.allProjects[2].name}</h3>
-                    <p>{data.allProjects[2].description}</p>
+                    <h3 className="custom-carousel-title">{data.allProjects[2].name}</h3>
+                    <p className="custom-carousel-description">{data.allProjects[2].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
