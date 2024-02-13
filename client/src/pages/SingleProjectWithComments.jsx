@@ -237,7 +237,7 @@ export default function SingleProjectWithComments(props) {
 
                     {!Auth.loggedIn() && (
 
-                        <p>You must <a href="/login">log in</a> or <a href="/signup">sign up</a> to leave a comment.</p>
+                        <p className="custom-leave-comment-alert">You must &#160;<a href="/login">log in</a>&#160; or &#160;<a href="/signup">sign up</a>&#160; to leave a comment.</p>
                     )}
                     
                 </div>
