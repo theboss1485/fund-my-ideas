@@ -23,7 +23,7 @@ export default function Home() {
         <>
             {/* Villy: For testing, ready for map implementation */}
             {data &&(
-            <Carousel className="">
+            <Carousel className="custom-slider-pictures-container">
                 <Carousel.Item>
                     <figure className="custom-slider-pictures">
                         <img className="d-block w-100" src="/test1.jpg" alt="First slide"/>
@@ -33,7 +33,7 @@ export default function Home() {
                     <p>{data.allProjects[0].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item className="">
                     <figure className="custom-slider-pictures">
                         <img className="d-block w-100" src="/test2.jpg" alt="Second slide"/>
                     </figure>
@@ -42,7 +42,7 @@ export default function Home() {
                     <p>{data.allProjects[1].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item className="">
                     <figure className="custom-slider-pictures">
                         <img className="d-block w-100" src="/test3.jpg" alt="Third slide"/>
                     </figure>

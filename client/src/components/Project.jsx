@@ -19,7 +19,6 @@ export default function Project (props) {
                     <li><span>Funding Goal:</span> ${props.fundingGoal}</li>
                     <li><span>Current Funding Amount:</span> ${props.currentFundingAmount}</li>
                     <li><span>Campaign Time Period:</span> {props.timePeriod} days</li>
-                    
                 </ul>
             </div>
         </section>
