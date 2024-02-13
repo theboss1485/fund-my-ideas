@@ -190,6 +190,8 @@ const resolvers = {
 
         addProject: async (parent, params , context) => {
 
+            console.log("testings1234");
+
             if (context.user) {
 
                 const newProject = await Project.create({
@@ -197,19 +199,24 @@ const resolvers = {
                     name: params.name,
                     description: params.description,
                     fundingGoal: params.fundingGoal,
+                    currentFundingAmount: 0,
                     timePeriod: params.timePeriod
                 });
+
+                console.log("newProject", newProject);
 
                 let updatedUser = await User.findOneAndUpdate(
 
                     { _id: context.user._id },
-                    { $addToSet: { projects: project._id } }
+                    { $addToSet: { projects: newProject._id } }
                 );
+
+                console.log("updatedUser", updatedUser);
 
                 return {
 
-                    newProject: newProject,
-                    updatedUser: updatedUser
+                    project: newProject,
+                    user: updatedUser
                 };
 
             } else {

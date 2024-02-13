@@ -68,7 +68,7 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): Project
+    addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): UserWithProject
     addComment(projectId: String!, commentText: String!): CommentWithProject
     updateProjectFunds(projectId: String!, fundChangeAmount: Float!): Project
     removeProject(projectId: String!): UserWithProject
