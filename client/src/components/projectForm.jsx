@@ -99,9 +99,9 @@ const ProjectForm = (props) => {
                         onSubmit={handleFormSubmit}
                     >
                         <div className="col-12 col-lg-9 custom-add-project-section">
-                            <label for="project-name">Project Name:</label>
+                            <label htmlFor="project-name">Project Name:</label>
                             <input type="text" id="project-name" name="name" onChange={handleChange} required />
-                            <label for="project-description">Project Description:</label>
+                            <label htmlFor="project-description">Project Description:</label>
                             <textarea
                                 name="description"
                                 placeholder="project concept"
@@ -109,9 +109,9 @@ const ProjectForm = (props) => {
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                                 onChange={handleChange}
                             ></textarea>
-                            <label for="funding-goal">Funding Goal:</label>
+                            <label htmlFor="funding-goal">Funding Goal:</label>
                             <input type="number" id="funding-goal" name="funding" required onChange={handleChange} />
-                            <label for="time-period">Time Period (in days):</label>
+                            <label htmlFor="time-period">Time Period (in days):</label>
                             <input type="number" id="time-period" name="time" required onChange={handleChange}/>
                         </div>
 

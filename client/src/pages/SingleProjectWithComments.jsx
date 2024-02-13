@@ -6,6 +6,7 @@ import { GET_PROJECT_BY_ID } from '../utils/queries';
 import { QUERY_CHECKOUT } from '../utils/queries';
 import { ADD_COMMENT } from '../utils/mutations';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 import Project from '../components/Project';
 import Comment from '../components/Comment'
@@ -85,8 +86,6 @@ export default function SingleProjectWithComments(props) {
 
                 variables: {project: project, paymentAmount: paymentAmount}
             })
-    
-            //window.location.replace(checkoutUrl); 
         
         } catch (error){
 
@@ -221,7 +220,7 @@ export default function SingleProjectWithComments(props) {
                     </div>
 
                     {data.projectById.comments.map((item, index) => (
-                        <Comment key={index} {...item} onCommentRemoval={handleCommentRemoved}/>
+                        <Comment key={uuidv4()} {...item} onCommentRemoval={handleCommentRemoved}/>
                     ))}
     
                         <div className="custom-buttons-container custom-margin-bottom-3">

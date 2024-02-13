@@ -40,6 +40,7 @@ export const GET_ALL_PROJECTS = gql`
             name
             description
             fundingGoal
+            currentFundingAmount
             timePeriod
         }
     }
@@ -52,6 +53,7 @@ export const GET_PROJECTS_BY_USERNAME = gql`
             name
             description
             fundingGoal
+            currentFundingAmount
             timePeriod
         }
     }
@@ -63,6 +65,7 @@ export const GET_PROJECT_BY_ID = gql`
             name
             description
             fundingGoal
+            currentFundingAmount
             timePeriod
             comments {
                 _id

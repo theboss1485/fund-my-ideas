@@ -4,6 +4,7 @@ import { REMOVE_PROJECT } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
+import { v4 as uuidv4 } from 'uuid';
 
 import Project from '../components/Project';
 import ProjectForm from '../components/projectForm';
@@ -101,7 +102,7 @@ export default function MyProfile() {
                 <div className="custom-delete-this-project-container">
                     {data && data.projectsByUsername.map((item, index) => (
                         <>
-                            <Project key={index} {...item} />
+                            <Project key={uuidv4()} {...item} />
                             {Auth.loggedIn() && (
 
                                 <button className="custom-delete-this-project" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete This Project</button>

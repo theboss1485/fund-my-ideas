@@ -15,9 +15,11 @@ export default function Project (props) {
             <div className="custom-project-boxes">
                 <h1>{props.name}</h1>
                 <ul>
-                    <li><a>Description</a>: {props.description}</li>
-                    <li><a>Funding Goal</a>: ${props.fundingGoal}</li>
-                    <li><a>Campaign Time Period</a>: {props.timePeriod} days</li>
+                    <li><span>Description: </span> {props.description}</li>
+                    <li><span>Funding Goal:</span> ${props.fundingGoal}</li>
+                    <li><span>Current Funding Amount:</span> ${props.currentFundingAmount}</li>
+                    <li><span>Campaign Time Period:</span> {props.timePeriod} days</li>
+                    
                 </ul>
             </div>
         </section>
