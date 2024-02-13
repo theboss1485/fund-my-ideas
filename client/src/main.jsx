@@ -11,7 +11,6 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleProjectWithComments from './pages/SingleProjectWithComments';
-import Profile from './pages/Profile';
 import MyProfile from './pages/MyProfile';
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
 import PaymentFailure from './pages/PaymentFailure.jsx'
@@ -36,10 +35,7 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup/>
-            }, {
-                path: '/profiles/:username',
-                element: <Profile/>
-            }, {
+            },{
                 path: '/me',
                 element: <MyProfile/>
             }, {

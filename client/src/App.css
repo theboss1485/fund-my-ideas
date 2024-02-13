@@ -135,6 +135,7 @@
 
 .custom-project-boxes ul {
     margin-top: 2%;
+    padding-left: 5%;
 }
 
 
@@ -273,6 +274,12 @@
     background-color: rgb(167, 31, 31);
 }
 
+.custom-back-this-project-button {
+
+    background-color: rgba(53, 235, 174, 0.686);
+    color: white;
+}
+
 .custom-leave-a-comment-button {
     color: white;
     background-color:rgb(48, 126, 199);
@@ -351,6 +358,17 @@
 ::placeholder {
 
     color: lightgray;
+}
+
+.custom-back-this-project-button:hover {
+
+    background-color: rgba(29, 145, 104, 0.686);
+    color: white;
+}
+
+.money-color {
+
+    color: rgb(79, 232, 79)
 }
 
 @media screen and (max-width: 572px) {

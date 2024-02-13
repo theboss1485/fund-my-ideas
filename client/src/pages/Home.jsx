@@ -5,19 +5,49 @@ import { useQuery } from '@apollo/client';
 import Project from '../components/Project'
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Home() {
 
-    const {data, loading, error} = useQuery(GET_ALL_PROJECTS);
+    const navigate = useNavigate();
+
+    const {data, loading, error, refetch} = useQuery(GET_ALL_PROJECTS);
+
+    const [projects, setProjects] = useState([]);
 
     let keys = undefined;
 
+    const handleUrlChange = () => {
 
-
-    if(data){
-
-        keys = data.allProjects.map(() => uuidv4())
+        refetch();
     }
+
+    useEffect(() => {
+
+        if (data) {
+
+            setProjects(data.allProjects);
+            keys = data.allProjects.map(() => uuidv4());
+        }
+
+    }, [data]);
+
+    // This is to allow a new project to appear after a user creates one and then navigates to the Home page.
+    useEffect(() => {
+
+        console.log("testing123");
+
+        let previousURL = localStorage.getItem('previousUrl')
+        console.log("history", navigate);
+        if(previousURL.includes("/me")){
+
+            refetch();
+        }
+
+    }, [])
+
     // Homepage
     return (
         <>
@@ -62,7 +92,7 @@ export default function Home() {
             ) : (
                 data.allProjects.map((item, index) => (
                     <Link key={uuidv4()} to={`/projects/${item._id}`} state={{projectData: item}} style={{textDecoration: 'none'}}>
-                        <Project {...item} className="home-project"/>
+                        <Project {...item}/>
                     </Link>
                 ))
             )}

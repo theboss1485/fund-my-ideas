@@ -63,6 +63,8 @@ const Signup = () => {
         }
     };
 
+    localStorage.setItem('previousUrl', location.pathname);
+    
     return (
         <main className="flex-row justify-center mb-4 custom-login-page">
             <div className="col-10 col-md-8 col-lg-6 mx-auto ">
