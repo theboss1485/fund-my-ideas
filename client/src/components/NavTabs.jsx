@@ -18,7 +18,7 @@ function NavTabs() {
             to="/"
             // This is a conditional (ternary) operator that checks to see if the current page is "Home"
             // If it is, we set the current page to 'nav-link-active', otherwise we set it to 'nav-link'
-            className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
+            className={currentPage === '/' ? 'nav-link active' : 'nav-link custom-inactive-tabs'}
           >
             Home
           </Link>
@@ -29,7 +29,7 @@ function NavTabs() {
                 <Link
                     to="/me"
                     // Check to see if the currentPage is `About`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
-                    className={currentPage === '/me' ? 'nav-link active' : 'nav-link'}
+                    className={currentPage === '/me' ? 'nav-link active' : 'nav-link custom-inactive-login-tabs'}
                 >
                     {Auth.getProfile().data.username}'s profile
                 </Link>
@@ -38,7 +38,7 @@ function NavTabs() {
                 <Link
                     to="/login" onClick={logout}
                     // Check to see if the currentPage is `Blog`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
-                    className={currentPage === '/login' ? 'nav-link active' : 'nav-link custom-login-button'}
+                    className={currentPage === '/login' ? 'nav-link active' : 'nav-link custom-login-button custom-inactive-logout-tabs'}
                 >
                     Log Out
                 </Link>
@@ -50,7 +50,7 @@ function NavTabs() {
                 <Link
                     to="/login"
                     // Check to see if the currentPage is `About`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
-                    className={currentPage === '/login' ? 'nav-link active' : 'nav-link'}
+                    className={currentPage === '/login' ? 'nav-link active' : 'nav-link custom-inactive-login-tabs'}
                 >
                     Log In
                 </Link>
@@ -59,7 +59,7 @@ function NavTabs() {
                 <Link
                     to="/signup"
                     // Check to see if the currentPage is `Blog`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
-                    className={currentPage === '/signup' ? 'nav-link active' : 'nav-link custom-login-button'}
+                    className={currentPage === '/signup' ? 'nav-link active' : 'nav-link custom-login-button custom-inactive-signup-tabs'}
                 >
                     Sign Up
                 </Link>

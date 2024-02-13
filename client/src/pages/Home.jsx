@@ -12,7 +12,7 @@ export default function Home() {
     return (
         <>
             {/* Villy: For testing, ready for map implementation */}
-            <Carousel>
+            <Carousel className="">
                 <Carousel.Item>
                     <figure className="custom-slider-pictures">
                         <img className="d-block w-100" src="src/images/test1.jpg" alt="First slide"/>
