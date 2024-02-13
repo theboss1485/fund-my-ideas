@@ -1,4 +1,6 @@
-
+:root {
+    --mobile-background-color: #55568f;
+}
 /* 
 .custom-homepage-header {
     margin: 5%;
@@ -32,7 +34,7 @@
 }
 
 .custom-slider-pictures {
-    max-height: 400px;
+    max-height: 500px;
     position: relative;
 }
 
@@ -48,7 +50,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
 
 .custom-footer-content a {
@@ -155,6 +156,65 @@
     margin-bottom: 5%;
 }
 
-/* .custom-slider-pictures img {
+@media screen and (max-width: 572px) {
+    .custom-slider-pictures {
+        max-height: 350px;
+        position: relative;
+    }
+}
 
-} */
+@media screen and (max-width: 360px) {
+    .custom-slider-pictures {
+        max-height: 200px;
+        position: relative;
+    }
+
+    .custom-nav-tabs {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        background-color:  var(--mobile-background-color);
+    }
+
+    .custom-tab {
+        margin-left: 1%;
+        margin-right: 1%;
+        box-shadow: 5px 5px 10px grey inset;
+        border-radius: 10px;
+        padding: 5%;
+    }
+    
+    .project {
+        background-color: rgb(0, 47, 90);
+    }
+
+    .custom-project-boxes {
+        color: rgb(197, 197, 197);
+    }
+    
+    .custom-project-boxes h1 {
+        color:rgb(125, 194, 255);
+    }
+
+    .custom-main {
+        background-color: var(--mobile-background-color);
+    }
+
+    .custom-inactive-tabs {
+        color: white;
+    }
+
+    .custom-inactive-login-tabs {
+        color: rgb(118, 250, 255)
+    }
+
+    .custom-inactive-logout-tabs {
+        color: rgb(255, 152, 152)
+    }
+
+    .custom-inactive-signup-tabs {
+        color: rgb(28, 255, 28)
+    }
+}
+
