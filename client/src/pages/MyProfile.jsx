@@ -22,12 +22,22 @@ export default function MyProfile() {
 
     const toggleProjectForm = () => {
 
-        setDisplayProjectForm(true)
+        if(displayProjectForm === true){
+
+            setDisplayProjectForm(false);
+        
+        } else if(displayProjectForm === false){
+
+            setDisplayProjectForm(true);
+        }
+        
+        
     }
 
     const handleProjectCreation = () => {
 
         setProjectAdded(true)
+        toggleProjectForm();
     }
 
     const handleProjectRemoval = async (event) => {

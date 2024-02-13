@@ -16,7 +16,7 @@ const ProjectForm = (props) => {
     });
     // const [name, setProjectName] = useState('');
     // const [characterCount, setCharacterCount] = useState(0);
-    const [description, setDescription] = useState('');
+    const [formError, setFormError] = useState(undefined);
 
     // const [fundingGoal, setFundingGoal] = useState('0');
 
@@ -33,6 +33,8 @@ const ProjectForm = (props) => {
         // });
 
         const handleChange = (event) => {
+
+            event.preventDefault();
 
             const { name, value } = event.target;
     
@@ -52,26 +54,36 @@ const ProjectForm = (props) => {
 
             if((formState.name !== '') && (formState.description !== '') && (formState.funding !== 0) && (formState.time !== 0)){
                 
-                const { data } = await addProject({
+                const {data} = await addProject({
                     
                     variables: {
-                        name:
-                        description,
-                        fundingGoal,
-                        timePeriod
+                        name: formState.name,
+                        description: formState.description,
+                        fundingGoal: parseInt(formState.funding),
+                        timePeriod: parseInt(formState.time)
                     },
                 });
 
-                if(data){
+                if(data.addProject.project && data.addProject.user){
 
                     props.onProjectCreation()
                 }
 
                 setFormData('');
+            } else {
+
+                throw new Error("You didn't fill in all of the fields.")
+            }
+            if(error){
+
+                console.log(JSON.stringify(err));
             }
 
         } catch (err) {
-            console.error(err);
+
+            console.log(JSON.stringify(err));
+
+            
         }
     };
 
@@ -88,20 +100,19 @@ const ProjectForm = (props) => {
                     >
                         <div className="col-12 col-lg-9">
                             <label for="project-name">Project Name:</label>
-                            <input type="text" id="project-name" name="name" required />
+                            <input type="text" id="project-name" name="name" onChange={handleChange} required />
                             <label for="project-description">Project Description:</label>
                             <textarea
                                 name="description"
                                 placeholder="project concept"
-                                value={description}
                                 className="form-input w-100"
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                                 onChange={handleChange}
                             ></textarea>
                             <label for="funding-goal">Funding Goal:</label>
-                            <input type="number" id="funding-goal" name="funding" required/>
+                            <input type="number" id="funding-goal" name="funding" required onChange={handleChange} />
                             <label for="time-period">Time Period (in days):</label>
-                            <input type="number" id="time-period" name="time" required/>
+                            <input type="number" id="time-period" name="time" required onChange={handleChange}/>
                         </div>
 
                         <div className="col-12 col-lg-3">
@@ -109,11 +120,13 @@ const ProjectForm = (props) => {
                                 Add this project
                             </button>
                         </div>
-                        {error && (
+                        {(formError) && (
                             <div className="col-12 my-3 bg-danger text-white p-3">
-                                {error.message}
+                                {formError}
                             </div>
                         )}
+
+
                     </form>
                 </>
             ) : (
