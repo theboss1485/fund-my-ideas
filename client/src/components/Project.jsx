@@ -12,12 +12,12 @@ export default function Project (props) {
 
     return (
         <section className="custom-tab project">
-            <div>
+            <div className="custom-project-boxes">
                 <h1>{props.name}</h1>
                 <ul>
-                    <li>{props.description}</li>
-                    <li>Funding Goal: ${props.fundingGoal}</li>
-                    <li>Campaign Time Period: {props.timePeriod} days</li>
+                    <li><a>Description</a>: {props.description}</li>
+                    <li><a>Funding Goal</a>: ${props.fundingGoal}</li>
+                    <li><a>Campaign Time Period</a>: {props.timePeriod} days</li>
                 </ul>
             </div>
         </section>

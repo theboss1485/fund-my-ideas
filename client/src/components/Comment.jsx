@@ -37,10 +37,10 @@ export default function Comment(props) {
 
     return (
 
-        <section className="custom-tab has-text-centered">
+        <section className="custom-comment-tab">
             
-            <p>{props.commentText}</p>
-            <p>Created by {props.username} on {props.createdAt}</p>
+            <p className="custom-comment-sections">{props.commentText}</p>
+            <p>Created by <a className="custom-comment-username">{props.username}</a> on <a className="custom-comment-date">{props.createdAt}</a></p>
             <button className="btn btn-primary" data-id={`${props._id}`} onClick={deleteComment}>Remove Comment</button>
         </section>
     )

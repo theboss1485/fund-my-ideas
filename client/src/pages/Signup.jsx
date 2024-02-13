@@ -70,10 +70,10 @@ const Signup = () => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-md-9 col-lg-6 mx-auto">
+        <main className="flex-row justify-center mb-4 custom-login-page">
+            <div className="col-10 col-md-8 col-lg-6 mx-auto">
                 <section id="signup-form" className="card">
-                    <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+                    <h4 className="card-header bg-dark text-light p-2 custom-login-title">Sign Up</h4>
                     <div className="card-body">
                         {user ? (
                         <p>
@@ -81,13 +81,13 @@ const Signup = () => {
                             <Link to="/">back to the homepage.</Link>
                         </p>
                         ) : (
-                            <form onSubmit={handleFormSubmit}>
+                            <form onSubmit={handleFormSubmit} className='custom-login-section'>
                                 <div className="mb-2">
                                     <label htmlFor="username" className="mb-1">Username:</label>
                                     <div>
                                         <input
                                             id="username"
-                                            className="form-input col-lg-8"
+                                            className="form-input col-lg-12"
                                             placeholder="Your username"
                                             name="username"
                                             type="text"
@@ -101,7 +101,7 @@ const Signup = () => {
                                     <div>
                                         <input
                                             id="email"
-                                            className="form-input col-lg-8"
+                                            className="form-input col-lg-12"
                                             placeholder="Your email"
                                             name="email"
                                             type="email"
