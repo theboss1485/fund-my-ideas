@@ -1,5 +1,5 @@
 :root {
-    --mobile-background-color: #55568f;
+    --mobile-background-color: #3e5079;
 }
 /* 
 .custom-homepage-header {
@@ -10,6 +10,27 @@
     font-family: cursive;
     color: rgb(188, 116, 255);
 } */
+
+.custom-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(142, 255, 255);
+    padding: 2.5%;
+}
+
+.custom-header-title {
+    text-align: center;
+}
+
+.custom-header-color {
+    text-decoration: none;
+}
+
+.custom-header-description-color {
+    color: rgb(91, 162, 255);
+    font-family: cursive;
+}
 
 .custom-main {
     min-height: 100vh;
@@ -216,5 +237,26 @@
     .custom-inactive-signup-tabs {
         color: rgb(28, 255, 28)
     }
+    /* ---------------- header --------------- */
+
+    .custom-header {
+        background-color: rgb(112, 231, 231);  
+    }
+    
+    .custom-header-title {
+        text-align: center;
+        color: rgb(88, 104, 255)
+    }
+    
+    .custom-header-color {
+        text-decoration: none;
+    }
+    
+    .custom-header-description-color {
+        color: rgb(255, 255, 255);
+        font-family: cursive;
+        text-align: center;
+    }
+    
 }
 
