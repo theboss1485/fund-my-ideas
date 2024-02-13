@@ -191,50 +191,56 @@ export default function SingleProjectWithComments(props) {
                 <p>Error: {JSON.stringify(projectError)}</p>
             ) : (
                 <div>
+
                     <Project {...data.projectById}/>
-                    {data.projectById.comments.map((item, index) => (
-                        <Comment key={index} {...item} onCommentRemoval={handleCommentRemoved}/>
-                    ))}
+
+                    <div className="custom-buttons-container">
 
                     {Auth.loggedIn() && !displayPaymentWindow && (
 
-                        <button onClick={togglePaymentWindow}> Back This Project</button>
+                    <button onClick={togglePaymentWindow} className="custom-back-this-project-button"> Back This Project</button>
                     )}
 
                     {Auth.loggedIn() && displayPaymentWindow && (
 
-                            <div>
-                                <label for="amount">Amount:</label>
-                                <input type="number" 
-                                    id="amount" 
-                                    name="amount" 
-                                    step="0.01" 
-                                    min="0.01" 
-                                    max={`${data.projectById.remainingFundingNeeded}`}
-                                    onChange={handleAmountChange}
-                                    required 
-                                />
-                                <button onClick={proceedToCheckout}>Proceed to Checkout</button>
-                            </div>
+                    <div className='custom-proceed-to-checkout-button-container'>
+                        <label for="amount">Amount:</label>
+                        <input type="number" 
+                            id="amount" 
+                            name="amount" 
+                            step="0.01" 
+                            min="0.01" 
+                            max={`${data.projectById.remainingFundingNeeded}`}
+                            onChange={handleAmountChange}
+                            required 
+                        />
+                        <button onClick={proceedToCheckout}>Proceed to Checkout</button>
+                    </div>
                     )}
 
+                    </div>
 
+                    {data.projectById.comments.map((item, index) => (
+                        <Comment key={index} {...item} onCommentRemoval={handleCommentRemoved}/>
+                    ))}
+    
+                        <div className="custom-buttons-container custom-margin-bottom-3">
 
-                    {!displayCommentForm && Auth.loggedIn() && (
-                        <button className="btn btn-outline-primary" onClick={toggleCommentForm}>Leave a Comment</button>
-                    )}
+                            {!displayCommentForm && Auth.loggedIn() && (
+                                <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
+                            )}
 
-                    
-
-                    {displayCommentForm && Auth.loggedIn() && (
-                        <div>
-                            <label for="comment-form">Add a Comment</label>
-                            <input id="comment-form" type="text" onChange={handleCommentChange}></input>
-                            <button className="btn btn-outline-primary" onClick={submitComment}>Submit</button>
                         </div>
-                        
-                    )}
 
+                        {displayCommentForm && Auth.loggedIn() && (
+                            <div className="custom-buttons-container-for-add-a-comment">
+                                <label for="comment-form">Add a Comment</label>
+                                <textarea id="comment-form" type="text" onChange={handleCommentChange}></textarea>
+                                <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={submitComment}>Submit</button>
+                            </div>
+                            
+                        )}
+                    
                     {!Auth.loggedIn() && (
 
                         <p className="custom-leave-comment-alert">You must &#160;<a href="/login">log in</a>&#160; or &#160;<a href="/signup">sign up</a>&#160; to leave a comment.</p>

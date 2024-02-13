@@ -127,6 +127,10 @@
     flex-direction: column;
 }
 
+.custom-project-boxes h1 {
+    flex-wrap: wrap;
+}
+
 .custom-project-boxes ul {
     margin-top: 2%;
 }
@@ -216,6 +220,96 @@
     align-items: center;
 }
 
+.custom-add-project-section {
+    display: flex;
+    flex-direction: column;
+    color: rgb(219, 219, 219);
+}
+
+.custom-add-project-section input {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.custom-add-project-section textarea {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.custom-add-project-section-title {
+    color: rgb(250, 255, 220);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.custom-add-this-project-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4%;
+}
+
+.custom-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.custom-leave-a-comment-button {
+    color: white;
+    background-color:rgb(48, 126, 199);
+}
+
+.custom-back-this-project-button {
+
+}
+
+.custom-proceed-to-checkout-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.custom-proceed-to-checkout-button-container label {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.custom-proceed-to-checkout-button-container button {
+    margin-left: 2%;
+    margin-right: 2%;
+    color: white;
+    background-color: rgb(60, 123, 218);
+}
+
+.custom-margin-bottom-3 {
+    margin-bottom: 5%;
+}
+
+.custom-buttons-container-for-add-a-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.custom-buttons-container-for-add-a-comment label {
+    margin-bottom: 1%;
+}
+
+.custom-buttons-container-for-add-a-comment textarea {
+    width: 70%;
+    height: 100px;
+}
+
+.custom-buttons-container-for-add-a-comment button {
+    margin-top: 1%;
+}
+
 @media screen and (max-width: 572px) {
     .custom-slider-pictures {
         max-height: 350px;
@@ -223,7 +317,7 @@
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 370px) {
     .custom-slider-pictures {
         max-height: 200px;
         position: relative;
@@ -240,22 +334,24 @@
     .custom-tab {
         margin-left: 1%;
         margin-right: 1%;
-        box-shadow: 5px 5px 10px rgb(33, 99, 180) inset;
+        box-shadow: 5px 5px 10px rgb(51, 78, 110) inset;
         border-radius: 10px;
-        padding: 5%;
+        padding: 1%;
+        font-size: 80%;
     }
     
-    .project {
-        background-color: rgb(0, 47, 90);
+    .custom-project-boxes {
+        padding: 2%;
     }
 
-    .custom-project-boxes {
-        color: rgb(170, 170, 170);
-    }
-    
     .custom-project-boxes h1 {
-        color:rgb(125, 194, 255);
+        text-align: center;
     }
+
+    .custom-project-boxes ul {
+        padding: 2%;
+    }
+
 
     .custom-main {
         background-color: var(--mobile-background-color);
@@ -264,17 +360,33 @@
     .custom-inactive-tabs {
         color: white;
     }
+    
+    .custom-inactive-tabs:hover {
+        color: white;
+    }
 
     .custom-inactive-login-tabs {
         color: rgb(118, 250, 255)
+    }
+
+    .custom-inactive-login-tabs:hover {
+        color: rgb(255, 255, 255)
     }
 
     .custom-inactive-logout-tabs {
         color: rgb(255, 152, 152)
     }
 
+    .custom-inactive-logout-tabs:hover {
+        color: rgb(255, 255, 255)
+    }
+
     .custom-inactive-signup-tabs {
         color: rgb(28, 255, 28)
+    }
+
+    .custom-inactive-signup-tabs {
+        color: rgb(255, 255, 255)
     }
     /* ---------------- header --------------- */
 
@@ -296,6 +408,27 @@
         font-family: cursive;
         text-align: center;
     }
+
+    .custom-proceed-to-checkout-button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     
+    .custom-proceed-to-checkout-button-container label {
+        margin-bottom: 1%;
+    }
+    
+    .custom-proceed-to-checkout-button-container button {
+        margin-top: 2%;
+    }
+    
+    .custom-comment-tab {
+        font-size: 80%;
+    }
+
+    .custom-nav-link-active:hover {
+        background-color: white;
+    }
 }
 
