@@ -15,7 +15,7 @@ export default function Home() {
             <Carousel className="">
                 <Carousel.Item>
                     <figure className="custom-slider-pictures">
-                        <img className="d-block w-100" src="src/images/test1.jpg" alt="First slide"/>
+                        <img className="d-block w-100" src="/test1.jpg" alt="First slide"/>
                     </figure>
                     <Carousel.Caption>
                     <h3>First Project</h3>
@@ -24,7 +24,7 @@ export default function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <figure className="custom-slider-pictures">
-                        <img className="d-block w-100" src="src/images/test2.jpg" alt="Second slide"/>
+                        <img className="d-block w-100" src="/test2.jpg" alt="Second slide"/>
                     </figure>
                     <Carousel.Caption>
                     <h3>Second project</h3>
@@ -33,7 +33,7 @@ export default function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <figure className="custom-slider-pictures">
-                        <img className="d-block w-100" src="src/images/test3.jpg" alt="Third slide"/>
+                        <img className="d-block w-100" src="/test3.jpg" alt="Third slide"/>
                     </figure>
                     <Carousel.Caption>
                     <h3>Third project</h3>
