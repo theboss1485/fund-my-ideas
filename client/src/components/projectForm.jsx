@@ -89,7 +89,7 @@ const ProjectForm = (props) => {
 
 
     return (
-        <div>
+        <div className='custom-add-project-section-title'>
             <h3>Show off your project idea!</h3>
 
             {Auth.loggedIn() ? (
@@ -98,7 +98,7 @@ const ProjectForm = (props) => {
                         className="flex-row justify-center justify-space-between-md align-center"
                         onSubmit={handleFormSubmit}
                     >
-                        <div className="col-12 col-lg-9">
+                        <div className="col-12 col-lg-9 custom-add-project-section">
                             <label for="project-name">Project Name:</label>
                             <input type="text" id="project-name" name="name" onChange={handleChange} required />
                             <label for="project-description">Project Description:</label>
@@ -115,8 +115,8 @@ const ProjectForm = (props) => {
                             <input type="number" id="time-period" name="time" required onChange={handleChange}/>
                         </div>
 
-                        <div className="col-12 col-lg-3">
-                            <button onClick={handleFormSubmit}className="btn btn-primary btn-block py-3" type="submit">
+                        <div className="col-12 col-lg-3 custom-add-this-project-button-container">
+                            <button onClick={handleFormSubmit}className="btn btn-primary btn-block py-3 custom-add-this-project-button" type="submit">
                                 Add this project
                             </button>
                         </div>

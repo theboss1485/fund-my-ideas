@@ -115,7 +115,7 @@ const Signup = () => {
                                     <div>
                                         <input
                                             id="password"
-                                            className="form-input col-lg-8"
+                                            className="form-input col-lg-12"
                                             placeholder="password"
                                             name="password"
                                             type="password"

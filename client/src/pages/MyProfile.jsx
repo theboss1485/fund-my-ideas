@@ -85,32 +85,33 @@ export default function MyProfile() {
             <div className="custom-start-project-section">
                 {/* Add content for the start project section here */}
             </div>
-            <h1>My Profile</h1>
+            <h1 className="custom-my-project-title">My Project</h1>
+                {Auth.loggedIn() && displayProjectForm && (
+                    
+                    <ProjectForm onProjectCreation={handleProjectCreation}/>
+                )}
+                {!displayProjectForm && Auth.loggedIn() && (
+                    <button className="btn btn-outline-primary custom-create-a-project" onClick={toggleProjectForm}>Create a Project</button>
+                )}
             {projectLoading ? (
                 <p>Loading...</p>
             ) : projectError ? (
                 <p>Error: {JSON.stringify(projectError)}</p>
             ) : (
-                <div>
+                <div className="custom-delete-this-project-container">
                     {data && data.projectsByUsername.map((item, index) => (
                         <>
                             <Project key={index} {...item} />
                             {Auth.loggedIn() && (
 
-                                <button data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete This Project</button>
+                                <button className="custom-delete-this-project" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete This Project</button>
                             )}
                         </>
                     ))}
 
 
                     
-                    {Auth.loggedIn() && displayProjectForm && (
-                        
-                        <ProjectForm onProjectCreation={handleProjectCreation}/>
-                    )}
-                    {!displayProjectForm && Auth.loggedIn() && (
-                        <button className="btn btn-outline-primary" onClick={toggleProjectForm}>Create a Project</button>
-                    )}
+
                     
                 </div>
             )}
