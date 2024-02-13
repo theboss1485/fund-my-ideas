@@ -51,12 +51,6 @@ const Signup = () => {
                 const { token, user } = data.addUser;
             
                 Auth.login(token);
-                // dispatch(logInUser(
-
-                //     {
-                //         username: data.user.username
-                //     }
-                // ))
 
             } else {
 
@@ -69,12 +63,14 @@ const Signup = () => {
         }
     };
 
+    localStorage.setItem('previousUrl', location.pathname);
+    
     return (
         <main className="flex-row justify-center mb-4 custom-login-page">
-            <div className="col-10 col-md-8 col-lg-6 mx-auto">
-                <section id="signup-form" className="card">
-                    <h4 className="card-header bg-dark text-light p-2 custom-login-title">Sign Up</h4>
-                    <div className="card-body">
+            <div className="col-10 col-md-8 col-lg-6 mx-auto ">
+                <section id="signup-form" className="card custom-login-signup-border">
+                    <h4 className="card-header text-light p-2 custom-login-title">Sign Up</h4>
+                    <div className="card-body custom-login-signup-form-body">
                         {user ? (
                         <p>
                             Success! Profile has been created!{' '}
@@ -83,11 +79,11 @@ const Signup = () => {
                         ) : (
                             <form onSubmit={handleFormSubmit} className='custom-login-section'>
                                 <div className="mb-2">
-                                    <label htmlFor="username" className="mb-1">Username:</label>
+                                    <label htmlFor="username" className="mb-1 text-white">Username:</label>
                                     <div>
                                         <input
                                             id="username"
-                                            className="form-input col-lg-12"
+                                            className="form-input col-lg-12 custom-input-field-color text-white"
                                             placeholder="Your username"
                                             name="username"
                                             type="text"
@@ -97,11 +93,11 @@ const Signup = () => {
                                     </div>
                                 </div>
                                 <div className="mb-2">
-                                    <label htmlFor="email" className="mb-1">Email:</label>
+                                    <label htmlFor="email" className="mb-1 text-white">Email:</label>
                                     <div>
                                         <input
                                             id="email"
-                                            className="form-input col-lg-12"
+                                            className="form-input col-lg-12 custom-input-field-color text-white"
                                             placeholder="Your email"
                                             name="email"
                                             type="email"
@@ -111,12 +107,12 @@ const Signup = () => {
                                     </div>
                                 </div>
                                 <div className="mb-2">
-                                    <label htmlFor="password" className="mb-1">Password:</label>
+                                    <label htmlFor="password" className="mb-1 text-white">Password:</label>
                                     <div>
                                         <input
                                             id="password"
-                                            className="form-input col-lg-12"
-                                            placeholder="password"
+                                            className="form-input col-lg-12 custom-input-field-color text-white"
+                                            placeholder="Your password"
                                             name="password"
                                             type="password"
                                             value={formState.password}
@@ -125,7 +121,7 @@ const Signup = () => {
                                     </div>
                                 </div>
                                 <button
-                                    className="btn btn-block btn-primary mt-1"
+                                    className="btn btn-block btn-primary custom-button-color mt-1"
                                     style={{ cursor: 'pointer' }}
                                     type="submit"
                                 >
@@ -135,7 +131,7 @@ const Signup = () => {
                         )}
 
                         {mutationError && (
-                            <div className="my-3 p-3 bg-danger text-white">
+                            <div className="my-3 p-3 custom-error-message text-white">
                                 {mutationError.message}
                             </div>
                         )}

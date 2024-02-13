@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 const mongoose = require('mongoose');
+const { ApolloError } = require('apollo-server-errors');
 
 const formatDate = require('../utils/format-date');
 
@@ -145,22 +146,43 @@ const resolvers = {
             console.log("Inside!!");
             try{
 
-                const salt = await bcrypt.genSalt(10);
-                const hashedPassword = await bcrypt.hash(password, salt);
-                password = hashedPassword
+                if(password.trim().length >= 8){
 
-                const user = await User.create({username, email, password});
-    
-                console.log("user", user);
-    
-                const token = signToken(user);
-    
-                return { token, user };
+                    const salt = await bcrypt.genSalt(10);
+                    const hashedPassword = await bcrypt.hash(password, salt);
+                    password = hashedPassword
+
+                    const user = await User.create({username, email, password});
+                        
+                    console.log("user", user);
+        
+                    const token = signToken(user);
+        
+                    return { token, user };
+                
+                } else {
+
+                    return new ApolloError('Your password must be a length of 8 characters or more.')
+                }
+
+                
             }
 
             catch(error) {
 
-                console.log("error", error)
+                console.log("message", error.message);
+
+                if(error.message.includes("duplicate key")){
+
+                    return new ApolloError('The username or email address you entered is in use.', 'USER_CREATION_FAILED');
+                
+                } else {
+
+                    return new ApolloError('Something went wrong with the sign up process.')
+                }
+
+                
+                
             } 
 
 

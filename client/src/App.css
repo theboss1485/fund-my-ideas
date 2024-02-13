@@ -1,5 +1,6 @@
 :root {
     --mobile-background-color: #3e5079;
+    --login-signup-background-color: #2c4682;
 }
 
 .custom-header {
@@ -107,6 +108,11 @@
     cursor:pointer
 }
 
+.border-none {
+
+    border: none;
+}
+
 .custom-my-profile-main {
     display: flex;
     flex-direction: column;
@@ -134,6 +140,7 @@
 
 .custom-project-boxes ul {
     margin-top: 2%;
+    padding-left: 5%;
 }
 
 
@@ -184,11 +191,16 @@
 
 .custom-login-title {
     text-align: center;
+    background-color: rgb(47, 47, 109);
 }
 
 .custom-login-page {
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+.custom-input-field-color {
+    background-color: #415a99;
 }
 
 .custom-leave-comment-alert {
@@ -259,15 +271,42 @@
     justify-content: space-between;
 }
 
+.custom-error-message {
+
+    border-radius: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(167, 31, 31);
+}
+
+.custom-back-this-project-button {
+
+    background-color: rgba(53, 235, 174, 0.686);
+    color: white;
+}
+
 .custom-leave-a-comment-button {
     color: white;
     background-color:rgb(48, 126, 199);
 }
 
+
+.custom-button-color {
+
+    color: white;
+    background-color:rgb(22, 78, 191);
+    border: none
+}
 .custom-proceed-to-checkout-button-container {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.custom-text-area {
+
+    background-color: #12356e;
+    border: none;
 }
 
 .custom-proceed-to-checkout-button-container label {
@@ -326,6 +365,34 @@
 
 .custom-carousel-title {
     font-size: 40px;
+}
+
+.custom-login-signup-form-body {
+    background-color: var(--login-signup-background-color);
+}
+
+.custom-login-signup-border {
+    border: 1px solid darkblue;
+}
+
+.custom-login-signup-title-background {
+    background-color: rgb(19, 19, 97);
+}
+
+::placeholder {
+
+    color: lightgray;
+}
+
+.custom-back-this-project-button:hover {
+
+    background-color: rgba(29, 145, 104, 0.686);
+    color: white;
+}
+
+.money-color {
+
+    color: rgb(79, 232, 79)
 }
 
 @media screen and (max-width: 572px) {

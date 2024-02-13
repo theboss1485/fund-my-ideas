@@ -10,10 +10,23 @@ export default function Project (props) {
         projectData.push(props.projectData.name)
     }
 
+    let funded = false;
+
+    if(props.fundingGoal  - props.currentFundingAmount <= 0){
+
+        funded = true
+    }
+
     return (
-        <section className="custom-tab project">
+        <section className="custom-tab project col-11">
             <div className="custom-project-boxes">
-                <h1>{props.name}</h1>
+                <h1>
+                    {funded ? (
+                        <span>
+                            {props.name} <span className="money-color"> $$$ Funded! $$$</span> 
+                        </span>
+                    ) : props.name}
+                </h1>
                 <ul>
                     <li><span>Description: </span> {props.description}</li>
                     <li><span>Funding Goal:</span> ${props.fundingGoal}</li>

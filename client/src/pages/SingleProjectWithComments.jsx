@@ -181,6 +181,8 @@ export default function SingleProjectWithComments(props) {
         setPaymentAmount(parseFloat(event.target.value))
     }
 
+    localStorage.setItem('previousUrl', location.pathname);
+    
     return (
 
         <div>
@@ -197,13 +199,13 @@ export default function SingleProjectWithComments(props) {
 
                     {Auth.loggedIn() && !displayPaymentWindow && (
 
-                    <button onClick={togglePaymentWindow} className="custom-back-this-project-button"> Back This Project</button>
+                    <button onClick={togglePaymentWindow} className="btn custom-back-this-project-button"> Back This Project</button>
                     )}
 
                     {Auth.loggedIn() && displayPaymentWindow && (
 
                     <div className='custom-proceed-to-checkout-button-container'>
-                        <label for="amount">Amount:</label>
+                        <label htmlFor="amount">Amount:</label>
                         <input type="number" 
                             id="amount" 
                             name="amount" 
@@ -222,19 +224,17 @@ export default function SingleProjectWithComments(props) {
                     {data.projectById.comments.map((item, index) => (
                         <Comment key={uuidv4()} {...item} onCommentRemoval={handleCommentRemoved}/>
                     ))}
-    
+
+                    {!displayCommentForm && Auth.loggedIn() && (
                         <div className="custom-buttons-container custom-margin-bottom-3">
-
-                            {!displayCommentForm && Auth.loggedIn() && (
-                                <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
-                            )}
-
+                            <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
                         </div>
+                    )}
 
                         {displayCommentForm && Auth.loggedIn() && (
                             <div className="custom-buttons-container-for-add-a-comment">
-                                <label for="comment-form">Add a Comment</label>
-                                <textarea id="comment-form" type="text" onChange={handleCommentChange}></textarea>
+                                <label htmlFor="comment-form" className='text-white'>Add a Comment</label>
+                                <textarea id="comment-form" type="text" onChange={handleCommentChange} className='custom-text-area'></textarea>
                                 <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={submitComment}>Submit</button>
                             </div>
                             

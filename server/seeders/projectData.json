@@ -52,14 +52,14 @@
         "name": "The House on the Pleasant Hill",
         "description": "A boardgame that will pit you against your fellow teammates, for one of them is working against the team!",
         "fundingGoal": 8000,
-        "currentFundingAmount": 0,
+        "currentFundingAmount": 8000,
         "timePeriod": 300
     },
     {
         "name": "Power Hive",
         "description": "Stay connected on-the-go with the Power Hive, a compact and powerful portable charger that can charge multiple devices simultaneously.",
         "fundingGoal": 120000,
-        "currentFundingAmount": 0,
+        "currentFundingAmount": 130000,
         "timePeriod": 90
     },
     {
