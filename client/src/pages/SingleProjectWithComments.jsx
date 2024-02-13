@@ -234,7 +234,7 @@ export default function SingleProjectWithComments(props) {
                         {displayCommentForm && Auth.loggedIn() && (
                             <div className="custom-buttons-container-for-add-a-comment">
                                 <label htmlFor="comment-form" className='text-white'>Add a Comment</label>
-                                <textarea id="comment-form" type="text" onChange={handleCommentChange} className='custom-text-area'></textarea>
+                                <textarea id="comment-form" type="text" onChange={handleCommentChange} className='custom-text-area text-white'></textarea>
                                 <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={submitComment}>Submit</button>
                             </div>
                             
