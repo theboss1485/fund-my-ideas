@@ -43,10 +43,10 @@ export default function Home() {
 
 
         console.log("history", navigate);
-        if(previousURL.includes("/me")){
+        // if(previousURL.includes("/me")){
 
-            refetch();
-        }
+        //     refetch();
+        // }
 
     }, [])
 

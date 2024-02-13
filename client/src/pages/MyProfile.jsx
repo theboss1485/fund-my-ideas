@@ -89,7 +89,7 @@ export default function MyProfile() {
             <div className="custom-start-project-section">
                 {/* Add content for the start project section here */}
             </div>
-            <h1 className="custom-my-project-title">My Project</h1>
+            <h1 className="custom-my-project-title mb-4">My Projects</h1>
                 {Auth.loggedIn() && displayProjectForm && (
                     
                     <ProjectForm onProjectCreation={handleProjectCreation}/>
