@@ -1,5 +1,13 @@
+require('dotenv').config()
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fund-my-ideas');
+let atlasConnectionString = undefined
+
+if(process.env.MONGODB_URI){
+
+    atlasConnectionString = encodeURI(process.env.MONGODB_URI)
+}
+
+mongoose.connect(atlasConnectionString || process.env.LOCALHOST_DB_CONNECTION_STRING);
 
 module.exports = mongoose.connection;
