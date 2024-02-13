@@ -81,7 +81,7 @@ export default function MyProfile() {
     }, [projectAdded, projectRemoved])
 
     
-    localStorage.setItem('previousUrl', location.pathname);
+
 
 
     return (

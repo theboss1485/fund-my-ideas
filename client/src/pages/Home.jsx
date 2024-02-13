@@ -41,7 +41,7 @@ export default function Home() {
 
         console.log("testing123");
 
-        let previousURL = localStorage.getItem('previousUrl')
+
         console.log("history", navigate);
         if(previousURL.includes("/me")){
 
