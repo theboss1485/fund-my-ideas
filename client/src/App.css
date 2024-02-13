@@ -54,6 +54,12 @@
     position: relative;
 }
 
+.custom-slider-pictures-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .custom-footer {
     margin-top: auto;
     margin-right: 4%;
@@ -64,8 +70,9 @@
 
 .custom-footer-content {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     color: rgb(154, 194, 255);
 }
 
@@ -137,6 +144,7 @@
     list-style: none;
     margin-top: 5px;
     text-decoration: none;
+    margin-left: -5%;
 }
 
 .custom-comment-tab {
@@ -304,6 +312,11 @@
     margin-top: 1%;
 }
 
+.custom-github-links-container {
+    display: flex;
+    flex-direction: row;
+}
+
 @media screen and (max-width: 572px) {
     .custom-slider-pictures {
         max-height: 350px;
@@ -423,5 +436,9 @@
 
     .custom-nav-link-active:hover {
         background-color: white;
+    }
+
+    .custom-project-boxes ul li {
+        margin-left: 1%;
     }
 }
