@@ -61,9 +61,9 @@ const Login = (props) => {
     return (
         <main className="flex-row justify-center mb-4 custom-login-page">
             <div className="col-10 col-md-8 col-lg-6 mx-auto">
-                <div className="card">
-                    <h4 className="card-header bg-dark text-light p-2 custom-login-title">Login</h4>
-                    <div className="card-body">
+                <div className="card custom-login-signup-border">
+                    <h4 className="card-header text-light p-2 custom-login-title">Login</h4>
+                    <div className="card-body login-signup-form custom-login-signup-form-body">
                         {data ? (
                             <p>
                                 Login successful!{' '}
@@ -72,11 +72,11 @@ const Login = (props) => {
                         ) : (
                         <form onSubmit={handleFormSubmit} className="custom-login-section">
                             <div className="mb-2">
-                                <label htmlFor="email" className="mb-1">Email:</label>
+                                <label htmlFor="email" className="mb-1 text-white">Email:</label>
                                 <div>
                                     <input
                                         id="email"
-                                        className="form-input col-lg-12"
+                                        className="form-input col-lg-12 custom-input-field-color text-white"
                                         placeholder="Your email"
                                         name="email"
                                         type="email"
@@ -86,11 +86,11 @@ const Login = (props) => {
                                 </div>
                             </div>
                             <div className="mb-2">
-                                <label htmlFor="password" className="mb-1">Password:</label>
+                                <label htmlFor="password" className="mb-1 text-white">Password:</label>
                                 <div>
                                     <input
                                         id="password"
-                                        className="form-input col-lg-12"
+                                        className="form-input col-lg-12 custom-input-field-color text-white"
                                         placeholder="password"
                                         name="password"
                                         type="password"
@@ -100,7 +100,7 @@ const Login = (props) => {
                                 </div>
                             </div>
                             <button
-                                className="btn btn-block btn-primary mt-1"
+                                className="btn btn-primary btn-block custom-button-color mt-1"
                                 style={{ cursor: 'pointer' }}
                                 type="submit"
                             >
@@ -110,7 +110,7 @@ const Login = (props) => {
                         )}
 
                         {error && (
-                        <div className="my-3 p-3 bg-danger text-white">
+                        <div className="my-3 p-3 custom-error-message text-white">
                             {error.message}
                         </div>
                         )}

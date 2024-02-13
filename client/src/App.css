@@ -1,5 +1,6 @@
 :root {
     --mobile-background-color: #3e5079;
+    --login-signup-background-color: #2c4682;
 }
 
 .custom-header {
@@ -184,11 +185,16 @@
 
 .custom-login-title {
     text-align: center;
+    background-color: rgb(47, 47, 109);
 }
 
 .custom-login-page {
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+.custom-input-field-color {
+    background-color: #415a99;
 }
 
 .custom-leave-comment-alert {
@@ -259,13 +265,24 @@
     justify-content: space-between;
 }
 
+.custom-error-message {
+
+    border-radius: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(167, 31, 31);
+}
+
 .custom-leave-a-comment-button {
     color: white;
     background-color:rgb(48, 126, 199);
 }
 
-.custom-back-this-project-button {
+.custom-button-color {
 
+    color: white;
+    background-color:rgb(22, 78, 191);
+    border: none
 }
 
 .custom-proceed-to-checkout-button-container {
@@ -317,6 +334,23 @@
 .custom-github-links-container {
     display: flex;
     flex-direction: row;
+}
+
+.custom-login-signup-form-body {
+    background-color: var(--login-signup-background-color);
+}
+
+.custom-login-signup-border {
+    border: 1px solid darkblue;
+}
+
+.custom-login-signup-title-background {
+    background-color: rgb(19, 19, 97);
+}
+
+::placeholder {
+
+    color: lightgray;
 }
 
 @media screen and (max-width: 572px) {
