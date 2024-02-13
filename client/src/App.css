@@ -72,7 +72,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     color: rgb(154, 194, 255);
 }
 
@@ -264,10 +264,6 @@
     background-color:rgb(48, 126, 199);
 }
 
-.custom-back-this-project-button {
-
-}
-
 .custom-proceed-to-checkout-button-container {
     display: flex;
     flex-direction: row;
@@ -317,12 +313,33 @@
 .custom-github-links-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.custom-footer-github {
+    margin-bottom: 0%;
+}
+
+.custom-footer-copyright {
+    text-align: center;
+}
+
+.custom-carousel-title {
+    font-size: 40px;
 }
 
 @media screen and (max-width: 572px) {
     .custom-slider-pictures {
         max-height: 350px;
         position: relative;
+    }
+
+    .custom-carousel-title {
+        font-size: 30px;
+    }
+
+    .custom-carousel-description {
+        display: none;
     }
 }
 
@@ -397,23 +414,13 @@
     .custom-inactive-signup-tabs {
         color: rgb(255, 255, 255)
     }
-    /* ---------------- header --------------- */
-
-    .custom-header {
-        background-color: rgb(58, 145, 145);  
-    }
-    
-    .custom-header-title {
-        text-align: center;
-        color: rgb(88, 104, 255)
-    }
-    
+    /* ---------------- header --------------- */ 
     .custom-header-color {
         text-decoration: none;
     }
     
     .custom-header-description-color {
-        color: rgb(255, 255, 255);
+        color: rgb(230, 230, 230);
         font-family: cursive;
         text-align: center;
     }
@@ -442,5 +449,22 @@
 
     .custom-project-boxes ul li {
         margin-left: 1%;
+    }
+
+    .custom-my-project-title {
+        font-size: 36px;
+    }
+
+    .custom-add-project-section-title h3 {
+        font-size: 16px;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+    .custom-carousel-title {
+        font-size: 15px;
+    }
+
+    .custom-carousel-description {
+        display: none;
     }
 }
