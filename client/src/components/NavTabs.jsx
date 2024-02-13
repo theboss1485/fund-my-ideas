@@ -11,17 +11,16 @@ function NavTabs() {
       };
 
     return (
-        // testing codes, subjecting to change
-      <ul className="nav nav-tabs custom-nav-tabs bg-info text-white">
-        <div className="container flex-row justify-space-between-lg p-3">
-        <div>
-          <Link className="text-light" to="/">
-            <h1 className="m-0">Fund My Idea$</h1>
-          </Link>
-          <p className="m-0">A Placed With Endless Possibilities!.</p>
+        <>
+        <div className=" custom-header">
+            <div>
+            <Link className="custom-header-color" to="/">
+                <h1 className="custom-header-title">Fund My Idea$</h1>
+            </Link>
+            <p className="custom-header-description-color">~ A Placed With Endless Possibilities! ~</p>
+            </div>
         </div>
-      
-      </div>
+        <ul className="nav nav-tabs custom-nav-tabs">
         <li className="nav-item">
           <Link
             to="/"
@@ -76,6 +75,7 @@ function NavTabs() {
             </>
         )}
       </ul>
+      </>
     )
 }
 
