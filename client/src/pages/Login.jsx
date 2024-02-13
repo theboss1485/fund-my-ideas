@@ -63,10 +63,10 @@ const Login = (props) => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-md-9 col-lg-6 mx-auto">
+        <main className="flex-row justify-center mb-4 custom-login-page">
+            <div className="col-10 col-md-8 col-lg-6 mx-auto">
                 <div className="card">
-                    <h4 className="card-header bg-dark text-light p-2">Login</h4>
+                    <h4 className="card-header bg-dark text-light p-2 custom-login-title">Login</h4>
                     <div className="card-body">
                         {data ? (
                             <p>
@@ -74,13 +74,13 @@ const Login = (props) => {
                                 <Link to="/">back to the homepage.</Link>
                             </p>
                         ) : (
-                        <form onSubmit={handleFormSubmit}>
+                        <form onSubmit={handleFormSubmit} className="custom-login-section">
                             <div className="mb-2">
                                 <label htmlFor="email" className="mb-1">Email:</label>
                                 <div>
                                     <input
                                         id="email"
-                                        className="form-input col-lg-8"
+                                        className="form-input col-lg-12"
                                         placeholder="Your email"
                                         name="email"
                                         type="email"
@@ -90,11 +90,11 @@ const Login = (props) => {
                                 </div>
                             </div>
                             <div className="mb-2">
-                                <label htmlFor="password" className="mb-1">Email:</label>
+                                <label htmlFor="password" className="mb-1">Password:</label>
                                 <div>
                                     <input
                                         id="password"
-                                        className="form-input col-lg-8"
+                                        className="form-input col-lg-12"
                                         placeholder="password"
                                         name="password"
                                         type="password"

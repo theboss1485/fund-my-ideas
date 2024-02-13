@@ -18,7 +18,7 @@ export default function Home() {
                         <img className="d-block w-100" src="src/images/test1.jpg" alt="First slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3>First project</h3>
+                    <h3>First Project</h3>
                     <p>description</p>
                     </Carousel.Caption>
                 </Carousel.Item>
