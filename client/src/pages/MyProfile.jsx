@@ -94,6 +94,10 @@ export default function MyProfile() {
                 {!displayProjectForm && Auth.loggedIn() && (
                     <button className="btn btn-outline-primary custom-create-a-project" onClick={toggleProjectForm}>Create a Project</button>
                 )}
+
+                {displayProjectForm && Auth.loggedIn() && (
+                    <button className="btn btn-outline-primary custom-create-a-project" onClick={toggleProjectForm}>Close Create Project Form</button>
+                )}
             {projectLoading ? (
                 <p>Loading...</p>
             ) : projectError ? (
