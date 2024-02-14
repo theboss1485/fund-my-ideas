@@ -13,6 +13,8 @@ import storage from 'redux-persist/lib/storage';
 
 import paymentReducer from './slices/paymentSlice';
 
+/* Here, we initialize a persistant configuration for the purposes of making our reducer persistant
+across multiple page refreshes.*/
 const persistConfig = {
     key: 'root',
     storage,
@@ -20,6 +22,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, paymentReducer);
 
+/* Here, we initialize the store with the persistant reducer.
+We add in extra middlewhere to avoid a console error I was running into.*/
 export const store = configureStore(
     {
         reducer: persistedReducer,

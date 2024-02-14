@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const formatDate = require('../utils/format-date.js')
+const formatDate = require('../utils/format-date.js');
 
+// This is the schema for comments for each project in the MogoDB, for this application.
 const commentSchema = new mongoose.Schema(
     
     {
@@ -28,6 +29,7 @@ const commentSchema = new mongoose.Schema(
     }
 );
 
+// This virtual method calls the method to format the date when a comment was created.
 commentSchema.virtual('createdAtFormatted').get(function(){
 
     return formatDate(this.createdAt);

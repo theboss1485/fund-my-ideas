@@ -13,6 +13,8 @@ import {
     createHttpLink,
 } from '@apollo/client';
 
+// On this page, we initailize everything for the main application.
+
 const httpLink = createHttpLink({
 
     uri: '/graphql',
@@ -32,6 +34,7 @@ const authLink = setContext((_, { headers }) => {
     };
 });
 
+// Here, we initialize the ApolloClient.
 const client = new ApolloClient({
 
     link: authLink.concat(httpLink),

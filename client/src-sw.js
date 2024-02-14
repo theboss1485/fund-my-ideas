@@ -4,6 +4,7 @@ const { CacheableResponsePlugin } = require('workbox-cacheable-response');
 const { ExpirationPlugin } = require('workbox-expiration');
 const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
+/* This file initializes a service worker.  We didn't get this working before the due date, but hope to make it work in the future.*/
 precacheAndRoute(self.__WB_MANIFEST);
 
 const pageCache = new CacheFirst({

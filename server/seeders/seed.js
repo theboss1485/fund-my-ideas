@@ -10,7 +10,9 @@ const commentData = require('./commentData.json');
 const bcrypt = require('bcrypt');
 
 
-
+/* This file calls the funtion to clear the database of data.
+It then seeds the database and randomizes which projects below to 
+which users and which comments belong to which projects.*/
 db.once('open', async() => {
     await cleanDB('User', 'users');
     await cleanDB('Project', 'projects');
@@ -21,8 +23,6 @@ db.once('open', async() => {
     let users = [];
 
     try{
-
-        console.log("object Id", new ObjectId());
 
         let comments = await Comment.insertMany(commentData);
 
@@ -71,8 +71,6 @@ db.once('open', async() => {
 
         console.log(error)
     }
-
-    // Villy: Can delete "username" in both projectData and commentData to allow for randomization
     
     process.exit(0);
 })

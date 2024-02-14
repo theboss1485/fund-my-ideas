@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /* This function renders the home page. */
-export default function Home() {
+const Home = () => {
 
     const navigate = useNavigate();
 
@@ -34,8 +34,6 @@ export default function Home() {
 
     // This is to allow a new project to appear after a user creates one and then navigates to the Home page.
     useEffect(() => {
-
-        console.log("testing123");
 
 
         console.log("history", navigate);
@@ -94,3 +92,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home;

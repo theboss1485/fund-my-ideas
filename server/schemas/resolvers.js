@@ -13,6 +13,7 @@ const resolvers = {
     
     Query: {
 
+        // This method contains the logic for getting the logged in user from the database.
         me: async (parent, args, context) => {
 
             if (context.user) {
@@ -27,17 +28,19 @@ const resolvers = {
             throw AuthenticationError;
         },
 
-        user: async (parent, { username }) => {
+        // This method gets a single user and its projects by username.
+        // user: async (parent, { username }) => {
 
-            const params = username ? { username } : {};
+        //     const params = username ? { username } : {};
 
-            return User.findOne(params).populate('projects').populate({
+        //     return User.findOne(params).populate('projects').populate({
 
-                path: 'projects',
-                populate: 'comments'
-            });;
-        },
+        //         path: 'projects',
+        //         populate: 'comments'
+        //     });;
+        // },
 
+        // This method gets all projects from the database.
         allProjects: async () => {
 
             let projects = await Project.find().sort({ fundingGoal: -1 })
@@ -54,10 +57,7 @@ const resolvers = {
                 populate: 'comments'
             })
 
-            console.log("user", user)
             return user.projects;
-            
-            
         },
 
         projectById: async (parent, { projectId }) => {
@@ -77,17 +77,9 @@ const resolvers = {
     
         checkout: async (parent, {project, paymentAmount}, context) => {
 
-            console.log("stripe test");
-
             const url = new URL(context.headers.referer).origin;
 
-            console.log("url", url)
-
             const line_items = [];
-
-            console.log("id", project.id);
-            console.log("name", project.name);
-            console.log("description", project.description);
 
                 const backableProject = await stripe.products.create({
 
@@ -96,7 +88,6 @@ const resolvers = {
                 });
             
 
-            console.log("backable project");
 
             if(stripe.products.list()){
 
@@ -109,8 +100,6 @@ const resolvers = {
                 unit_amount: paymentAmount * 100,
                 currency: 'usd'
             })
-
-            console.log("price", price)
 
             line_items.push({
 
@@ -127,11 +116,6 @@ const resolvers = {
                 cancel_url: `${url}/paymentFailure`
             });
 
-            console.log("session", session)
-
-            console.log("url", session.url)
-            console.log("type", typeof session.url)
-
             return  {
                         session: session.id,
                         url: session.url
@@ -141,9 +125,12 @@ const resolvers = {
 
     Mutation: {
 
+        // This resolver contains the logic for adding a user to the database.
         addUser: async (parent, {username, email, password}) => {
 
-            console.log("Inside!!");
+            username = username.trim();
+            email = email.trim();
+
             try{
 
                 if(password.trim().length >= 8){
@@ -153,8 +140,6 @@ const resolvers = {
                     password = hashedPassword
 
                     const user = await User.create({username, email, password});
-                        
-                    console.log("user", user);
         
                     const token = signToken(user);
         
@@ -170,8 +155,8 @@ const resolvers = {
 
             catch(error) {
 
-                console.log("message", error.message);
-
+                /* If the database already contains the email address or username that the user is trying to 
+                sign up with, the application throws an error message.*/
                 if(error.message.includes("duplicate key")){
 
                     return new ApolloError('The username or email address you entered is in use.', 'USER_CREATION_FAILED');
@@ -188,9 +173,8 @@ const resolvers = {
 
         },
 
+        // This method contains the back-end logic for logging the user into the application.
         login: async (parent, {email, password}) => {
-
-            console.log("test!!!")
 
             const user = await User.findOne({email: email});
 
@@ -211,9 +195,8 @@ const resolvers = {
             return { token, user };
         },
 
+        // This method contains the logic for adding a project to the application.
         addProject: async (parent, params , context) => {
-
-            console.log("testings1234");
 
             if (context.user) {
 
@@ -226,15 +209,11 @@ const resolvers = {
                     timePeriod: params.timePeriod
                 });
 
-                console.log("newProject", newProject);
-
                 let updatedUser = await User.findOneAndUpdate(
 
                     { _id: context.user._id },
                     { $addToSet: { projects: newProject._id } }
                 );
-
-                console.log("updatedUser", updatedUser);
 
                 return {
 
@@ -248,6 +227,7 @@ const resolvers = {
             }
         },
         
+        // This method contains the logic for adding a comment to a project.
         addComment: async (parent, {projectId, commentText}, context) => {
     
             if (context.user) {
@@ -281,14 +261,10 @@ const resolvers = {
             } 
         },
 
+        // This method contains the logic for removing a project from the application.
         removeProject: async (parent, {projectId}, context) => {
 
             try{
-
-                console.log("user context", context.user);
-                console.log("projectId", projectId)
-
-                console.log("test")
 
                 if (context.user) {
 
@@ -298,8 +274,6 @@ const resolvers = {
     
                         _id: projectId,
                     });
-
-                    console.log("removed project", removedProject)
     
                     const updatedUser = await User.findOneAndUpdate(
     
@@ -307,8 +281,6 @@ const resolvers = {
                         { $pull: { projects: removedProject._id } },
                         { new: true }
                     );
-
-                    console.log("updated user", updatedUser)
     
                     return {
     
@@ -323,13 +295,12 @@ const resolvers = {
             
             } catch (error){
 
-                console.log(JSON.stringify(error));
+                console.log(error);
             }
         },
 
+        // This method contains the logic for removing a comment from the application.
         removeComment: async (parent, {projectId, commentId}, context) => {
-
-            console.log("test");
 
             if (context.user) {
 
@@ -340,20 +311,11 @@ const resolvers = {
                     }
                 )
 
-                console.log("removed comment", removedComment)
-
-                console.log("removed comment id", removedComment._id)
-
                 let updatedProject = await Project.findByIdAndUpdate(projectId,
 
                     { $pull: { comments: removedComment._id } },
                     { new: true }
-                    
                 );
-
-                
-
-                console.log("updated project", updatedProject)
 
                 await updatedProject.save()
 
@@ -370,12 +332,8 @@ const resolvers = {
             
         },
 
+        // This method contains the logic for updating the amont of money a project has.
         updateProjectFunds: async (parent, {projectId, fundChangeAmount}, context) => {
-
-            console.log("test");
-            console.log("fund change amount", fundChangeAmount)
-
-            console.log("projectId", projectId);
 
             try{
 
@@ -386,19 +344,16 @@ const resolvers = {
                             _id: projectId
                         }
                     )
-                    console.log("projectInQuestion", projectInQuestion)
+
                     projectInQuestion.currentFundingAmount += fundChangeAmount;
                     await projectInQuestion.save();
-                    console.log("projectInQuestion2", projectInQuestion)
                     return projectInQuestion;
                 //}
             
             } catch (error){
 
                 console.log("error", error);
-            }
-
-            
+            } 
         }
     }
 };

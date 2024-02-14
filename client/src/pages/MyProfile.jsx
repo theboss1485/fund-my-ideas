@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Project from '../components/Project';
 import ProjectForm from '../components/ProjectForm';
 
-export default function MyProfile() {
+const MyProfile = () => {
 
     const { data, loading: projectLoading, error: projectError, refetch } = useQuery(GET_PROJECTS_BY_USERNAME, {
         variables: { username: Auth.getProfile().data.username }
@@ -62,7 +62,7 @@ export default function MyProfile() {
 
     useEffect(() => {
 
-        console.log("testing")
+        
 
         if(projectAdded) {
 
@@ -108,21 +108,18 @@ export default function MyProfile() {
             ) : (
                 <div className="custom-delete-this-project-container col-12">
                     {data && data.projectsByUsername.map((item, index) => (
-                        <>
-                            <Project key={uuidv4()} {...item} />
+                        <React.Fragment key={uuidv4()}>
+                            <Project {...item} />
                             {Auth.loggedIn() && (
 
                                 <button className="custom-delete-this-project mt-6" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete The Above Project</button>
                             )}
-                        </>
+                        </React.Fragment>
                     ))}
-
-
-                    
-
-                    
                 </div>
             )}
         </section>
     );
 }
+
+export default MyProfile;

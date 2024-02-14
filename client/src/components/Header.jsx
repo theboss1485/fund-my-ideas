@@ -12,7 +12,7 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Fund My Idea$</h1>
           </Link>
-          <p className="m-0">A Placed With Endless Possibilities!.</p>
+          <p className="m-0">A Place With Endless Possibilities!.</p>
         </div>
       
       </div>

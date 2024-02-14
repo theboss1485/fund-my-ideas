@@ -7,11 +7,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { updateLatestPayment } from "../../store/slices/paymentSlice";
 
-export default function PaymentSuccess() {
+/* This page deals with with calling the database to update the 
+amount of funds a project has, and then redirecting the user to the home page.*/
+const PaymentSuccess = () => {
 
     const location = useLocation();
-
-    const dispatch = useDispatch();
 
     const queryParams = new URLSearchParams(location.search);
 
@@ -20,20 +20,15 @@ export default function PaymentSuccess() {
     const newestPayment = useSelector((state) => state.newestPayment);
 
     const [updateProjectFunds, {loading, error, data}] = useMutation(UPDATE_PROJECT_FUNDS);
-    const [projectWithUpdatedFunding, setProjectWithUpdatedFunding] = useState(null);
-    const [updateCalled, setUpdateCalled] = useState(false);
-    
-    //const [projectFundsUpdated, setProjectFundsUpdated] = useState(false);
 
+    // This function actually calls the mutation that updates the database.
     const handleUpdatingProjectFunds = async () => {
 
         if((newestPayment.sessionId === sessionId) && (newestPayment.projectId !== '')){
 
             try{
-
-                console.log("newestPayment", newestPayment)
     
-                let {data} = await updateProjectFunds({
+                await updateProjectFunds({
                     
                     variables: {
 
@@ -42,12 +37,7 @@ export default function PaymentSuccess() {
                     }
                 });
 
-                console.log("data", data);
-
-                setUpdateCalled(true);
-
-                console.log("updateCalled", updateCalled)
-
+                // After five seconds, the user is redirected to the home page.
                 setTimeout(() => {
                     
                     window.location.href = "/"
@@ -56,20 +46,21 @@ export default function PaymentSuccess() {
     
             } catch (error) {
     
-                console.log("error", JSON.stringify(error));
+                console.log("Something went wrong with updating the project funds in the database.");
             }
         }
     }
 
 
-
+    /* On page load, the function is called to update the database with the new funds of the project
+    that was just backed.*/
     useEffect(() => {
-
-        console.log("inside");
 
         handleUpdatingProjectFunds();
 
     }, [])
+
+    // This return statement displays a 'payment successful' message to the user.
     return (
         <div className="text-center">
             {data && (
@@ -84,3 +75,5 @@ export default function PaymentSuccess() {
         </div>
     )
 }
+
+export default PaymentSuccess;

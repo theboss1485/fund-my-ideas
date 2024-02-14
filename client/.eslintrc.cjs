@@ -1,3 +1,4 @@
+// This file sets up linting configuration if this is desired.
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },

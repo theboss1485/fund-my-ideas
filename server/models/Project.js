@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-
+// This is the schema for fundable projects in the MogoDB, for the application.
 const projectSchema = new mongoose.Schema(
 
     {

@@ -1,3 +1,4 @@
+// This file contains the GraphQL type definitions in order to make the queries and mutations work properly.
 const typeDefs = `
   type User {
     _id: ID
