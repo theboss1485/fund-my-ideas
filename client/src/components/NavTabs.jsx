@@ -18,7 +18,7 @@ const NavTabs = () => {
             <Link className="custom-header-color" to="/">
                 <h1 className="custom-header-title">Fund My Idea$</h1>
             </Link>
-            <p className="custom-header-description-color">~ A Placed With Endless Possibilities! ~</p>
+            <p className="custom-header-description-color">~ A Place With Endless Possibilities! ~</p>
             </div>
         </div>
         <ul className="nav custom-nav-tabs">
