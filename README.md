@@ -14,7 +14,7 @@ N/A
 
 ## Usage
 
-This application has been deployed to Heroku.  To access it, please use the following link: [https://aqueous-spire-63150-6f0099dc1dae.herokuapp.com/projects/65cad9882f5d9a5eb94ec616](https://aqueous-spire-63150-6f0099dc1dae.herokuapp.com/projects/65cad9882f5d9a5eb94ec616)
+This application has been deployed to Heroku.  To access it, please use the following link: [https://aqueous-spire-63150-6f0099dc1dae.herokuapp.com/](https://aqueous-spire-63150-6f0099dc1dae.herokuapp.com/)
 
 Here is a screenshot of the application.  I zoomed out to get enough of it to fit on the page:
 
