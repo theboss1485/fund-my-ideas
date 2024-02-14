@@ -54,8 +54,6 @@ const ProjectForm = (props) => {
 
                 if(data.addProject.project && data.addProject.user){
 
-                    console.log("propsc", props)
-
                     props.onProjectCreation()
                 }
 

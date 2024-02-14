@@ -20,8 +20,6 @@ const Project = (props) =>  {
 
     const projectRemovalClicked = (projectId) =>{
 
-        console.log("props", props)
-
         props.onProjectRemoved(projectId);
     }
 
