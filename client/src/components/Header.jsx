@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 
-
+// This is the header component.  It contains the title and a tagline about the application.
 const Header = () => {
 
     

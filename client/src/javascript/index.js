@@ -1,5 +1,7 @@
 import { Workbox } from 'workbox-window';
 
+/* This file was to attempt to integrate the service worker/PWA functionality  
+into the application.  We couldn't get that done in time but hope to in the future.*/
 try{
 
     if ('serviceWorker' in navigator) {

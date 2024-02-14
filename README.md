@@ -16,9 +16,9 @@ N/A
 
 This application has been deployed to Heroku.  To access it, please use the following link: [https://aqueous-spire-63150-6f0099dc1dae.herokuapp.com/projects/65cad9882f5d9a5eb94ec616](https://aqueous-spire-63150-6f0099dc1dae.herokuapp.com/projects/65cad9882f5d9a5eb94ec616)
 
-Here is a screenshot of the application:
+Here is a screenshot of the application.  I zoomed out to get enough of it to fit on the page:
 
-![]()
+![A screenshot of the Fund My Idea$ application](./assets/images/fund-my-ideas-screenshot.JPG)
 
 When you open the application, you will see a list of the projects that are currently on the website.  To create and back projects and leave comments, you will need to log in. If you don't already have an account, click the **Sign Up** button in the menu bar.  There, you can enter a username, email address, and password.  Keep in mind that you will need to enter a username and email address that is unique and a password that is at least eight characters long. Click **Submit** to complete the signup process.  If you do have an account, click the **Log In** button in the menu bar.  Then, you can enter your email address and password, and click **Submit** to log in.  
 

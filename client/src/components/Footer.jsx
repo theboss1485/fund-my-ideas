@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// This is the footer component.  It contains links to all three contributors' GitHub profiles.
 export default function Footer() {
     return (
         <div className="custom-footer">

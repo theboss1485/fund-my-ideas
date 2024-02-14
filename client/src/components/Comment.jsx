@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {useMutation } from '@apollo/client';
 
+// This is the Comment component that is used for creating comments.
 export default function Comment(props) {
 
     const [removeComment, {loading, error, refetch}] = useMutation(REMOVE_COMMENT);
@@ -11,6 +12,7 @@ export default function Comment(props) {
 
     console.log(props)
 
+    // This function handles the client-side logic for deleting comments.
     const deleteComment = async (event) => {
 
         try{

@@ -1,3 +1,5 @@
+
+// This function defines a page that the application redirects to if a stripe payment fails.
 export default async function PaymentFailure() {
 
     setTimeout(function() {
