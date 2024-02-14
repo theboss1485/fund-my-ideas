@@ -27,8 +27,6 @@ const PaymentSuccess = () => {
         if((newestPayment.sessionId === sessionId) && (newestPayment.projectId !== '')){
 
             try{
-
-                console.log("newestPayment", newestPayment)
     
                 await updateProjectFunds({
                     
@@ -57,8 +55,6 @@ const PaymentSuccess = () => {
     /* On page load, the function is called to update the database with the new funds of the project
     that was just backed.*/
     useEffect(() => {
-
-        console.log("inside");
 
         handleUpdatingProjectFunds();
 

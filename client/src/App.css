@@ -12,10 +12,52 @@
     padding: 2.5%;
 }
 
+.custom-inactive-home-tabs {
+    color: rgb(255, 209, 118);
+}
+
+.custom-inactive-home-tabs:hover {
+    color: rgb(255, 209, 118);
+    background-color: rgb(10, 79, 148);
+}
+
+.custom-inactive-login-tabs {
+    color: rgb(118, 250, 255);
+}
+
+.custom-inactive-login-tabs:hover {
+    background-color: rgb(10, 79, 148);
+    color: rgb(118, 250, 255);
+}
+
+.custom-inactive-logout-tabs {
+    color: rgb(255, 152, 152)
+}
+
+.custom-inactive-logout-tabs:hover {
+    background-color: rgb(10, 79, 148);
+    color: rgb(255, 152, 152)
+}
+
+.custom-nav-link-active {
+    color: rgb(14, 232, 134);
+    background-color: rgb(34, 83, 104)}
+
+.custom-nav-link-active:visited {
+    color: rgb(14, 232, 134);
+    background-color: rgb(24, 84, 97);
+    border-bottom: 5px solid white;
+}
+
 .custom-header-title {
     text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 40px;
+}
+
+ul {
+    padding-bottom: 1px;
+    border-bottom: 1px solid rgb(12, 109, 154)
 }
 
 .custom-header-color {
@@ -40,11 +82,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: rgb(236, 236, 236);
+    background-color: var(--mobile-background-color);;
 }
 
 .custom-login-button {
     color: rgb(72, 184, 109);
+}
+
+.custom-login-button:hover {
+
+    color: rgb(72, 184, 109);
+    background-color: rgb(10, 79, 148);;
 }
 
 .custom-projects-slider {
@@ -401,6 +449,7 @@
 
 .money-color {
 
+    font-family: Arial, Helvetica, sans-serif;
     color: rgb(79, 232, 79)
 }
 
@@ -469,14 +518,6 @@ and custom-carousel-description when the screen hits a width of 572 pixels or sm
         color: white;
     }
 
-    .custom-inactive-login-tabs {
-        color: rgb(118, 250, 255)
-    }
-
-    .custom-inactive-login-tabs:hover {
-        color: rgb(255, 255, 255)
-    }
-
     .custom-inactive-logout-tabs {
         color: rgb(255, 152, 152)
     }
@@ -485,13 +526,6 @@ and custom-carousel-description when the screen hits a width of 572 pixels or sm
         color: rgb(255, 255, 255)
     }
 
-    .custom-inactive-signup-tabs {
-        color: rgb(28, 255, 28)
-    }
-
-    .custom-inactive-signup-tabs {
-        color: rgb(255, 255, 255)
-    }
     /* ---------------- header --------------- */ 
     .custom-header-color {
         text-decoration: none;
@@ -519,10 +553,6 @@ and custom-carousel-description when the screen hits a width of 572 pixels or sm
     
     .custom-comment-tab {
         font-size: 80%;
-    }
-
-    .custom-nav-link-active:hover {
-        background-color: white;
     }
 
     .custom-project-boxes ul li {

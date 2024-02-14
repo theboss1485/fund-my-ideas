@@ -24,8 +24,6 @@ db.once('open', async() => {
 
     try{
 
-        console.log("object Id", new ObjectId());
-
         let comments = await Comment.insertMany(commentData);
 
         console.log('Comments seeded!');
@@ -73,8 +71,6 @@ db.once('open', async() => {
 
         console.log(error)
     }
-
-    // Villy: Can delete "username" in both projectData and commentData to allow for randomization
     
     process.exit(0);
 })

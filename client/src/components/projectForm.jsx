@@ -65,12 +65,12 @@ const ProjectForm = (props) => {
             }
             if(error){
 
-                console.log(JSON.stringify(err));
+                console.log(error);
             }
 
-        } catch (err) {
+        } catch (error) {
 
-            console.log(JSON.stringify(err));
+            console.log(error);
 
             
         }
@@ -92,6 +92,7 @@ const ProjectForm = (props) => {
                             <input type="text" id="project-name" name="name" className="custom-input-field-color mt-1 text-white" onChange={handleChange} required />
                             <label htmlFor="project-description">Project Description:</label>
                             <textarea
+                                id="project-description"
                                 name="description"
                                 placeholder="project concept"
                                 className="form-input w-100 custom-input-field-color mt-1 text-white border-none"

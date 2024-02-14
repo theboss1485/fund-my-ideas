@@ -10,8 +10,6 @@ const Comment = (props) => {
 
     const { projectId } = useParams();
 
-    console.log(props)
-
     // This function handles the client-side logic for deleting comments.
     const deleteComment = async (event) => {
 
@@ -33,7 +31,7 @@ const Comment = (props) => {
         
         } catch(error) {
 
-            console.log(JSON.stringify(error));
+            console.log(error);
         }
     }
 

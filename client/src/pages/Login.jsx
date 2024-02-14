@@ -25,7 +25,6 @@ const Login = (props) => {
     const handleFormSubmit = async (event) => {
 
         event.preventDefault();
-        console.log(formState);
     
         try {
 
@@ -38,7 +37,7 @@ const Login = (props) => {
 
         } catch (e) {
 
-            console.log(JSON.stringify("error", error));
+            console.log("Something went wrong with the login process.");
         }
 
         //Here, we reset the form values to empty strings.

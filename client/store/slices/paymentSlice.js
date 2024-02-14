@@ -19,16 +19,12 @@ const paymentSlice = createSlice({
         // This reducer updates the store with the latest payment information.
         updateLatestPayment: function (state, action){
 
-            console.log("inside reducer");
-
             state.newestPayment = {
 
                 projectId: action.payload.projectId,
                 paymentAmount: action.payload.paymentAmount,
                 sessionId: action.payload.sessionId
             }
-
-            console.log("state inside reducer", state);
 
             return state;
         },

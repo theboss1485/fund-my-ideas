@@ -62,7 +62,7 @@ const MyProfile = () => {
 
     useEffect(() => {
 
-        console.log("testing")
+        
 
         if(projectAdded) {
 
@@ -108,19 +108,14 @@ const MyProfile = () => {
             ) : (
                 <div className="custom-delete-this-project-container col-12">
                     {data && data.projectsByUsername.map((item, index) => (
-                        <>
-                            <Project key={uuidv4()} {...item} />
+                        <React.Fragment key={uuidv4()}>
+                            <Project {...item} />
                             {Auth.loggedIn() && (
 
                                 <button className="custom-delete-this-project mt-6" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete The Above Project</button>
                             )}
-                        </>
+                        </React.Fragment>
                     ))}
-
-
-                    
-
-                    
                 </div>
             )}
         </section>

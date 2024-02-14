@@ -35,8 +35,6 @@ const Home = () => {
     // This is to allow a new project to appear after a user creates one and then navigates to the Home page.
     useEffect(() => {
 
-        console.log("testing123");
-
 
         console.log("history", navigate);
         // if(previousURL.includes("/me")){

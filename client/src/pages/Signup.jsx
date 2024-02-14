@@ -33,11 +33,8 @@ const Signup = () => {
 
     // This function is executed when the user submits the signup form.
     const handleFormSubmit = async (event) => {
-
-        console.log("addUser", addUser)
         
         event.preventDefault();
-        console.log(formState);
 
         try {
 

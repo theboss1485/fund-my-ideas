@@ -113,8 +113,6 @@ const SingleProjectWithComments = (props) => {
         to render the Payment Success page.*/
         if (checkoutData) {
 
-            console.log("inside effect");
-
             const sessionId = checkoutData.checkout.session;
 
             const checkoutUrl = checkoutData.checkout.url
@@ -156,9 +154,6 @@ const SingleProjectWithComments = (props) => {
     const submitComment = async () => {
 
         try{
-
-            console.log("projectId", projectId)
-            console.log("new comment", commentText);
 
             let newComment = await addComment({
                 
