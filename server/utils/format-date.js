@@ -1,3 +1,4 @@
+// This function formats a data to be more human-readable.
 function formatDate(date){
 
     console.log("date formate");

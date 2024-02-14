@@ -18,6 +18,7 @@ import ErrorPage from './pages/ErrorPage';
 
 import {store, persistor} from '../store/index.js'
 
+// Here, we set up a react router so that the application can use routes with react.
 const router = createBrowserRouter([
     {
         path: "/",
@@ -52,6 +53,8 @@ const router = createBrowserRouter([
     },
 ]);
 
+/* We wrap everything in a Provider and PersistGate so that the entire application
+has access to a store that persists across page refreshes.*/
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}> 
         <PersistGate loading={null} persistor={persistor}>

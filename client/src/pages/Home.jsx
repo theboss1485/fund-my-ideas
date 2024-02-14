@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /* This function renders the home page. */
-export default function Home() {
+const Home = () => {
 
     const navigate = useNavigate();
 
@@ -94,3 +94,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home;

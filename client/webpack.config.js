@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 const { InjectManifest} = require('workbox-webpack-plugin');
 
+/* This function initializes the webpack plugin.  This is for the purposes of the dist and service worker.
+We weren't able to get this running before the deadline, but hope get it working in the future.*/
 module.exports = () => {
     return {
         mode: 'development',

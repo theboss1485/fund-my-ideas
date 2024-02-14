@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {useMutation } from '@apollo/client';
 
 // This is the Comment component that is used for creating comments.
-export default function Comment(props) {
+const Comment = (props) => {
 
     const [removeComment, {loading, error, refetch}] = useMutation(REMOVE_COMMENT);
 
@@ -47,3 +47,5 @@ export default function Comment(props) {
         </section>
     )
 }
+
+export default Comment;

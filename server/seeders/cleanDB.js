@@ -1,18 +1,24 @@
 const models = require('../models');
 const db = require('../config/connection');
 
+// This file clears the data from the database.
 module.exports = async (modelName, collectionName) => {
 
-    console.log("models", models);
-  try {
-    let modelExists = await models[modelName].db.db.listCollections({
-      name: collectionName
-    }).toArray()
+    try {
 
-    if (modelExists.length) {
-      await db.dropCollection(collectionName);
+        let modelExists = await models[modelName].db.db.listCollections({
+            
+            name: collectionName
+
+        }).toArray()
+
+        if (modelExists.length) {
+
+            await db.dropCollection(collectionName);
+        }
+    
+    } catch (err) {
+
+        throw err;
     }
-  } catch (err) {
-    throw err;
-  }
 }

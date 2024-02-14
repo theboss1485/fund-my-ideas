@@ -1,6 +1,6 @@
 
 // This function defines a page that the application redirects to if a stripe payment fails.
-export default async function PaymentFailure() {
+const PaymentFailure = async () => {
 
     setTimeout(function() {
 
@@ -13,3 +13,5 @@ export default async function PaymentFailure() {
         </div>
     )
 }
+
+export default PaymentFailure;

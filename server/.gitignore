@@ -1,3 +1,4 @@
+# This file contains a list of files to be ignored on the server side when pushing to GitHub.
 node_modules
 package-lock.json
 .env

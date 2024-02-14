@@ -18,8 +18,9 @@ import { updateLatestPayment } from '../../store/slices/paymentSlice';
 
 
 
-
-export default function SingleProjectWithComments(props) {
+/* This function deals with rendering a single project on the page,
+along with all the comments associated with that project.*/
+const SingleProjectWithComments = (props) => {
 
     const [getCheckout, { data: checkoutData, error: checkoutError }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -44,6 +45,9 @@ export default function SingleProjectWithComments(props) {
 
     const dispatch = useDispatch();
 
+    /* This function switches the displayCommentForm variable to the 
+    inverse of what it was previously so as to add the comment form to
+    or remove it from the page.*/
     const toggleCommentForm = () => {
 
         if(displayCommentForm){
@@ -56,6 +60,9 @@ export default function SingleProjectWithComments(props) {
         }
     }
 
+    /* This function switches the displayPaymentWindow variable to the 
+    inverse of what it was previously so as to add the payment window to
+    or remove it from the page.*/
     const togglePaymentWindow = () => {
 
         if(displayPaymentWindow){
@@ -68,6 +75,8 @@ export default function SingleProjectWithComments(props) {
         }
     }
 
+    /* This function is called when the user clicks the Proceed to Checkout button
+    for backing a project.*/
     const proceedToCheckout = async(event) => {
 
         event.preventDefault();
@@ -82,6 +91,8 @@ export default function SingleProjectWithComments(props) {
         
         try {
 
+            /* This function call deals with getting everthing ready to proceed 
+            with the Stripe checkout process.*/
             await getCheckout({
 
                 variables: {project: project, paymentAmount: paymentAmount}
@@ -97,6 +108,9 @@ export default function SingleProjectWithComments(props) {
 
     useEffect(() => {
 
+        /* If the Stripe checkout data was initialized successfully, the store
+        is updated with the latest payment information.  This information is used
+        to render the Payment Success page.*/
         if (checkoutData) {
 
             console.log("inside effect");
@@ -117,6 +131,8 @@ export default function SingleProjectWithComments(props) {
 
     }, [checkoutData]);
 
+    /* If a comment is removed, the commentAdded or commentRemoved variable
+    is updated and the data is refetched so as to update the page.*/
     useEffect(() => {
 
         if(commentAdded && projectId) {
@@ -135,7 +151,8 @@ export default function SingleProjectWithComments(props) {
 
     const location = useLocation();
 
-    
+    /* This function is called when the user submits a new comment.
+    The function adds the comment to the database.*/
     const submitComment = async () => {
 
         try{
@@ -166,21 +183,28 @@ export default function SingleProjectWithComments(props) {
         toggleCommentForm()
     }
 
+    /* If a comment is removed, we set the commentRemoved variable to true 
+    so as to update the page and refetch the comment data.*/
     const handleCommentRemoved = () => {
 
         setCommentRemoved(true)
     }
 
+    /* If the text inside the add comment box changes, this function is called,
+    so that the text in the box is kept track of appropriately.*/
     const handleCommentChange = (event) => {
 
         setCommentText(event.target.value)
     }
 
+    /* If the text inside the payment amount box changes, this function is called,
+    so that the amount in the box is kept track of appropriately.*/
     const handleAmountChange = (event) => {
 
         setPaymentAmount(parseFloat(event.target.value))
     }
     
+    // Here, we render the single project with all of its comments.
     return (
 
         <div>
@@ -229,17 +253,20 @@ export default function SingleProjectWithComments(props) {
                         </div>
                     )}
 
-                        {displayCommentForm && Auth.loggedIn() && (
+                    {displayCommentForm && Auth.loggedIn() && (
+                        <>
+                            <div className="custom-buttons-container custom-margin-bottom-3">
+                                <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Close Add Comment Box</button>
+                            </div>
                             <div className="custom-buttons-container-for-add-a-comment">
                                 <label htmlFor="comment-form" className='text-white'>Add a Comment</label>
                                 <textarea id="comment-form" type="text" onChange={handleCommentChange} className='custom-text-area text-white'></textarea>
                                 <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={submitComment}>Submit</button>
                             </div>
-                            
-                        )}
+                        </>
+                    )}
                     
                     {!Auth.loggedIn() && (
-
                         <p className="custom-leave-comment-alert">You must &#160;<a href="/login">log in</a>&#160; or &#160;<a href="/signup">sign up</a>&#160; to leave a comment.</p>
                     )}
                     
@@ -248,3 +275,5 @@ export default function SingleProjectWithComments(props) {
         </div>
     )
 }
+
+export default SingleProjectWithComments;

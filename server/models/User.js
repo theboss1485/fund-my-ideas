@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 
+// This is the schema for users of the application, in the MongoDB.
 const userSchema = new mongoose.Schema(
 
     {

@@ -141,7 +141,11 @@ const resolvers = {
 
     Mutation: {
 
+        // This resolver contains the logic for adding a user to the database.
         addUser: async (parent, {username, email, password}) => {
+
+            username = username.trim();
+            email = email.trim();
 
             console.log("Inside!!");
             try{
@@ -172,6 +176,8 @@ const resolvers = {
 
                 console.log("message", error.message);
 
+                /* If the database already contains the email address or username that the user is trying to 
+                sign up with, the application throws an error message.*/
                 if(error.message.includes("duplicate key")){
 
                     return new ApolloError('The username or email address you entered is in use.', 'USER_CREATION_FAILED');
@@ -188,6 +194,7 @@ const resolvers = {
 
         },
 
+        // This method contains the back-end logic for logging the user into the application.
         login: async (parent, {email, password}) => {
 
             console.log("test!!!")
@@ -211,6 +218,7 @@ const resolvers = {
             return { token, user };
         },
 
+        // This method contains the logic for adding a project to the application.
         addProject: async (parent, params , context) => {
 
             console.log("testings1234");
@@ -248,6 +256,7 @@ const resolvers = {
             }
         },
         
+        // This method contains the logic for adding a comment to a project.
         addComment: async (parent, {projectId, commentText}, context) => {
     
             if (context.user) {
@@ -281,6 +290,7 @@ const resolvers = {
             } 
         },
 
+        // This method contains the logic for removing a project from the application.
         removeProject: async (parent, {projectId}, context) => {
 
             try{
@@ -327,6 +337,7 @@ const resolvers = {
             }
         },
 
+        // This method contains the logic for removing a comment from the application.
         removeComment: async (parent, {projectId, commentId}, context) => {
 
             console.log("test");
@@ -370,6 +381,7 @@ const resolvers = {
             
         },
 
+        // This method contains the logic for updating the amont of money a project has.
         updateProjectFunds: async (parent, {projectId, fundChangeAmount}, context) => {
 
             console.log("test");
@@ -386,6 +398,7 @@ const resolvers = {
                             _id: projectId
                         }
                     )
+                    
                     console.log("projectInQuestion", projectInQuestion)
                     projectInQuestion.currentFundingAmount += fundChangeAmount;
                     await projectInQuestion.save();
@@ -396,9 +409,7 @@ const resolvers = {
             } catch (error){
 
                 console.log("error", error);
-            }
-
-            
+            } 
         }
     }
 };

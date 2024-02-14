@@ -17,8 +17,8 @@ module.exports = {
         }
     }),
 
-    // function for our authenticated routes
-   //This function authenticates the user's authorization token.
+    /* This is a function for our authenticated routes.
+    It authenticates the user's authorization token.*/
     authMiddleware: function ({ req }) {
 
         // allows token to be sent via req.query or headers
@@ -35,7 +35,7 @@ module.exports = {
             return req;
         }
 
-        // verify token and get user data out of it
+        // Here, we verify the JWT token and get the user data out of it
         try {
 
             const { data } = jwt.verify(token, secret, { maxAge: expiration });

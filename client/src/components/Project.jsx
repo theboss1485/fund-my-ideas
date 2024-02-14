@@ -1,5 +1,5 @@
 // This component displays is for displaying the indvidual projects on the page.
-export default function Project (props) {
+const Project = (props) =>  {
 
     let projectData = [];
 
@@ -38,3 +38,5 @@ export default function Project (props) {
         </section>
     )
 }
+
+export default Project;

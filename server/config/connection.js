@@ -1,3 +1,5 @@
+
+// This file sets up the connection string for the MongoDB database.
 require('dotenv').config()
 const mongoose = require('mongoose');
 

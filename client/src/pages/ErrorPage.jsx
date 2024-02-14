@@ -2,7 +2,7 @@ import { useRouteError } from "react-router-dom";
 
 /* This function is to handle provide a route to go to 
 if user doesn't navigate to a known route within the application.*/
-export default function ErrorPage() {
+const ErrorPage = () => {
 
     const error = useRouteError();
     console.error(error);
@@ -17,3 +17,5 @@ export default function ErrorPage() {
         </div>
     );
 }
+
+export default ErrorPage;

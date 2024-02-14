@@ -1,3 +1,4 @@
+/* Here, we declare CSS variables to be used elsewhere in the file. */
 :root {
     --mobile-background-color: #3e5079;
     --login-signup-background-color: #2c4682;
@@ -34,6 +35,7 @@
     background-color: var(--mobile-background-color);
 }
 
+/* Here, we style the tabs of the navigation bar. */
 .custom-nav-tabs {
     display: flex;
     flex-direction: row;
@@ -55,6 +57,7 @@
     position: relative;
 }
 
+/* Here we style the container for the sliding pictures on the home page. */
 .custom-slider-pictures-container {
     display: flex;
     flex-direction: column;
@@ -90,6 +93,7 @@
     padding: 5%;
 }
 
+/* Here, we style each project that appears in the application. */
 .project {
     color: white;
     background-color: rgb(105, 140, 172);
@@ -129,6 +133,7 @@
 
 }
 
+/* Here, we style the boxes that contain each project. */
 .custom-project-boxes {
     display: flex;
     flex-direction: column;
@@ -194,6 +199,7 @@
     background-color: rgb(47, 47, 109);
 }
 
+/* Here, we style the login component/page. */
 .custom-login-page {
     margin-top: 5%;
     margin-bottom: 5%;
@@ -220,6 +226,7 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+/* Here, we style the Create A Project button in the user's Projects section. */
 .custom-create-a-project {
     color: white;
     background-color: #2b73f8;
@@ -279,6 +286,7 @@
     background-color: rgb(167, 31, 31);
 }
 
+/* Here, we style the button for backing projects. */
 .custom-back-this-project-button {
 
     background-color: rgba(53, 235, 174, 0.686);
@@ -379,6 +387,7 @@
     background-color: rgb(19, 19, 97);
 }
 
+/* Here, we style the placeholder text in input fields to have a color of light gray. */
 ::placeholder {
 
     color: lightgray;
@@ -395,6 +404,8 @@
     color: rgb(79, 232, 79)
 }
 
+/* Here we style elements with the classes of custom-slider-pictures, custom-carousel-title,
+and custom-carousel-description when the screen hits a width of 572 pixels or smaller. */
 @media screen and (max-width: 572px) {
     .custom-slider-pictures {
         max-height: 350px;

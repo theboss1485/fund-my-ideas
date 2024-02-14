@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Auth from '../utils/auth'
 
 // This component contains the navigation bar at the top of the application.
-function NavTabs() {
+const NavTabs = () => {
     const currentPage = useLocation().pathname;
 
     const logout = (event) => {

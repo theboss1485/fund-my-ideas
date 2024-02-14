@@ -6,9 +6,8 @@ import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+// This function deals with the signup page functionality.
 const Signup = () => {
-
-    //const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
 
@@ -32,6 +31,7 @@ const Signup = () => {
     };
 
 
+    // This function is executed when the user submits the signup form.
     const handleFormSubmit = async (event) => {
 
         console.log("addUser", addUser)
@@ -59,12 +59,12 @@ const Signup = () => {
         
         } catch (error) {
 
-            console.log(JSON.stringify(error));
+            console.log("Something went wrong with the signup process.");
         }
     };
 
     
-    
+    // Here, we render the signup form.
     return (
         <main className="flex-row justify-center mb-4 custom-login-page">
             <div className="col-10 col-md-8 col-lg-6 mx-auto ">

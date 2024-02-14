@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Here we create a store slice to hold the information of the latest payment made in the application.
 const paymentSlice = createSlice({
 
     name: 'payment',
@@ -15,6 +16,7 @@ const paymentSlice = createSlice({
 
     reducers: {
 
+        // This reducer updates the store with the latest payment information.
         updateLatestPayment: function (state, action){
 
             console.log("inside reducer");
