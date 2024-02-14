@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
+/* This function renders the home page. */
 export default function Home() {
 
     const navigate = useNavigate();
@@ -20,17 +20,13 @@ export default function Home() {
 
     let keys = undefined;
 
-    const handleUrlChange = () => {
-
-
-        refetch();
-    }
-
     useEffect(() => {
 
         if (data) {
 
             setProjects(data.allProjects);
+
+            // Here, we give each project a unique key.
             keys = data.allProjects.map(() => uuidv4());
         }
 
@@ -50,10 +46,8 @@ export default function Home() {
 
     }, [])
 
-    // Homepage
     return (
         <>
-            {/* Villy: For testing, ready for map implementation */}
             {data &&(
             <Carousel className="custom-slider-pictures-container">
                 <Carousel.Item>
@@ -86,7 +80,6 @@ export default function Home() {
             </Carousel>
             )}
 
-            {/* List of projects from newest to old? */}
             {loading ? (
                 <p>Loading...</p>
             ) : error ? (

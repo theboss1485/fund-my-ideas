@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 import { v4 as uuidv4 } from 'uuid';
 
 import Project from '../components/Project';
-import ProjectForm from '../components/projectForm';
+import ProjectForm from '../components/ProjectForm';
 
 export default function MyProfile() {
 

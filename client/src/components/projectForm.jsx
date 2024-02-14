@@ -14,23 +14,12 @@ const ProjectForm = (props) => {
         funding: 0,
         time: 0
     });
-    // const [name, setProjectName] = useState('');
-    // const [characterCount, setCharacterCount] = useState(0);
+    
     const [formError, setFormError] = useState(undefined);
 
-    // const [fundingGoal, setFundingGoal] = useState('0');
+ 
 
     const [addProject, { error }] = useMutation(ADD_PROJECT);
-
-
-        // (ADD_PROJECT, {
-        //     refetchQueries: [
-        //         GET_PROJECTS,
-        //         'getProjects',
-        //         GET_ME,
-        //         'me'
-        //     ]
-        // });
 
         const handleChange = (event) => {
 

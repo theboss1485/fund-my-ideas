@@ -6,12 +6,10 @@ import Auth from '../utils/auth';
 
 const Login = (props) => {
 
-    //const dispatch = useDispatch();
-
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(LOGIN_USER);
 
-    // update state based on form input changes
+    // Here, we update the state based on form input changes
     const handleChange = (event) => {
 
         const { name, value } = event.target;
@@ -23,7 +21,7 @@ const Login = (props) => {
         });
     };
 
-    // submit form
+    // This function gets called when the user clicks the button to submit the form.
     const handleFormSubmit = async (event) => {
 
         event.preventDefault();
@@ -37,20 +35,13 @@ const Login = (props) => {
             });
 
             Auth.login(data.login.token);
-            // dispatch(logInUser(
-
-            //     {
-            //         username: data.user.username
-            //     }
-            // ))
-
 
         } catch (e) {
 
             console.log(JSON.stringify("error", error));
         }
 
-        // clear form values
+        //Here, we reset the form values to empty strings.
         setFormState({
 
             email: '',
