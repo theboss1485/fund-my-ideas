@@ -82,12 +82,13 @@ const SingleProjectWithComments = (props) => {
         event.preventDefault();
 
         let project = {
+
             id: projectId,
             name: data.projectById.name,
             description: data.projectById.description,
             fundingGoal: data.projectById.fundingGoal,
             timePeriod: data.projectById.timePeriod
-          };
+        };
         
         try {
 
@@ -204,37 +205,40 @@ const SingleProjectWithComments = (props) => {
 
         <div>
             {projectLoading ? (
+
                 <p>Loading...</p>
+
             ) : projectError ? (
+
                 <p>Error: {JSON.stringify(projectError)}</p>
+
             ) : (
+                
                 <div>
-
                     <Project {...data.projectById}/>
-
                     <div className="custom-buttons-container">
 
-                    {Auth.loggedIn() && !displayPaymentWindow && (
+                        {Auth.loggedIn() && !displayPaymentWindow && (
 
-                    <button onClick={togglePaymentWindow} className="btn custom-back-this-project-button"> Back This Project</button>
-                    )}
+                            <button onClick={togglePaymentWindow} className="btn custom-back-this-project-button"> Back This Project</button>
+                        )}
 
-                    {Auth.loggedIn() && displayPaymentWindow && (
+                        {Auth.loggedIn() && displayPaymentWindow && (
 
-                    <div className='custom-proceed-to-checkout-button-container'>
-                        <label htmlFor="amount">Amount:</label>
-                        <input type="number" 
-                            id="amount" 
-                            name="amount" 
-                            step="0.01" 
-                            min="0.01" 
-                            max={`${data.projectById.remainingFundingNeeded}`}
-                            onChange={handleAmountChange}
-                            required 
-                        />
-                        <button onClick={proceedToCheckout}>Proceed to Checkout</button>
-                    </div>
-                    )}
+                            <div className='custom-proceed-to-checkout-button-container'>
+                                <label htmlFor="amount">Amount:</label>
+                                <input type="number" 
+                                    id="amount" 
+                                    name="amount" 
+                                    step="0.01" 
+                                    min="0.01" 
+                                    max={`${data.projectById.remainingFundingNeeded}`}
+                                    onChange={handleAmountChange}
+                                    required 
+                                />
+                                <button onClick={proceedToCheckout}>Proceed to Checkout</button>
+                            </div>
+                        )}
 
                     </div>
 
@@ -243,12 +247,14 @@ const SingleProjectWithComments = (props) => {
                     ))}
 
                     {!displayCommentForm && Auth.loggedIn() && (
+
                         <div className="custom-buttons-container custom-margin-bottom-3">
                             <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
                         </div>
                     )}
 
                     {displayCommentForm && Auth.loggedIn() && (
+
                         <>
                             <div className="custom-buttons-container custom-margin-bottom-3">
                                 <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Close Add Comment Box</button>
@@ -262,6 +268,7 @@ const SingleProjectWithComments = (props) => {
                     )}
                     
                     {!Auth.loggedIn() && (
+                        
                         <p className="custom-leave-comment-alert">You must &#160;<a href="/login">log in</a>&#160; or &#160;<a href="/signup">sign up</a>&#160; to leave a comment.</p>
                     )}
                     

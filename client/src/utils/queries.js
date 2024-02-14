@@ -17,23 +17,6 @@ export const GET_ME = gql`
     }
 `;
 
-// Th
-// export const GET_USER = gql`
-//     query getUser {
-//         getUser {
-//             _id
-//             email
-//             username
-//             Projects {
-//                 name
-//                 description
-//                 fundingGoal
-//                 timePeriod
-//             }
-//         }
-//     }
-// `;
-
 // This query gets all the projects from the database.
 export const GET_ALL_PROJECTS = gql`
     query getAllProjects {
@@ -80,16 +63,6 @@ export const GET_PROJECT_BY_ID = gql`
         }
     }
 `;
-
-// This 
-// export const GET_COMMENT = gql`
-//     query getComment {
-//         getComment {
-//             _id
-//             commentText
-//         }
-//     }
-// `
 
 // This query gets the Stripe checkout process ready.
 export const QUERY_CHECKOUT = gql`

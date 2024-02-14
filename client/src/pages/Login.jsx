@@ -6,6 +6,8 @@ import Auth from '../utils/auth';
 
 const Login = (props) => {
 
+    localStorage.setItem("currentUrl", window.location.href)
+
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(LOGIN_USER);
 

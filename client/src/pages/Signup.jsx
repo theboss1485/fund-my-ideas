@@ -9,6 +9,8 @@ import Auth from '../utils/auth';
 // This function deals with the signup page functionality.
 const Signup = () => {
 
+    localStorage.setItem("currentUrl", window.location.href)
+
     const [formState, setFormState] = useState({
 
         username: '',
@@ -68,12 +70,14 @@ const Signup = () => {
                 <section id="signup-form" className="card custom-login-signup-border">
                     <h4 className="card-header text-light p-2 custom-login-title">Sign Up</h4>
                     <div className="card-body custom-login-signup-form-body">
+
                         {user ? (
-                        <p>
-                            Success! Profile has been created!{' '}
-                            <Link to="/">back to the homepage.</Link>
-                        </p>
+                            <p>
+                                Success! Profile has been created!{' '}
+                                <Link to="/">back to the homepage.</Link>
+                            </p>
                         ) : (
+
                             <form onSubmit={handleFormSubmit} className='custom-login-section'>
                                 <div className="mb-2">
                                     <label htmlFor="username" className="mb-1 text-white">Username:</label>
@@ -128,6 +132,7 @@ const Signup = () => {
                         )}
 
                         {mutationError && (
+                            
                             <div className="my-3 p-3 custom-error-message text-white">
                                 {mutationError.message}
                             </div>

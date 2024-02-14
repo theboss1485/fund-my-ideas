@@ -35,9 +35,8 @@ const ProjectForm = (props) => {
         }
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault();
 
-        
+        event.preventDefault();
 
         try {
 
@@ -55,14 +54,18 @@ const ProjectForm = (props) => {
 
                 if(data.addProject.project && data.addProject.user){
 
+                    console.log("propsc", props)
+
                     props.onProjectCreation()
                 }
 
                 setFormData('');
+
             } else {
 
                 throw new Error("You didn't fill in all of the fields.")
             }
+
             if(error){
 
                 console.log(error);
@@ -71,8 +74,6 @@ const ProjectForm = (props) => {
         } catch (error) {
 
             console.log(error);
-
-            
         }
     };
 
@@ -89,7 +90,14 @@ const ProjectForm = (props) => {
                     >
                         <div className="col-12 col-md-9 col-lg-6 custom-add-project-section">
                             <label htmlFor="project-name" className='text-white'>Project Name:</label>
-                            <input type="text" id="project-name" name="name" className="custom-input-field-color mt-1 text-white" onChange={handleChange} required />
+                            <input 
+                                type="text" 
+                                id="project-name" 
+                                name="name" 
+                                className="custom-input-field-color mt-1 text-white" 
+                                onChange={handleChange} 
+                                required 
+                            />
                             <label htmlFor="project-description">Project Description:</label>
                             <textarea
                                 id="project-description"
@@ -100,23 +108,39 @@ const ProjectForm = (props) => {
                                 onChange={handleChange}
                             ></textarea>
                             <label htmlFor="funding-goal" className='text-white'>Funding Goal:</label>
-                            <input type="number" id="funding-goal" min="100" max="10000000" name="funding" className="custom-input-field-color mt-1 text-white" required onChange={handleChange} />
+                            <input 
+                                type="number" 
+                                id="funding-goal" 
+                                min="100" 
+                                max="10000000" 
+                                name="funding" 
+                                className="custom-input-field-color mt-1 text-white" 
+                                required 
+                                onChange={handleChange} 
+                            />
                             <label htmlFor="time-period" className='text-white'>Time Period (in days):</label>
-                            <input type="number" id="time-period" min="7" max="365" name="time" className="custom-input-field-color mt-1 text-white"required onChange={handleChange}/>
+                            <input 
+                                type="number" 
+                                id="time-period" 
+                                min="7" 
+                                max="365" 
+                                name="time" 
+                                className="custom-input-field-color mt-1 text-white" 
+                                required 
+                                onChange={handleChange}
+                            />
                             <div className="col-12 custom-add-this-project-button-container mx-0">
-                            <button onClick={handleFormSubmit}className="btn btn-primary btn-block p2-3 custom-add-this-project-button" type="submit">
-                                Add this project
-                            </button>
-                        </div>
+                                <button onClick={handleFormSubmit}className="btn btn-primary btn-block p2-3 custom-add-this-project-button custom-create-a-project" type="submit">
+                                    Add this project
+                                </button>
+                            </div>
                         </div>
 
-                        
                         {(formError) && (
                             <div className="col-12 my-3 bg-danger text-white p-3">
                                 {formError}
                             </div>
                         )}
-
 
                     </form>
                 </>
@@ -128,7 +152,6 @@ const ProjectForm = (props) => {
             )}
         </div>
     );
-
 };
 
 export default ProjectForm;
