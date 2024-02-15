@@ -28,6 +28,7 @@ const SingleProjectWithComments = (props) => {
 
     const [commentRemoved, setCommentRemoved] = useState(false);
 
+    const [formError, setFormError] = useState(false);
     const [addComment, {loading: commentAdditionLoading, error: commentAdditionError}] = useMutation(ADD_COMMENT);
     const {data, loading: projectLoading, error: projectError, refetch} = useQuery(GET_PROJECT_BY_ID, {
 
@@ -82,12 +83,13 @@ const SingleProjectWithComments = (props) => {
         event.preventDefault();
 
         let project = {
+
             id: projectId,
             name: data.projectById.name,
             description: data.projectById.description,
             fundingGoal: data.projectById.fundingGoal,
             timePeriod: data.projectById.timePeriod
-          };
+        };
         
         try {
 
@@ -155,27 +157,37 @@ const SingleProjectWithComments = (props) => {
 
         try{
 
+            if(commentText.trim() === ""){
+
+                throw new Error("You didn't enter a comment!")
+            }
+
             let newComment = await addComment({
                 
                 variables: {
 
                     projectId: projectId,
-                    commentText: commentText
+                    commentText: commentText.trim()
                 }
             })
 
             if(newComment){
 
                 setCommentAdded(true);
+                toggleCommentForm();
             }
+
+            if(commentAdditionError){
+
+                throw new Error("Something went wrong with the comment creation process.");
+            }
+
+            setCommentText("");
 
         } catch(error) {
 
-            console.log("Something went wrong with adding a comment.");
+            setFormError(error)
         }
-        
-
-        toggleCommentForm()
     }
 
     /* If a comment is removed, we set the commentRemoved variable to true 
@@ -190,6 +202,10 @@ const SingleProjectWithComments = (props) => {
     const handleCommentChange = (event) => {
 
         setCommentText(event.target.value)
+        if(event.target.value.trim() !== ""){
+
+            setFormError(null);
+        }
     }
 
     /* If the text inside the payment amount box changes, this function is called,
@@ -204,37 +220,40 @@ const SingleProjectWithComments = (props) => {
 
         <div>
             {projectLoading ? (
+
                 <p>Loading...</p>
+
             ) : projectError ? (
+
                 <p>Error: {JSON.stringify(projectError)}</p>
+
             ) : (
+                
                 <div>
-
                     <Project {...data.projectById}/>
-
                     <div className="custom-buttons-container">
 
-                    {Auth.loggedIn() && !displayPaymentWindow && (
+                        {Auth.loggedIn() && !displayPaymentWindow && (
 
-                    <button onClick={togglePaymentWindow} className="btn custom-back-this-project-button"> Back This Project</button>
-                    )}
+                            <button onClick={togglePaymentWindow} className="btn custom-back-this-project-button"> Back This Project</button>
+                        )}
 
-                    {Auth.loggedIn() && displayPaymentWindow && (
+                        {Auth.loggedIn() && displayPaymentWindow && (
 
-                    <div className='custom-proceed-to-checkout-button-container'>
-                        <label htmlFor="amount">Amount:</label>
-                        <input type="number" 
-                            id="amount" 
-                            name="amount" 
-                            step="0.01" 
-                            min="0.01" 
-                            max={`${data.projectById.remainingFundingNeeded}`}
-                            onChange={handleAmountChange}
-                            required 
-                        />
-                        <button onClick={proceedToCheckout}>Proceed to Checkout</button>
-                    </div>
-                    )}
+                            <div className='custom-proceed-to-checkout-button-container'>
+                                <label htmlFor="amount">Amount:</label>
+                                <input type="number" 
+                                    id="amount" 
+                                    name="amount" 
+                                    step="0.01" 
+                                    min="0.01" 
+                                    max={`${data.projectById.remainingFundingNeeded}`}
+                                    onChange={handleAmountChange}
+                                    required 
+                                />
+                                <button onClick={proceedToCheckout}>Proceed to Checkout</button>
+                            </div>
+                        )}
 
                     </div>
 
@@ -243,12 +262,14 @@ const SingleProjectWithComments = (props) => {
                     ))}
 
                     {!displayCommentForm && Auth.loggedIn() && (
+
                         <div className="custom-buttons-container custom-margin-bottom-3">
                             <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Leave a Comment</button>
                         </div>
                     )}
 
                     {displayCommentForm && Auth.loggedIn() && (
+
                         <>
                             <div className="custom-buttons-container custom-margin-bottom-3">
                                 <button className="btn btn-outline-primary custom-leave-a-comment-button" onClick={toggleCommentForm}>Close Add Comment Box</button>
@@ -260,8 +281,18 @@ const SingleProjectWithComments = (props) => {
                             </div>
                         </>
                     )}
+
+                    {(formError) && (
+            
+                        <div className="my-1 p-3 custom-error-message text-white col-lg-3 col-md-5 col-sm-6 col-11 mx-auto">
+                            {formError.message}
+                        </div>
+                    )}
+
+                    
                     
                     {!Auth.loggedIn() && (
+
                         <p className="custom-leave-comment-alert">You must &#160;<a href="/login">log in</a>&#160; or &#160;<a href="/signup">sign up</a>&#160; to leave a comment.</p>
                     )}
                     

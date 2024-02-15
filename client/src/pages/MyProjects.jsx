@@ -9,7 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import Project from '../components/Project';
 import ProjectForm from '../components/ProjectForm';
 
-const MyProfile = () => {
+const MyProjects = () => {
+
+    localStorage.setItem("currentUrl", window.location.href)
 
     const { data, loading: projectLoading, error: projectError, refetch } = useQuery(GET_PROJECTS_BY_USERNAME, {
         variables: { username: Auth.getProfile().data.username }
@@ -31,8 +33,6 @@ const MyProfile = () => {
 
             setDisplayProjectForm(true);
         }
-        
-        
     }
 
     const handleProjectCreation = () => {
@@ -41,15 +41,14 @@ const MyProfile = () => {
         toggleProjectForm();
     }
 
-    const handleProjectRemoval = async (event) => {
-
-        let projectId = event.target.dataset.projectid
+    const handleProjectRemoval = async (projectId) => {
 
         let removedProject = await removeProject({
 
             
 
             variables: {
+
                 projectId: projectId
             }
         });
@@ -61,8 +60,6 @@ const MyProfile = () => {
     }
 
     useEffect(() => {
-
-        
 
         if(projectAdded) {
 
@@ -80,46 +77,56 @@ const MyProfile = () => {
 
     }, [projectAdded, projectRemoved])
 
-    
-
-
+    const profile = true;
 
     return (
         <section className="custom-my-profile-main col-12">
             <div className="custom-start-project-section">
-                {/* Add content for the start project section here */}
             </div>
             <h1 className="custom-my-project-title mb-4">My Projects</h1>
+
                 {Auth.loggedIn() && displayProjectForm && (
                     
+                    // Here, we render the form to create a project.
                     <ProjectForm onProjectCreation={handleProjectCreation}/>
                 )}
+
                 {!displayProjectForm && Auth.loggedIn() && (
+
                     <button className="btn btn-outline-primary custom-create-a-project" onClick={toggleProjectForm}>Create a Project</button>
                 )}
 
                 {displayProjectForm && Auth.loggedIn() && (
+
                     <button className="btn btn-outline-primary custom-create-a-project" onClick={toggleProjectForm}>Close Create Project Form</button>
                 )}
-            {projectLoading ? (
-                <p>Loading...</p>
-            ) : projectError ? (
-                <p>Error: {JSON.stringify(projectError)}</p>
-            ) : (
-                <div className="custom-delete-this-project-container col-12">
-                    {data && data.projectsByUsername.map((item, index) => (
-                        <React.Fragment key={uuidv4()}>
-                            <Project {...item} />
-                            {Auth.loggedIn() && (
 
-                                <button className="custom-delete-this-project mt-6" data-projectid={`${item._id}`} onClick={handleProjectRemoval}>Delete The Above Project</button>
-                            )}
-                        </React.Fragment>
-                    ))}
+            {projectLoading ? (
+
+                <p>Loading...</p>
+
+            ) : projectError ? (
+
+                <p>Error: {JSON.stringify(projectError)}</p>
+
+            ) : (
+
+                <div className="custom-delete-this-project-container col-12">
+                    {data && data.projectsByUsername.map((item, index) => {
+
+                        const projectId = item._id
+                        return (
+
+                            <React.Fragment key={uuidv4()}>
+                                <Project {...item} profile= {profile} onProjectRemoved={() => handleProjectRemoval(projectId)}/>
+                            </React.Fragment>
+                        ) 
+                        
+                    })}
                 </div>
             )}
         </section>
     );
 }
 
-export default MyProfile;
+export default MyProjects;

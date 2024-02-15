@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleProjectWithComments from './pages/SingleProjectWithComments';
-import MyProfile from './pages/MyProfile';
+import MyProjects from './pages/MyProjects.jsx';
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
 import PaymentFailure from './pages/PaymentFailure.jsx'
 import ErrorPage from './pages/ErrorPage';
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
                 element: <Signup/>
             },{
                 path: '/me',
-                element: <MyProfile/>
+                element: <MyProjects/>
             }, {
                 path: '/projects/:projectId',
                 element: <SingleProjectWithComments/>

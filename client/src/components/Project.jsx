@@ -18,19 +18,23 @@ const Project = (props) =>  {
         funded = true
     }
 
+    const projectRemovalClicked = (projectId) =>{
+
+        props.onProjectRemoved(projectId);
+    }
+
     return (
         <section className="custom-tab project mx-auto col-11">
             <div className="custom-project-boxes">
-                <h1>
+                <h1 className="mt-2">
                     {props.name}
                 </h1>
-
                 <h1 className="mb-0">
+
                     {funded ? (
-                        <span>
-                            <span className="money-color"> $$$ Funded! $$$</span> 
-                        </span>
+                        <span className="money-color"> $$$ Funded! $$$</span> 
                     ) : null}
+
                 </h1>
                 
                 <ul>
@@ -40,6 +44,15 @@ const Project = (props) =>  {
                     <li><span>Campaign Time Period:</span> {props.timePeriod} days</li>
                 </ul>
             </div>
+
+            {props.profile && (
+                <button className="custom-delete-this-project mt-6 px-3 py-2" 
+                        data-projectid={`${props._id}`} 
+                        onClick={() => projectRemovalClicked(props._id)}
+                >   
+                    Delete This Project
+                </button>
+            )}
         </section>
     )
 }

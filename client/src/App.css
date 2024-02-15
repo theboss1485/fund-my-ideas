@@ -55,7 +55,7 @@
     font-size: 40px;
 }
 
-ul {
+.nav-ul {
     padding-bottom: 1px;
     border-bottom: 1px solid rgb(12, 109, 154)
 }
@@ -276,13 +276,25 @@ ul {
 
 /* Here, we style the Create A Project button in the user's Projects section. */
 .custom-create-a-project {
-    color: white;
-    background-color: #2b73f8;
+    color: rgb(255, 254, 254);
+    background-color: #0da356;
+    border: none;
+}
+
+.custom-create-a-project:hover {
+    color: rgb(255, 254, 254);
+    background-color: #01c861;
+    border: none;
+    
 }
 
 .custom-delete-this-project {
-    width: 200px;
-    background-color: rgb(194, 43, 43);
+    width: fit-content;
+    border: none;
+    color: white;
+    background-color: rgb(220, 30, 30);
+    border-radius: 8%;
+    font-weight: bold;
 }
 
 .custom-delete-this-project-container {
@@ -389,7 +401,7 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5%;
+    margin-bottom: 1.5em;
 }
 
 .custom-buttons-container-for-add-a-comment label {
@@ -503,6 +515,12 @@ and custom-carousel-description when the screen hits a width of 572 pixels or sm
 
     .custom-project-boxes ul {
         padding: 2%;
+    }
+
+    .custom-delete-this-project {
+
+        margin-left: 1em;
+        margin-bottom: 1em;
     }
 
 

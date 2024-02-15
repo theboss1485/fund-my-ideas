@@ -35,12 +35,19 @@ const Home = () => {
     // This is to allow a new project to appear after a user creates one and then navigates to the Home page.
     useEffect(() => {
 
+        const previousURL = localStorage.getItem('currentUrl');
 
-        console.log("history", navigate);
-        // if(previousURL.includes("/me")){
+        if(previousURL){
 
-        //     refetch();
-        // }
+            if(previousURL.includes("/me")){
+
+                refetch();
+            }
+
+            localStorage.setItem("currentUrl", window.location.href)
+        }
+
+        
 
     }, [])
 
@@ -53,26 +60,26 @@ const Home = () => {
                         <img className="d-block w-100" src="/test1.jpg" alt="First slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3 className="custom-carousel-title">{data.allProjects[0].name}</h3>
-                    <p className="custom-carousel-description">{data.allProjects[0].description}</p>
+                        <h3 className="custom-carousel-title">{data.allProjects[0].name}</h3>
+                        <p className="custom-carousel-description">{data.allProjects[0].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item className="">
+                <Carousel.Item>
                     <figure className="custom-slider-pictures">
                         <img className="d-block w-100" src="/test2.jpg" alt="Second slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3 className="custom-carousel-title">{data.allProjects[1].name}</h3>
-                    <p className="custom-carousel-description">{data.allProjects[1].description}</p>
+                        <h3 className="custom-carousel-title">{data.allProjects[1].name}</h3>
+                        <p className="custom-carousel-description">{data.allProjects[1].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item className="">
+                <Carousel.Item>
                     <figure className="custom-slider-pictures">
                         <img className="d-block w-100" src="/test3.jpg" alt="Third slide"/>
                     </figure>
                     <Carousel.Caption>
-                    <h3 className="custom-carousel-title">{data.allProjects[2].name}</h3>
-                    <p className="custom-carousel-description">{data.allProjects[2].description}</p>
+                        <h3 className="custom-carousel-title">{data.allProjects[2].name}</h3>
+                        <p className="custom-carousel-description">{data.allProjects[2].description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
