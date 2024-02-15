@@ -202,6 +202,10 @@ const SingleProjectWithComments = (props) => {
     const handleCommentChange = (event) => {
 
         setCommentText(event.target.value)
+        if(event.target.value.trim() !== ""){
+
+            setFormError(null);
+        }
     }
 
     /* If the text inside the payment amount box changes, this function is called,
