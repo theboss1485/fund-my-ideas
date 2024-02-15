@@ -28,6 +28,7 @@ const SingleProjectWithComments = (props) => {
 
     const [commentRemoved, setCommentRemoved] = useState(false);
 
+    const [formError, setFormError] = useState(false);
     const [addComment, {loading: commentAdditionLoading, error: commentAdditionError}] = useMutation(ADD_COMMENT);
     const {data, loading: projectLoading, error: projectError, refetch} = useQuery(GET_PROJECT_BY_ID, {
 
@@ -156,27 +157,37 @@ const SingleProjectWithComments = (props) => {
 
         try{
 
+            if(commentText.trim() === ""){
+
+                throw new Error("You didn't enter a comment!")
+            }
+
             let newComment = await addComment({
                 
                 variables: {
 
                     projectId: projectId,
-                    commentText: commentText
+                    commentText: commentText.trim()
                 }
             })
 
             if(newComment){
 
                 setCommentAdded(true);
+                toggleCommentForm();
             }
+
+            if(commentAdditionError){
+
+                throw new Error("Something went wrong with the comment creation process.");
+            }
+
+            setCommentText("");
 
         } catch(error) {
 
-            console.log("Something went wrong with adding a comment.");
+            setFormError(error)
         }
-        
-
-        toggleCommentForm()
     }
 
     /* If a comment is removed, we set the commentRemoved variable to true 
@@ -266,9 +277,18 @@ const SingleProjectWithComments = (props) => {
                             </div>
                         </>
                     )}
+
+                    {(formError) && (
+            
+                        <div className="my-1 p-3 custom-error-message text-white col-lg-3 col-md-5 col-sm-6 col-11 mx-auto">
+                            {formError.message}
+                        </div>
+                    )}
+
+                    
                     
                     {!Auth.loggedIn() && (
-                        
+
                         <p className="custom-leave-comment-alert">You must &#160;<a href="/login">log in</a>&#160; or &#160;<a href="/signup">sign up</a>&#160; to leave a comment.</p>
                     )}
                     

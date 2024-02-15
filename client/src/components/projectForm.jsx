@@ -61,7 +61,7 @@ const ProjectForm = (props) => {
 
             } else {
 
-                throw new Error("You didn't fill in all of the fields.")
+                setFormError("You didn't fill in all of the fields.");
             }
 
             if(error){
@@ -71,7 +71,7 @@ const ProjectForm = (props) => {
 
         } catch (error) {
 
-            console.log(error);
+           setFormError("Something went wrong with your project submission.");
         }
     };
 
@@ -83,10 +83,10 @@ const ProjectForm = (props) => {
             {Auth.loggedIn() ? (
                 <>
                     <form
-                        className="flex-row d-flex justify-content-center align-center"
+                        className="flex-row d-flex flex-column justify-content-center align-center"
                         onSubmit={handleFormSubmit}
                     >
-                        <div className="col-12 col-md-9 col-lg-6 custom-add-project-section">
+                        <div className="col-12 col-md-9 col-lg-6 custom-add-project-section mx-auto">
                             <label htmlFor="project-name" className='text-white'>Project Name:</label>
                             <input 
                                 type="text" 
@@ -132,13 +132,15 @@ const ProjectForm = (props) => {
                                     Add this project
                                 </button>
                             </div>
+
+                            {(formError) && (
+                                <div className="my-3 p-3 custom-error-message text-white">
+                                    {formError}
+                                </div>
+                            )}
                         </div>
 
-                        {(formError) && (
-                            <div className="col-12 my-3 bg-danger text-white p-3">
-                                {formError}
-                            </div>
-                        )}
+                        
 
                     </form>
                 </>

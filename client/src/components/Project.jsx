@@ -26,7 +26,7 @@ const Project = (props) =>  {
     return (
         <section className="custom-tab project mx-auto col-11">
             <div className="custom-project-boxes">
-                <h1>
+                <h1 className="mt-2">
                     {props.name}
                 </h1>
                 <h1 className="mb-0">

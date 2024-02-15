@@ -401,7 +401,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5%;
+    margin-bottom: 1.5em;
 }
 
 .custom-buttons-container-for-add-a-comment label {
@@ -515,6 +515,12 @@ and custom-carousel-description when the screen hits a width of 572 pixels or sm
 
     .custom-project-boxes ul {
         padding: 2%;
+    }
+
+    .custom-delete-this-project {
+
+        margin-left: 1em;
+        margin-bottom: 1em;
     }
 
 
