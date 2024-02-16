@@ -65,7 +65,7 @@ const PaymentSuccess = () => {
 
     // This return statement displays a 'payment successful' message to the user.
     return (
-        <div className="text-center">
+        <div className="text-center text-white mb-3">
             {data && (
                 <>
                     <p>Your payment was successful. You will now be redirected to our home page. </p>
