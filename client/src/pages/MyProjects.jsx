@@ -24,6 +24,7 @@ const MyProjects = () => {
     
     const [removeProject, {loading, error}] = useMutation(REMOVE_PROJECT);
 
+    // This function displays and hides the project form.
     const toggleProjectForm = () => {
 
         if(displayProjectForm === true){
@@ -36,12 +37,15 @@ const MyProjects = () => {
         }
     }
 
+    /* The function is called to do housekeeping 
+    after a project is added to the database.*/
     const handleProjectCreation = () => {
 
         setProjectAdded(true)
         toggleProjectForm();
     }
 
+    // This function removes a project from the database.
     const handleProjectRemoval = async (projectId) => {
 
         let removedProject = await removeProject({
@@ -80,6 +84,7 @@ const MyProjects = () => {
 
     const profile = true;
 
+    // Here, we render the My Projects page.
     return (
         <section className="custom-my-profile-main col-12">
             <div className="custom-start-project-section">

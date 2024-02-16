@@ -11,7 +11,7 @@ import { persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import paymentReducer from './slices/paymentSlice';
+import rootReducer from './reducers/rootReducer';
 
 /* Here, we initialize a persistant configuration for the purposes of making our reducer persistant
 across multiple page refreshes.*/
@@ -20,7 +20,7 @@ const persistConfig = {
     storage,
   };
 
-const persistedReducer = persistReducer(persistConfig, paymentReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 /* Here, we initialize the store with the persistant reducer.
 We add in extra middlewhere to avoid a console error I was running into.*/

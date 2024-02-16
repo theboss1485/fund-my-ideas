@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, fromError } from '@apollo/client';
 import { useLazyQuery } from '@apollo/client';
 
 import { GET_PROJECT_BY_ID } from '../utils/queries';
@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth'
 
-import { updateLatestPayment } from '../../store/slices/paymentSlice';
+import { updateLatestPayment } from '../../store/reducers/slices/paymentSlice';
 
 
 
@@ -28,14 +28,15 @@ const SingleProjectWithComments = (props) => {
 
     const [commentRemoved, setCommentRemoved] = useState(false);
 
-    const [formError, setFormError] = useState(false);
+    const [commentFormError, setCommentFormError] = useState(null);
+    const [paymentFormError, setPaymentFormError] = useState(null);
     const [addComment, {loading: commentAdditionLoading, error: commentAdditionError}] = useMutation(ADD_COMMENT);
     const {data, loading: projectLoading, error: projectError, refetch} = useQuery(GET_PROJECT_BY_ID, {
 
         variables: { projectId: projectId }
     });
 
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedInUsername, setLoggedInUsername] = useState(Auth.getProfile().username);
 
 
     const [displayCommentForm, setDisplayCommentForm] = useState(false);
@@ -59,12 +60,22 @@ const SingleProjectWithComments = (props) => {
 
             setDisplayCommentForm(true);
         }
+
+        if(commentFormError){
+
+            setCommentFormError(null);
+        }
     }
 
     /* This function switches the displayPaymentWindow variable to the 
     inverse of what it was previously so as to add the payment window to
     or remove it from the page.*/
     const togglePaymentWindow = () => {
+
+        if(paymentFormError){
+
+            setPaymentFormError(null);
+        }
 
         if(displayPaymentWindow){
 
@@ -93,13 +104,21 @@ const SingleProjectWithComments = (props) => {
         
         try {
 
-            /* This function call deals with getting everthing ready to proceed 
-            with the Stripe checkout process.*/
-            await getCheckout({
+            // The payment amount should be greater than 0 and less than 1,000,000, and also should be a number.
+            if((paymentAmount < 0.01) || (paymentAmount > 999999.99) || (/^\d+(\.\d+)?$/.test(paymentAmount) === false)){
 
-                variables: {project: project, paymentAmount: paymentAmount}
-            })
-        
+                setPaymentFormError("Your payment amount must be greater than 0 and less than 1,000,000.")
+
+            } else {
+
+                /* This function call deals with getting everthing ready to proceed 
+                with the Stripe checkout process.*/
+                await getCheckout({
+
+                    variables: {project: project, paymentAmount: paymentAmount}
+                })
+            }
+
         } catch (error){
 
             console.log("Something went wrong with the payment process.");
@@ -186,7 +205,7 @@ const SingleProjectWithComments = (props) => {
 
         } catch(error) {
 
-            setFormError(error)
+            setCommentFormError(error)
         }
     }
 
@@ -204,7 +223,7 @@ const SingleProjectWithComments = (props) => {
         setCommentText(event.target.value)
         if(event.target.value.trim() !== ""){
 
-            setFormError(null);
+            setCommentFormError(null);
         }
     }
 
@@ -212,8 +231,17 @@ const SingleProjectWithComments = (props) => {
     so that the amount in the box is kept track of appropriately.*/
     const handleAmountChange = (event) => {
 
-        setPaymentAmount(parseFloat(event.target.value))
+        setPaymentAmount(parseFloat(event.target.value));
+
     }
+
+    useEffect(() => {
+
+        if(paymentAmount > 0 && paymentAmount < 1000000){
+
+            setPaymentFormError(null);
+        }
+    }, [paymentAmount])
     
     // Here, we render the single project with all of its comments.
     return (
@@ -240,19 +268,40 @@ const SingleProjectWithComments = (props) => {
 
                         {Auth.loggedIn() && displayPaymentWindow && (
 
-                            <div className='custom-proceed-to-checkout-button-container'>
-                                <label htmlFor="amount">Amount:</label>
-                                <input type="number" 
-                                    id="amount" 
-                                    name="amount" 
-                                    step="0.01" 
-                                    min="0.01" 
-                                    max={`${data.projectById.remainingFundingNeeded}`}
-                                    onChange={handleAmountChange}
-                                    required 
-                                />
-                                <button onClick={proceedToCheckout}>Proceed to Checkout</button>
-                            </div>
+                            <>
+                                <h1 className='text-white '>Back This Project!</h1>
+
+                                <form className="custom-login-section col-12">
+                                    <div className="mb-2">
+                                        <label htmlFor="email" className="mb-2 text-white">Amount:</label>
+                                        <div>
+                                            <input type="number"
+                                                className="custom-input-field-color" 
+                                                id="amount" 
+                                                name="amount" 
+                                                step="0.01" 
+                                                min="0.01" 
+                                                max={`${data.projectById.remainingFundingNeeded}`}
+                                                onChange={handleAmountChange}
+                                                required 
+                                            />
+                                            <div>
+                                                <button className="mt-4 btn custom-back-this-project-button" onClick={proceedToCheckout}>Proceed to Checkout</button>
+                                            </div>
+                                            <div>
+                                                <button className="mt-4 btn btn-primary" onClick={togglePaymentWindow}>Close Payment Form</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {(paymentFormError) && (
+                                            
+                                        <div className="mt-3 mb-3 p-3 custom-error-message text-white col-lg-4 col-md-8 col-sm-10 col-11 mx-auto">
+                                            {paymentFormError}
+                                        </div>
+                                    )}
+                                </form>
+                            </>
                         )}
 
                     </div>
@@ -282,10 +331,10 @@ const SingleProjectWithComments = (props) => {
                         </>
                     )}
 
-                    {(formError) && (
+                    {(commentFormError) && (
             
-                        <div className="my-1 p-3 custom-error-message text-white col-lg-3 col-md-5 col-sm-6 col-11 mx-auto">
-                            {formError.message}
+                        <div className="mt-1 mb-3 p-3 custom-error-message text-white col-lg-3 col-md-5 col-sm-6 col-11 mx-auto">
+                            {commentFormError.message}
                         </div>
                     )}
 

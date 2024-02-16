@@ -6,12 +6,9 @@ import Project from '../components/Project'
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 /* This function renders the home page. */
 const Home = () => {
-
-    const navigate = useNavigate();
 
     const {data, loading, error, refetch} = useQuery(GET_ALL_PROJECTS);
 

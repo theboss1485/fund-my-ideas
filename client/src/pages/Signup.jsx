@@ -2,12 +2,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { ADD_USER } from '../utils/mutations';
+
+import { setLoggedInUser } from '../../store/reducers/slices/userSlice';
 
 import Auth from '../utils/auth';
 
 // This function deals with the signup page functionality.
 const Signup = () => {
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     localStorage.setItem("currentUrl", window.location.href)
 
@@ -19,7 +27,7 @@ const Signup = () => {
     });
 
     const [user, setUser] = useState()
-    const [addUser, {loading, error: mutationError}] = useMutation(ADD_USER);
+    const [addUser, {loading, error: mutationError, data}] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
 
@@ -47,10 +55,25 @@ const Signup = () => {
                     variables: { ...formState },
                 });
 
+                dispatch(setLoggedInUser(
+            
+                    {
+                        user: data.addUser.user
+                    }
+                ));
+
                 const { token, user } = data.addUser;
             
                 Auth.login(token);
 
+                /* I moved the redirection logic out of the Auth.login function so that I could use
+                the useNavigate() hook to keep the page from doing a complete reload.*/
+                setTimeout(function() {
+
+                    navigate('/');
+
+                }, 1500);
+                
             } else {
 
                 throw new Error("You didn't fill in all the fields.")
@@ -58,7 +81,7 @@ const Signup = () => {
         
         } catch (error) {
 
-            console.log("Something went wrong with the signup process.");
+            console.log(JSON.stringify(error));
         }
     };
 
@@ -71,10 +94,10 @@ const Signup = () => {
                     <h4 className="card-header text-light p-2 custom-login-title">Sign Up</h4>
                     <div className="card-body custom-login-signup-form-body">
 
-                        {user ? (
-                            <p>
-                                Success! Profile has been created!{' '}
-                                <Link to="/">back to the homepage.</Link>
+                        {data ? (
+
+                            <p className="text-white text-center mt-2">
+                                Profile Creation Successful!  You will now be redirected to the homepage.
                             </p>
                         ) : (
 

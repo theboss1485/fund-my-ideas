@@ -1,14 +1,30 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Auth from '../utils/auth'
+import { useDispatch } from 'react-redux';
+
+import { setLoggedInUser } from '../../store/reducers/slices/userSlice';
 
 // This component contains the navigation bar at the top of the application.
 const NavTabs = () => {
+
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
     const currentPage = useLocation().pathname;
 
     const logout = (event) => {
         event.preventDefault();
+
+        dispatch(setLoggedInUser(
+            
+            {
+                user: null
+            }
+        ));
         Auth.logout();
+        navigate('/login');
       };
 
     return (
@@ -70,7 +86,7 @@ const NavTabs = () => {
                         <Link
                             to="/signup"
                             // Check to see if the currentPage is `Blog`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
-                            className={currentPage === '/signup' ? 'nav-link custom-nav-link-active' : 'nav-link custom-login-button custom-inactive-signup-tabs'}
+                            className={currentPage === '/signup' ? 'nav-link custom-nav-link-active' : 'nav-link custom-login-button'}
                         >
                             Sign Up
                         </Link>

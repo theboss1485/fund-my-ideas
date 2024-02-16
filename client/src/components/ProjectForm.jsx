@@ -36,28 +36,49 @@ const ProjectForm = (props) => {
 
     const handleFormSubmit = async (event) => {
 
+        let valid = false
+
         event.preventDefault();
 
         try {
 
             if((formState.name !== '') && (formState.description !== '') && (formState.funding !== 0) && (formState.time !== 0)){
-                
-                const {data} = await addProject({
-                    
-                    variables: {
-                        name: formState.name,
-                        description: formState.description,
-                        fundingGoal: parseInt(formState.funding),
-                        timePeriod: parseInt(formState.time)
-                    },
-                });
 
-                if(data.addProject.project && data.addProject.user){
+                if((formState.funding < 10000001) && (formState.funding >= 100 && formState.funding % 1 === 0)){
 
-                    props.onProjectCreation()
+                    if((formState.time < 366) && (formState.time >= 7)  && formState.time % 1 === 0){
+
+                        valid = true
+                        
+                    } else {
+
+                        setFormError("The time period must be an integer between 7 and 365 days, inclusive.");
+                    }
+
+                } else {
+
+                    setFormError("The funding goal must be an integer between 100 and 10,000,000, inclusive.");
                 }
 
-                setFormData('');
+                if(valid){
+
+                    const {data} = await addProject({
+                    
+                        variables: {
+                            name: formState.name,
+                            description: formState.description,
+                            fundingGoal: parseInt(formState.funding),
+                            timePeriod: parseInt(formState.time)
+                        },
+                    });
+    
+                    if(data.addProject.project && data.addProject.user){
+    
+                        props.onProjectCreation()
+                    }
+    
+                    setFormData('');
+                }
 
             } else {
 
@@ -94,13 +115,13 @@ const ProjectForm = (props) => {
                                 name="name" 
                                 className="custom-input-field-color mt-1 text-white" 
                                 onChange={handleChange} 
-                                required 
+                                required
+                                step="1"
                             />
                             <label htmlFor="project-description">Project Description:</label>
                             <textarea
                                 id="project-description"
                                 name="description"
-                                placeholder="project concept"
                                 className="form-input w-100 custom-input-field-color mt-1 text-white border-none"
                                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                                 onChange={handleChange}
@@ -114,7 +135,8 @@ const ProjectForm = (props) => {
                                 name="funding" 
                                 className="custom-input-field-color mt-1 text-white" 
                                 required 
-                                onChange={handleChange} 
+                                onChange={handleChange}
+                                step="1" 
                             />
                             <label htmlFor="time-period" className='text-white'>Time Period (in days):</label>
                             <input 
@@ -134,7 +156,7 @@ const ProjectForm = (props) => {
                             </div>
 
                             {(formError) && (
-                                <div className="my-3 p-3 custom-error-message text-white">
+                                <div className="mb-4 p-3 custom-error-message text-white">
                                     {formError}
                                 </div>
                             )}
