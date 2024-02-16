@@ -41,7 +41,10 @@
 
 .custom-nav-link-active {
     color: rgb(14, 232, 134);
-    background-color: rgb(34, 83, 104)}
+    background-color: rgb(34, 83, 104);
+    border-radius: 0.5em
+}
+    
 
 .custom-nav-link-active:visited {
     color: rgb(14, 232, 134);
