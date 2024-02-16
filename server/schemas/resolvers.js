@@ -81,25 +81,20 @@ const resolvers = {
 
             const line_items = [];
 
-                const backableProject = await stripe.products.create({
+            const backableProject = await stripe.products.create({
 
-                    name: project.name,
-                    description: project.description,
-                });
-            
+                name: project.name,
+                description: project.description,
+            });
 
+            console.log("project", backableProject);
 
-            if(stripe.products.list()){
+                const price = await stripe.prices.create({
 
-                
-            }
-
-            const price = await stripe.prices.create({
-
-                product: backableProject.id,
-                unit_amount: paymentAmount * 100,
-                currency: 'usd'
-            })
+                    product: backableProject.id,
+                    unit_amount: paymentAmount * 100,
+                    currency: 'usd'
+                })
 
             line_items.push({
 

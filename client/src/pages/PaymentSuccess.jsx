@@ -5,8 +5,6 @@ import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateLatestPayment } from "../../store/slices/paymentSlice";
-
 /* This page deals with with calling the database to update the 
 amount of funds a project has, and then redirecting the user to the home page.*/
 const PaymentSuccess = () => {
@@ -17,7 +15,11 @@ const PaymentSuccess = () => {
 
     const sessionId = queryParams.get('session_id');
 
-    const newestPayment = useSelector((state) => state.newestPayment);
+    const newestPayment = useSelector((state) => 
+    {
+        console.log("state", state);
+        return state.payments.newestPayment
+    });
 
     const [updateProjectFunds, {loading, error, data}] = useMutation(UPDATE_PROJECT_FUNDS);
 
@@ -59,7 +61,7 @@ const PaymentSuccess = () => {
 
         handleUpdatingProjectFunds();
 
-    }, [])
+    }, [newestPayment])
 
     // This return statement displays a 'payment successful' message to the user.
     return (

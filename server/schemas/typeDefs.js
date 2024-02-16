@@ -1,80 +1,80 @@
 // This file contains the GraphQL type definitions in order to make the queries and mutations work properly.
 const typeDefs = `
-  type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
-    projects: [Project]
-  }
 
-  type Project {
-    _id: ID
-    name: String!
-    description: String!
-    fundingGoal: Int!
-    currentFundingAmount: Float!
-    timePeriod: Int!
-    createdAt: String
-    comments: [Comment]!
-  }
+    type User {
+        _id: ID
+        username: String
+        email: String
+        password: String
+        projects: [Project]
+    }
 
-  type Comment {
-    _id: ID
-    commentText: String
-    username: String
-    createdAt: String
-  }
+    type Project {
+        _id: ID
+        name: String!
+        description: String!
+        fundingGoal: Int!
+        currentFundingAmount: Float!
+        timePeriod: Int!
+        createdAt: String
+        comments: [Comment]!
+    }
 
-  type Checkout {
-    session: ID!
-    url: String!
-  }
+    type Comment {
+        _id: ID
+        commentText: String
+        username: String
+        createdAt: String
+    }
 
-  type Auth {
-    token: ID!
-    user: User
-  }
+    type Checkout {
+        session: ID!
+        url: String!
+    }
 
-  type CommentWithProject {
-    comment: Comment!
-    project: Project!
-  }
+    type Auth {
+        token: ID!
+        user: User
+    }
 
-  type UserWithProject {
-    user: User!
-    project: Project!
-  }
+    type CommentWithProject {
+        comment: Comment!
+        project: Project!
+    }
 
-  input ProjectToBeContributedTo {
+    type UserWithProject {
+        user: User!
+        project: Project!
+    }
 
-    id: String!
-    name: String!
-    description: String!
-    fundingGoal: Int!
-    timePeriod: Int!
-  }
+    input ProjectToBeContributedTo {
+        id: String!
+        name: String!
+        description: String!
+        fundingGoal: Int!
+        timePeriod: Int!
+    }
 
-  type Query {
-    me: User
-    user(username: String!): User
-    allProjects: [Project]
-    projectsByUsername(username: String!): [Project]
-    projectById(projectId: String!): Project
-    comments(projectId: String!): [Comment]
-    comment(commentId: ID!): Comment
-    checkout(project: ProjectToBeContributedTo!, paymentAmount: Float! ): Checkout
-  }
+    type Query {
+        me: User
+        user(username: String!): User
+        allProjects: [Project]
+        projectsByUsername(username: String!): [Project]
+        projectById(projectId: String!): Project
+        comments(projectId: String!): [Comment]
+        comment(commentId: ID!): Comment
+        checkout(project: ProjectToBeContributedTo!, paymentAmount: Float! ): Checkout
+    }
 
-  type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): UserWithProject
-    addComment(projectId: String!, commentText: String!): CommentWithProject
-    updateProjectFunds(projectId: String!, fundChangeAmount: Float!): Project
-    removeProject(projectId: String!): UserWithProject
-    removeComment(projectId: String!, commentId: String!): CommentWithProject
-  }
+    type Mutation {
+        addUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+        addProject(name: String!, description: String!, fundingGoal: Int!, timePeriod: Int!): UserWithProject
+        addComment(projectId: String!, commentText: String!): CommentWithProject
+        updateProjectFunds(projectId: String!, fundChangeAmount: Float!): Project
+        removeProject(projectId: String!): UserWithProject
+        removeComment(projectId: String!, commentId: String!): CommentWithProject
+    }
 `;
 
 module.exports = typeDefs;

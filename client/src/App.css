@@ -95,6 +95,12 @@
     background-color: rgb(10, 79, 148);;
 }
 
+.custom-login-button:visited {
+
+    color: rgb(72, 184, 109);
+    background-color: rgb(10, 79, 148);;
+}
+
 .custom-projects-slider {
     margin-top: 1%;
     margin-bottom: 1%;
@@ -135,7 +141,7 @@
 }
 
 .custom-tab {
-    margin: 5%;
+    margin: 2em;
     box-shadow: 5px 5px 10px rgb(73, 96, 145) inset;
     border-radius: 10px;
     padding: 5%;
@@ -210,7 +216,8 @@
 }
 
 .custom-comment-tab {
-    margin: 5%;
+    margin-top: 5%;
+    margin-bottom: 1em;
     margin-left: 10%;
     margin-right: 10%;
     box-shadow: 5px 5px 10px rgb(38, 54, 78) inset;
@@ -221,7 +228,7 @@
 }
 
 .custom-comment-sections {
-    padding-bottom: 5%;
+    padding-bottom: 1em;
     border-bottom: solid 1px;
 }
 
@@ -292,10 +299,16 @@
     width: fit-content;
     border: none;
     color: white;
-    background-color: rgb(220, 30, 30);
-    border-radius: 8%;
-    font-weight: bold;
+    background-color: rgb(201, 37, 37);
+    border-radius: 0.5em;
 }
+
+.custom-delete-this-project:hover {
+
+    background-color: rgb(165, 31, 31);
+}
+
+
 
 .custom-delete-this-project-container {
     display: flex;
@@ -354,8 +367,10 @@
 }
 
 .custom-leave-a-comment-button {
+    margin-top: 1.5em;
     color: white;
-    background-color:rgb(48, 126, 199);
+    background-color:rgb(18, 105, 186);
+    border: none;
 }
 
 
@@ -386,7 +401,7 @@
 }
 
 .custom-proceed-to-checkout-button-container button {
-    margin-left: 2%;
+    margin-top: 1em;
     margin-right: 2%;
     color: white;
     background-color: rgb(60, 123, 218);

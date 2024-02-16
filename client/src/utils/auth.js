@@ -37,18 +37,16 @@ class AuthService {
         return localStorage.getItem('id_token');
     }
 
-    // Here, we log the user into the application
+    // Here, we remove add the user's token to local storage.
     login(idToken) {
 
         localStorage.setItem('id_token', idToken);
-        window.location.assign('/');
     }
 
-    // Here, we log the user out of the application
+    // Here, we remove the user's token from local storage.
     logout() {
 
         localStorage.removeItem('id_token');
-        window.location.assign('/');
     }
 }
 
