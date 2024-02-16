@@ -276,7 +276,7 @@ const SingleProjectWithComments = (props) => {
                                         <label htmlFor="email" className="mb-2 text-white">Amount:</label>
                                         <div>
                                             <input type="number"
-                                                className="custom-input-field-color" 
+                                                className="custom-input-field-color text-white" 
                                                 id="amount" 
                                                 name="amount" 
                                                 step="0.01" 
